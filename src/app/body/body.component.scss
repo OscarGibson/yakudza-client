@@ -1,0 +1,60 @@
+.active{
+	&-add {
+		color: green;
+	}
+	&-remove {
+		color: red;
+	}
+}
+
+.shares {
+	margin-top: 39px;
+}
+.cart {
+
+}
+.product {
+	padding-top: 57px;
+	&-title {
+		h1 {
+			font-family: 'Times new roman';
+			font-size: 26px;
+			color: #fff;
+			text-transform: uppercase;
+		}
+	}
+
+	&-filters {
+		display: inline-block;
+		border: 1px solid #444;
+    	border-radius: 5px;
+		&-item {
+			display: inline-block;
+			width: 85px;
+			text-align: center;
+			color: #fff;
+			// padding: 3px 30px;
+			fa {
+				display: block;
+			}
+			&-add {
+				font-size: 20px;
+			}
+			&-remove {
+				font-size: 17px;
+			}
+			p {
+				font-weight: bold;
+				text-align: center;
+				margin-bottom: 0;
+			}
+
+			&-add {}
+			&-name {
+				font-family: "Open sans";
+				color: #fff;
+			}
+			&-remove {}
+		}
+	}
+}
