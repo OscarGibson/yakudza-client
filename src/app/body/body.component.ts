@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BodyComponent implements OnInit {
 
   public shares_path: string = 'assets/img/shares.jpg';
+  public product_path: string = 'assets/img/havka.jpg';
 
   constructor() { }
 
