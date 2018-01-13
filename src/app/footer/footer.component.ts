@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  public images_path = {
+  	'visa' : 'assets/img/visa.jpg',
+  	'visae' : 'assets/img/visae.jpg',
+  	'mc' : 'assets/img/mc.jpg'
+  };
+
   constructor() { }
 
   ngOnInit() {

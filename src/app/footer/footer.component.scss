@@ -1,0 +1,116 @@
+.footer {
+	margin-bottom: 33px;
+	color: #fff;
+	&-banner {
+
+		position: relative;
+		height: 351px;
+		padding-top: 53px;
+		text-align: center;
+
+		&-bg {
+			top: 0;
+		    left: -5%;
+		    position: absolute;
+		    width: 110%;
+		    height: 100%;
+		    background-color: #ccc;
+		    z-index: -1;
+		}
+
+		&-title {
+			font-family: 'Times new roman';
+			font-size: 39px;
+		}
+		&-percent {
+			margin-top: 23px;
+			font-size: 49px;
+		    font-family: 'Times new roman';
+		}
+		&-subscribe {
+			padding: 13px 50px;
+		    margin-top: 29px;
+		    color: #fff;
+		    background-color: #faa;
+		    font-weight: bold;
+		    font-size: 17px;
+		    border: 1px solid #fff;
+		}
+	}
+
+	&-description {
+		margin-bottom: 78px;
+		h3 {
+			padding-top: 25px;
+			margin-bottom: 25px;
+		}
+		p {
+			font-size: 14px;
+		}
+		&-stars {
+			margin-top: 46px;
+			font-size: 26px;
+			.active {
+
+			}
+		}
+
+		&-r {
+			font-size: 13px;
+		}
+	}
+
+	&-bottom {
+		&-left {
+			h4 {
+				font-size: 15px;
+			} 
+			h1 {
+				font-size: 35px;
+				text-transform: uppercase;
+			}
+		}
+		&-center {
+			padding-top: 6px;
+			text-align: center;
+			p {
+				margin-bottom: 23px;
+				font-size: 15px;
+			}
+			img {
+				margin: 0 4.5px;
+			}
+		}
+		&-right {
+			padding-top: 9px;
+			text-align: center;
+
+			p {
+				margin-bottom: 15px;
+				font-size: 15px;
+			}
+		}
+		&-social {
+			fa {
+				margin: 0 5px;
+				font-size: 35px;
+				i {
+					
+				}
+			}
+			.facebook {
+				color: #33f;
+			}
+			.vk {
+				color: #00f;
+			}
+			.twitter {
+				color: #88f;
+			}
+			.google-plus {
+				color: #fcc;
+			}
+		}
+		
+	}
+}
