@@ -7,7 +7,7 @@
 	}
 }
 
-.shares {
+.proposition {
 	margin-top: 39px;
 }
 .cart {
@@ -107,4 +107,45 @@
 			}
 		}
 	}
+}
+
+.shares {
+	color: #fff;
+	text-align: center;
+	&-block {
+		&-text {
+
+		}
+		&-image {
+
+		}
+	}
+}
+
+.documents {
+	color: #fff;
+	&-wrapper {
+	}
+	&-header {
+		text-align: center;
+	}
+	&-content {
+		background-color: #222;
+		&-header {
+
+		}
+		&-text {
+
+		}
+		&-images {
+
+		}
+	}
+}
+
+.howTo {
+	color: #fff;
+}
+.contacts {
+	color: #fff;
 }
