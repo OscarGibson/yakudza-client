@@ -112,9 +112,14 @@
 .shares {
 	color: #fff;
 	text-align: center;
+	h1 {
+		margin-bottom: 20px;
+		font-family: "Times New Roman";
+	}
 	&-block {
+		margin-bottom: 20px;
 		&-text {
-
+			margin-bottom: 20px;
 		}
 		&-image {
 
@@ -125,12 +130,17 @@
 .documents {
 	color: #fff;
 	&-wrapper {
+
 	}
 	&-header {
 		text-align: center;
+		font-family: "Times New Roman";
 	}
 	&-content {
+		padding: 24px;
 		background-color: #222;
+		border: 1px solid #777;
+		border-radius: 5px;
 		&-header {
 
 		}
@@ -138,14 +148,115 @@
 
 		}
 		&-images {
-
+			img {
+				margin: 24px 0;
+			}
 		}
 	}
 }
 
 .howTo {
 	color: #fff;
+	&-header {
+		margin-bottom: 24px;
+		text-align: center;
+		font-family: "Times New Roman";
+	}
+	&-content {
+		background-color: #222;
+		border: 1px solid #777;
+		border-radius: 5px;
+		text-align: center;
+	}
+	&-block {
+		margin: 24px;
+		padding-bottom: 16px;
+		border-bottom: 2px dotted #777;
+		&-icon {
+			margin-top: 41px;
+    		width: 30%;
+		}
+		&-header {
+			margin-bottom: 16px;
+			color: #f00;
+		}
+		
+	}
 }
 .contacts {
 	color: #fff;
+	text-align: center;
+	&-header {
+		font-family: "Times NEw Roman";
+	}
+	&-content {
+		background-color: #222;
+		border: 1px solid #777;
+		border-radius: 5px;
+		&-social {
+			fa {
+				font-size: 34px;
+			}
+		}
+		&-logo {
+			img {
+				width: 256px;
+			}
+		}
+	}
+}
+
+.feedback {
+	color: #fff;
+	&-header {
+		text-align: center;
+		&-wrapper {
+			width: 800px;
+			margin: auto;
+			padding: 24px;
+			background-color: #222;
+			border: 1px solid #777;
+			border-radius: 5px;
+		}
+	}
+	&-form {
+		margin-bottom: 24px;
+		input {
+			display: block;
+		}
+		button {
+			padding: 13px 50px;
+		    margin-top: 29px;
+		    color: #fff;
+		    font-weight: bold;
+		    font-size: 17px;
+		    border: 1px solid #fff;
+		}
+	}
+	&-comments {
+		width: 1000px;
+		margin: auto;
+	}
+	&-comment {
+		&-author {
+			text-align: center;
+		}
+		&-body {
+			background-color: #222;
+			border: 1px solid #777;
+			border-radius: 5px;
+		}
+	}
+}
+
+
+/* Helpers classes */
+.modal {
+	display: none;
+}
+.red {
+	color: #f00;
+}
+.green-bg {
+	background-color: #0f0;
 }
