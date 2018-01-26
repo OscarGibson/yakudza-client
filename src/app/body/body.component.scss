@@ -299,10 +299,72 @@
 }
 
 .subs-modal {
-	display: none;
+	position : fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1;
+
+	&-form {
+		width: 802px;
+		margin: auto;
+    	margin-top: 10%;
+    	padding: 8px 24px;
+		border: 1px solid #777;
+		border-radius: 5px;
+		background-color: #222;
+		color: #fff;
+		&-X {
+			text-align: right;
+			fa {
+				font-size: 32px;
+				color: #fff;
+			}
+		}
+		label {
+			font-size: 24px;
+		}
+		span {
+			font-size: 16px;
+		}
+		input {
+			display: block;
+			margin-bottom: 32px;
+		}
+		button {
+			display: block;
+		    width: 50%;
+		    padding: 8px;
+		    background-color: red;
+		    font-weight: bold;
+		    border: none;
+		    margin-bottom: 32px;
+		}
+	}
 }
 .prod-modal {
-	display: none;
+	position : fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1;
+	&-wrapper {
+		width: 802px;
+		margin: auto;
+    	margin-top: 5%;
+    	padding: 8px 24px;
+		border: 1px solid #777;
+		border-radius: 5px;
+		background-color: #222;
+		color: #fff;
+	}
+	&-button {
+		background-color: orange;
+	}
 }
 
 /* Helpers classes */

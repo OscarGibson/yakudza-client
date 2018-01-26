@@ -543,12 +543,12 @@
 		</div>
 
 		<!-- Subscription modal window -->
-		<div class="modal subs-modal">
+		<div class="subs-modal">
 			<div class="subs-modal-bg"></div>
-			<div class="subs-modal-X">
-				<fa></fa>
-			</div>
 			<div class="subs-modal-form">
+				<div class="subs-modal-X">
+					<fa name="times"></fa>
+				</div>
 				<form>
 					<span class="subs-modal-form-info">
 						Ви можете підписаться на щотижневу розсилку
@@ -563,40 +563,44 @@
 
 		<!-- Product modal window -->
 		<div class="modal prod-modal">
-			<div class="prod-modal-bg"></div>
-			<div class="prod-modal-X">
-				<fa></fa>
-			</div>
 
-			<div class="prod-modal-header">
-				<h2></h2>
-			</div>
-			<div class="prod-modal-image">
-				<img src="">
-			</div>
-			<div class="prod-modal-info">
-				<p>
-					<span></span>
-					<span></span>
-				</p>
-			</div>
-			<div class="prod-modal-text">
-				<p></p>
-			</div>
-			<div class="prod-modal-price">
-				<p></p>
-			</div>
-			<div class="prod-modal-button">
-				<button></button>
-			</div>
-			<div class="prod-modal-arrows">
-				<div class="prod-modal-arrows-left">
-					<fa></fa>
+			<div class="prod-modal-wrapper">
+				<div class="prod-modal-X">
+					<fa name="times"></fa>
 				</div>
-				<div class="prod-modal-arrows-left">
-					<fa></fa>
+
+				<div class="prod-modal-header">
+					<h2>Product name</h2>
+				</div>
+				<div class="prod-modal-image">
+					<img src="{{ product_path }}">
+				</div>
+				<div class="prod-modal-info">
+					<p>
+						<span>Weigth</span>
+						<span>some val</span>
+					</p>
+				</div>
+				<div class="prod-modal-text">
+					<p>modal text</p>
+				</div>
+				<div class="prod-modal-price">
+					<p>$999</p>
+				</div>
+				<div class="prod-modal-button">
+					<button>Buy</button>
+				</div>
+				<div class="prod-modal-arrows">
+					<div class="prod-modal-arrows-left">
+						<fa name="arrow-left"></fa>
+					</div>
+					<div class="prod-modal-arrows-right">
+						<fa name="arrow-right"></fa>
+					</div>
 				</div>
 			</div>
+			
+
 		</div>
 
 	</div>
