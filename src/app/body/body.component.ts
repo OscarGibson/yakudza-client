@@ -176,4 +176,33 @@ export class BodyComponent implements OnInit {
   public go_to_main() {
     this.globals.current_page = {'title':'main'}
   }
+
+  public show_product(id: number) {
+    for (let product of this.globals.current_category.products) {
+      if (product.id == id) {
+        console.log('PRODUCT', product);
+        this.globals.current_product = product;
+        this.globals.show_product = true;
+        break;
+      }
+    }
+  }
+
+  public close_modal(type: string) {
+    switch (type) {
+      case "product":
+        this.globals.show_product = false;
+        break;
+      case "subs":
+        this.globals.show_subs = false;
+        break;
+      case "callback":
+        this.globals.show_callback = false;
+        break;
+      
+      default:
+        // code...
+        break;
+    }
+  }
 }

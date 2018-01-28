@@ -73,4 +73,19 @@ export class Globals {
   private static _get_path(name: string): string {
   	return Globals._domain + Globals._api_path + name;
   }
+
+  public static show_callback: boolean = false;
+  public static show_subs: boolean = false;
+  public static show_product: boolean = false;
+
+  public static current_product = {
+  	"id": '',
+    "title": "",
+    "slug": "",
+    "description": "",
+    "image": "",
+    "price": 0,
+    "weight": 0,
+    "kkal": 0,
+  };
 }

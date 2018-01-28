@@ -16,7 +16,7 @@
 		</p>
 	</div>
 	<div class=row>
-		<div class="cart col-lg-4 col-md-4">
+		<div *ngIf="globals.current_page.title == 'main'" class="cart col-lg-4 col-md-4">
 			<div class="cart-head">
 				<img class="cart-head-img">
 				<h1 class="cart-head-text"></h1>
@@ -67,7 +67,7 @@
 					<div *ngFor="let product of globals.current_category.products"
 					 class="col-lg-4 col-md-4 product-area-item">
 					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
+						<img src="{{ globals.backend_domain}}{{ product.image }}">
 						<h3 class="product-area-item-title">{{ product.title }}</h3>
 						<div>
 							<span class="product-area-item-weight">350g</span>
@@ -77,7 +77,7 @@
 						<p class="product-area-item-description">{{ product.description }}</p>
 						<div class="product-area-item-bottom">
 							<span class="product-area-item-price">{{ product.price }}</span>
-							<button class="product-area-item-buy">Замовити</button>
+							<button (click)="show_product(product.id)" class="product-area-item-buy">Замовити</button>
 						</div>
 					  </div>
 					</div>
@@ -223,7 +223,7 @@
 		</div>
 
 		<!-- Claaback modal window -->
-		<div class="modal call-modal">
+		<div *ngIf="globals.show_callback" class="call-modal">
 			<div class="call-modal-bg"></div>
 			<div class="call-modal-form">
 				<div class="call-modal-form-X">
@@ -245,7 +245,7 @@
 		</div>
 
 		<!-- Subscription modal window -->
-		<div class="modal subs-modal">
+		<div *ngIf="globals.show_subs" class="subs-modal">
 			<div class="subs-modal-bg"></div>
 			<div class="subs-modal-form">
 				<div class="subs-modal-X">
@@ -264,30 +264,30 @@
 		</div>
 
 		<!-- Product modal window -->
-		<div class="modal prod-modal">
+		<div *ngIf="globals.show_product" class="prod-modal">
 
 			<div class="prod-modal-wrapper">
 				<div class="prod-modal-X">
-					<fa name="times"></fa>
+					<fa (click)="close_modal('product')" name="times"></fa>
 				</div>
 
 				<div class="prod-modal-header">
-					<h2>Product name</h2>
+					<h2>{{ globals.current_product.title }}</h2>
 				</div>
 				<div class="prod-modal-image">
-					<img src="{{ product_path }}">
+					<img src="{{ globals.backend_domain}}{{ globals.current_product.image }}">
 				</div>
 				<div class="prod-modal-info">
 					<p>
-						<span>Weigth</span>
-						<span>some val</span>
+						<span>{{ globals.current_product.weight }}</span>
+						<span>{{ globals.current_product.kkal }}</span>
 					</p>
 				</div>
 				<div class="prod-modal-text">
-					<p>modal text</p>
+					<p>{{ globals.current_product.description }}</p>
 				</div>
 				<div class="prod-modal-price">
-					<p>$999</p>
+					<p>{{ globals.current_product.price }}</p>
 				</div>
 				<div class="prod-modal-button">
 					<button>Buy</button>
