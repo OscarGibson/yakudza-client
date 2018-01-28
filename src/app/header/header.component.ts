@@ -9,17 +9,9 @@ import { Globals } from '../app.globals';
 })
 export class HeaderComponent implements OnInit {
 
-  public right_nav_list: string[] = [
-  	'shares',
-  	'feedbacks',
-  	'documents',
-  	'how to',
-  	'contacts'
-  ];
+  public right_nav_list: string[];
   public bottom_nav_list: any;
   private headers: HttpHeaders;
-
-  private _categories_get_path: string = 'http://localhost:8000/api/categories/';
 
   public logo_path: string = '/assets/logo/Yakudza.svg';
   public globals = Globals;
@@ -28,22 +20,25 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   	this.get_categories();
+    this.get_menu();
   }
 
   public get_categories() {
 
-  this.http.get(Globals.categories_get_path, 
-    {headers:this.headers})
-    .subscribe(data => {
+    this.http.get(Globals.categories_get_path, 
+      {headers:this.headers})
+      .subscribe(data => {
 
-      Globals.categories = data;
-      this.bottom_nav_list = Globals.categories;
+        Globals.categories = data['categories'];
+        console.log(Globals.categories);
+        this.bottom_nav_list = Globals.categories;
+        console.log(this.bottom_nav_list);
 
-    }, error => {
+      }, error => {
 
-      console.log('ERROR: ', error);
+        console.log('ERROR: ', error);
 
-    })
+      })
   }
 
   public change_categories(id: number) {
@@ -55,5 +50,34 @@ export class HeaderComponent implements OnInit {
       }
     }
   } 
+
+  public get_menu() {
+
+    this.http.get(Globals.menu_get_path, 
+      {headers:this.headers})
+      .subscribe(data => {
+
+        Globals.menu = data['menu'];
+        console.log(Globals.menu);
+        this.right_nav_list = Globals.menu;
+        console.log(this.right_nav_list);
+
+      }, error => {
+
+        console.log('ERROR: ', error);
+
+      })
+  }
+
+  public change_page(id: number) {
+    Globals.current_page;
+    for (let page of Globals.menu) {
+      if (page.id == id) {
+        Globals.current_page = page;
+        console.log(Globals.current_page);
+      }
+    }
+  } 
+
 
 }

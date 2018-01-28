@@ -23,33 +23,39 @@ export class BodyComponent implements OnInit {
 
   private headers: HttpHeaders;
 
-  public products_list: any;
-  public filters_list: any;
+  // public products_list: any;
+  public filters_list: Array<any>;
   public globals = Globals;
 
-  private _products_get_path: string = 'http://localhost:8000/api/product';
-  private _filters_get_path: string = 'http://localhost:8000/api/filters';
+  // private _products_get_path: string = 'http://localhost:8000/api/product';
+  private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.get_products();
+    // this.get_products();
     this.get_filters();
+    this.get_shares_content();
+    this.get_document_content();
+    this.get_how_to_content();
+    this.get_contact_content();
+    this.get_social_content();
+    this.get_feedback_content();
   }
 
-  public get_products() {
+  // public get_products() {
 
-    this.http.get(this._products_get_path, {headers: this.headers})
-    .subscribe(
-      data => {
-        this.products_list = data;
-      },
-      error => {
-        console.log('ERROR: ', error);
-      }
-      )
+  //   this.http.get(this._products_get_path, {headers: this.headers})
+  //   .subscribe(
+  //     data => {
+  //       this.products_list = data;
+  //     },
+  //     error => {
+  //       console.log('ERROR: ', error);
+  //     }
+  //     )
 
-  }
+  // }
   public test() {
     console.log(this.globals);
   }
@@ -59,7 +65,7 @@ export class BodyComponent implements OnInit {
     this.http.get(this._filters_get_path, {headers: this.headers})
     .subscribe(
       data => {
-        this.filters_list = data;
+        this.filters_list = data['tags'];
         for (var i = 0; i < this.filters_list.length; i++) {
           this.filters_list[i].class = '';
           // console.log(this.filters_list[i]);
@@ -79,10 +85,12 @@ export class BodyComponent implements OnInit {
     if (add) properties.reverse();
 
     this.filters_list[event.path[1].id][properties[0]] = '';
-    this.filters_list[event.path[1].id][properties[1]] = class_name;
-    // console.log(this.filters_list);
-    // console.log(event.path[1].id);
-    // console.log(properties);
+    if (this.filters_list[event.path[1].id][properties[1]] == '') {
+      this.filters_list[event.path[1].id][properties[1]] = class_name;
+    }
+    else {
+      this.filters_list[event.path[1].id][properties[1]] = '';
+    }
   }
 
   public add_filter(event) {
@@ -92,4 +100,80 @@ export class BodyComponent implements OnInit {
     this._abstract_filter(event, 'active-remove', false);
   }
 
+  public get_shares_content() {
+     this.http.get(this.globals.section_get_path + 'shares', {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.shares_content = data['shares_section'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
+  public get_document_content() {
+    this.http.get(this.globals.section_get_path + 'document', {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.document_content = data['document_section'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
+
+  public get_how_to_content() {
+    this.http.get(this.globals.section_get_path + 'how-to', {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.how_to_content = data['how_to_section'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
+  public get_contact_content() {
+    this.http.get(this.globals.section_get_path + 'contact', {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.contact_content = data['contact_section'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
+  public get_social_content() {
+    this.http.get(this.globals.section_get_path + 'social', {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.social_content = data['social_section'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
+  public get_feedback_content() {
+    this.http.get(this.globals.feedback_path, {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.feedback_content = data['feedbacks'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
+  public go_to_main() {
+    this.globals.current_page = {'title':'main'}
+  }
 }

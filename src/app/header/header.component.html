@@ -30,8 +30,8 @@
 		</div>
 		<div class="header-content-rightnav col-lg-2">
 			<ul>
-				<li *ngFor="let rn of right_nav_list">
-					{{ rn }}
+				<li *ngFor="let page of right_nav_list">
+					<span id="page-{{ page.id }}" (click)="change_page(page.id)">{{ page.title }}</span>
 				</li>
 			</ul>
 		</div>
@@ -39,8 +39,8 @@
 	<div class="header-bottomnav">
 		<ul>
 			<li *ngFor="let category of bottom_nav_list">
-				<span (click)="change_categories(category.id)">
-					{{ category.title }}
+				<span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
+					{{ category.name }}
 				</span>
 			</li>
 		</ul>

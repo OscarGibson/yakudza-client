@@ -69,41 +69,44 @@
 		&-item {
 			padding: 5px 6px;
 			&-inner {
+				min-height: 297px;
 				padding: 10px 11px;
 				border: 1px solid #555;
 			}
 			&-title {
+				margin-top: 4px;
 				margin-bottom: 6px;
-				color: orange;
+				color: #fe683a;
 				font-size: 15px;
     			text-align: center;
 			}
 			&-weight {
 				color: #555;
-				font-size: 10px;
+				font-size: 12px;
 			}
 			&-kkal {
 				float: right;
 				color: #555;
-				font-size: 10px;
+				font-size: 12px;
 			}
 			&-description {
 				margin-top: 10px;
-				font-size: 12px;
+				font-size: 13px;
 				color: #ccc;
 			}
 			&-bottom {
 				margin: 0 8px 0 0;
 			}
 			&-price {
-				color: orange;
+				color: #fe683a;
 				font-size: 18px;
 			    display: inline-block;
-			    margin-top: 5px;
+			    margin-top: 9px;
+    			margin-bottom: 10px;
 			}
 			&-buy {
 				color: #ccc;
-				background-color: orange;
+				background-color: #fe683a;
 				float: right;
 			    font-size: 15px;
 			    font-family: "Open Sans";
@@ -200,6 +203,9 @@
 		border: 1px solid #777;
 		border-radius: 5px;
 		&-social {
+			div {
+				display: inline-block;
+			}
 			fa {
 				font-size: 34px;
 			}
@@ -216,41 +222,71 @@
 	color: #fff;
 	&-header {
 		text-align: center;
+		font-family: "Times new roman";
+	    font-size: 35px;
+	    text-transform: uppercase;
+	    margin-bottom: 21px;
 		&-wrapper {
 			width: 800px;
-			margin: auto;
-			padding: 24px;
-			background-color: #222;
-			border: 1px solid #777;
-			border-radius: 5px;
+		    margin: auto;
+		    padding: 24px 47px;
+		    background-color: #222;
+		    border: 1px solid #3ca930;
+		    border-radius: 5px;
+		    margin-bottom: 105px;
+			&-header {
+				text-align: center;
+			    font-family: "times new roman";
+			    font-size: 25px;
+			    text-transform: uppercase;
+			    margin-top: 34px;
+			    color: #36a140;
+			    margin-bottom: 49px;
+			}
 		}
 	}
 	&-form {
 		margin-bottom: 24px;
+		padding: 0 38px;
+		label {
+			font-size: 23px;
+			margin-bottom: 13px;
+		}
 		input {
 			display: block;
+		    width: 100%;
+		    height: 45px;
+		    margin-bottom: 27px;
+		}
+		textarea {
+			display: block;
+		    width: 100%;
+		    height: 164px;
 		}
 		button {
-			padding: 13px 50px;
+			padding: 6px 93px;
 		    margin-top: 29px;
 		    color: #fff;
 		    font-weight: bold;
-		    font-size: 17px;
-		    border: 1px solid #fff;
+		    font-size: 21px;
+		    border: none;
 		}
 	}
 	&-comments {
-		width: 1000px;
+		width: 100%;
 		margin: auto;
 	}
 	&-comment {
+		padding: 0 53px;
 		&-author {
 			text-align: center;
+			font-style: italic;
 		}
 		&-body {
 			background-color: #222;
 			border: 1px solid #777;
 			border-radius: 5px;
+			padding: 32px;
 		}
 	}
 }
@@ -369,7 +405,7 @@
 		color: #fff;
 	}
 	&-button {
-		background-color: orange;
+		background-color: #fe683a;
 	}
 }
 
@@ -381,5 +417,16 @@
 	color: #f00;
 }
 .green-bg {
-	background-color: #0f0;
+	background-color: #3ca930;
+}
+
+.breadcrumb {
+	background: none;
+	color: #fff;
+	&-separator {
+		padding: 0 12px;
+	}
+}
+.go-to-main {
+	cursor: pointer;
 }
