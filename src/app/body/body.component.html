@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body" (click)="test()">
 	<div class="proposition row">
 		<div class="col-md-4 col-lg-4">
 			<img src="{{ shares_path }}">
@@ -48,303 +48,36 @@
 		<div class="product col-lg-8 col-md-8">
 			<div class="rols">
 				<div class="product-title">
-					<h1>Роли</h1>
+					<h1>{{ globals.current_category.title }}</h1>
 				</div>
 
-				<div class="product-filters"><div class="product-filters-item">
-						<fa class="product-filters-item-add active-add" name="heart-o"></fa>
-						<p class="product-filters-item-name">хіт</p>
-						<fa class="product-filters-item-remove" name="times"></fa>
-					</div><div class="product-filters-item">
-						<fa class="product-filters-item-add" name="heart-o"></fa>
-						<p class="product-filters-item-name">авокадо</p>
-						<fa class="product-filters-item-remove" name="times"></fa>
-					</div><div class="product-filters-item">
-						<fa class="product-filters-item-add" name="heart-o"></fa>
-						<p class="product-filters-item-name">лосось</p>
-						<fa class="product-filters-item-remove" name="times"></fa>
-					</div><div class="product-filters-item">
-						<fa class="product-filters-item-add" name="heart-o"></fa>
-						<p class="product-filters-item-name">краб</p>
-						<fa class="product-filters-item-remove" name="times"></fa>
-					</div><div class="product-filters-item">
-						<fa class="product-filters-item-add" name="heart-o"></fa>
-						<p class="product-filters-item-name">креветки</p>
-						<fa class="product-filters-item-remove" name="times"></fa>
-					</div><div class="product-filters-item">
-						<fa class="product-filters-item-add" name="heart-o"></fa>
-						<p class="product-filters-item-name">лосось</p>
-						<fa class="product-filters-item-remove" name="times"></fa>
+				<div class="product-filters">
+					<div *ngFor="let filter of filters_list; let i = index" class="product-filters-item">
+						<fa class="product-filters-item-add {{ filter.class_add }}" id="{{ i }}" name="heart-o" (click)="add_filter($event)"></fa>
+						<p class="product-filters-item-name">{{ filter.name }}</p>
+						<fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa>
 					</div>
 				</div>
 				<div class="product-area row">
-					<div class="col-lg-4 col-md-4 product-area-item">
+					<div *ngFor="let product of globals.current_category.products"
+					 class="col-lg-4 col-md-4 product-area-item">
 					  <div class="product-area-item-inner">
 						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
+						<h3 class="product-area-item-title">{{ product.title }}</h3>
 						<div>
 							<span class="product-area-item-weight">350g</span>
 							<span class="product-area-item-kkal">250kkal</span>
 						</div>
 						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
+						<p class="product-area-item-description">{{ product.description }}</p>
 						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
-							<button class="product-area-item-buy">Замовити</button>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ product_path }}">
-						<h3 class="product-area-item-title">Філадельфія лайт з тобіко</h3>
-						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
-						</div>
-						
-						<p class="product-area-item-description">Помідор, огірок, вершковий сир, імбир, рис, норі</p>
-						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">150 грн</span>
+							<span class="product-area-item-price">{{ product.unit_price }}</span>
 							<button class="product-area-item-buy">Замовити</button>
 						</div>
 					  </div>
 					</div>
 
-				</div>
-			</div>
-
-			<div class="soups">
-				<div class="soups-title">
-					<h1>soups</h1>
-				</div>
-				<div class="soups-filters">
-					<div class="soups-filters-item">
-						<i class="soups-filters-item-add"></i>
-						<span class="soups-filters-item-name">name</span>
-						<i class="soups-filters-item-remove"></i>
-					</div>
-					<div class="soups-filters-item">
-						<i class="soups-filters-item-add"></i>
-						<span class="soups-filters-item-name">name</span>
-						<i class="soups-filters-item-remove"></i>
-					</div>
-					<div class="soups-filters-item">
-						<i class="soups-filters-item-add"></i>
-						<span class="soups-filters-item-name">name</span>
-						<i class="soups-filters-item-remove"></i>
-					</div>
-					<div class="soups-filters-item">
-						<i class="soups-filters-item-add"></i>
-						<span class="soups-filters-item-name">name</span>
-						<i class="soups-filters-item-remove"></i>
-					</div>
-					<div class="soups-filters-item">
-						<i class="soups-filters-item-add"></i>
-						<span class="soups-filters-item-name">name</span>
-						<i class="soups-filters-item-remove"></i>
-					</div>
-					<div class="soups-filters-item">
-						<i class="soups-filters-item-add"></i>
-						<span class="soups-filters-item-name">name</span>
-						<i class="soups-filters-item-remove"></i>
-					</div>
-				</div>
-				<div class="soups-area row">
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-					<div class="col-lg-4 col-md-4 soups-area-item">
-						<img>
-						<h2 class="soups-area-item-title">product title</h2>
-						<span class="soups-area-item-weight">350g</span>
-						<span class="soups-area-item-kkal">100kkal</span>
-						<h3 class="soups-area-item-description">adf, asdf,adf ,wefwef ,wefwef,wefwef, wef wef</h3>
-						<span class="soups-area-item-price">140 uah</span>
-						<button class="soups-area-item-buy">Buy</button>
-					</div>
-
+					
 				</div>
 			</div>
 		</div>
@@ -521,7 +254,7 @@
 		</div>
 
 		<!-- Claaback modal window -->
-		<div class="call-modal">
+		<div class="modal call-modal">
 			<div class="call-modal-bg"></div>
 			<div class="call-modal-form">
 				<div class="call-modal-form-X">
@@ -543,7 +276,7 @@
 		</div>
 
 		<!-- Subscription modal window -->
-		<div class="subs-modal">
+		<div class="modal subs-modal">
 			<div class="subs-modal-bg"></div>
 			<div class="subs-modal-form">
 				<div class="subs-modal-X">

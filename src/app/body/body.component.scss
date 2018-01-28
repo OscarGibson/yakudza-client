@@ -1,4 +1,4 @@
-.active{
+.active {
 	&-add {
 		color: green;
 	}
@@ -39,9 +39,15 @@
 			}
 			&-add {
 				font-size: 20px;
+				&:hover {
+					color: green;
+				}
 			}
 			&-remove {
 				font-size: 17px;
+				&:hover {
+					color: red;
+				}
 			}
 			p {
 				font-weight: bold;

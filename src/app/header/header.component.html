@@ -38,8 +38,10 @@
 	</div>
 	<div class="header-bottomnav">
 		<ul>
-			<li *ngFor="let bn of bottom_nav_list">
-				{{ bn }}
+			<li *ngFor="let category of bottom_nav_list">
+				<span (click)="change_categories(category.id)">
+					{{ category.title }}
+				</span>
 			</li>
 		</ul>
 	</div>
