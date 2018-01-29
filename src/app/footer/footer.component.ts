@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Globals } from '../app.globals';
 
 @Component({
   selector: 'app-footer',
@@ -13,9 +14,15 @@ export class FooterComponent implements OnInit {
   	'mc' : 'assets/img/mc.jpg'
   };
 
+  public globals = Globals;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public show_subs() {
+    this.globals.show_subs = true;
   }
 
 }

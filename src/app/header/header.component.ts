@@ -77,6 +77,10 @@ export class HeaderComponent implements OnInit {
         console.log(Globals.current_page);
       }
     }
+  }
+
+    public show_callback() {
+    this.globals.show_callback = true;
   } 
 
 

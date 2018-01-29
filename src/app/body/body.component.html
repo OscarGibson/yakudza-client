@@ -227,7 +227,7 @@
 			<div class="call-modal-bg"></div>
 			<div class="call-modal-form">
 				<div class="call-modal-form-X">
-					<fa name="times"></fa>
+					<fa name="times" (click)="close_modal('callback')"></fa>
 				</div>
 				<form>
 					<label for="call-modal-form-name">
@@ -248,7 +248,7 @@
 		<div *ngIf="globals.show_subs" class="subs-modal">
 			<div class="subs-modal-bg"></div>
 			<div class="subs-modal-form">
-				<div class="subs-modal-X">
+				<div class="subs-modal-X" (click)="close_modal('subs')">
 					<fa name="times"></fa>
 				</div>
 				<form>
