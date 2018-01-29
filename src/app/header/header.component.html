@@ -31,6 +31,7 @@
 		<div class="header-content-rightnav col-lg-2">
 			<ul>
 				<li *ngFor="let page of right_nav_list">
+					<embed *ngIf="globals.current_page.id == page.id"  src="/assets/svg/active.svg" class="active-right-menu">
 					<span id="page-{{ page.id }}" (click)="change_page(page.id)">{{ page.title }}</span>
 				</li>
 			</ul>
@@ -42,6 +43,7 @@
 				<span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
 					{{ category.name }}
 				</span>
+				<span *ngIf="globals.current_category.id == category.id" class="active-bottom-menu"></span>
 			</li>
 		</ul>
 	</div>

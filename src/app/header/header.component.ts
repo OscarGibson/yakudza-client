@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-  	this.get_categories();
-    this.get_menu();
+  	this.get_categories(true);
+    this.get_menu(true);
   }
 
-  public get_categories() {
+  public get_categories(first_time= false) {
 
     this.http.get(Globals.categories_get_path, 
       {headers:this.headers})
@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
         this.bottom_nav_list = Globals.categories;
         console.log(this.bottom_nav_list);
 
+        if (first_time) this.change_categories(this.globals.categories[0].id);
+
       }, error => {
 
         console.log('ERROR: ', error);
@@ -42,7 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public change_categories(id: number) {
-    Globals.current_category;
+    this.globals.current_page = {'title':'main'};
     for (let category of Globals.categories) {
       if (category.id == id) {
         Globals.current_category = category;
@@ -51,7 +53,7 @@ export class HeaderComponent implements OnInit {
     }
   } 
 
-  public get_menu() {
+  public get_menu(first_time= false) {
 
     this.http.get(Globals.menu_get_path, 
       {headers:this.headers})
@@ -61,6 +63,8 @@ export class HeaderComponent implements OnInit {
         console.log(Globals.menu);
         this.right_nav_list = Globals.menu;
         console.log(this.right_nav_list);
+
+        if (first_time) this.globals.current_page = {'title':'main'};
 
       }, error => {
 
@@ -75,6 +79,8 @@ export class HeaderComponent implements OnInit {
       if (page.id == id) {
         Globals.current_page = page;
         console.log(Globals.current_page);
+        this.globals.current_category = {'products' : []};
+        break;
       }
     }
   }
