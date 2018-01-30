@@ -41,6 +41,7 @@
 	    position: relative;
 	    border: 1px solid green;
 	    border-radius: 5px;
+	    min-height: 78px;
 		&-close {
 			position: absolute;
 		    right: -1px;
@@ -48,6 +49,7 @@
 		    width: 15px;
 		    height: 19px;
 		    background-color: #21211c;
+		    cursor: pointer;
 		    embed {
 		    	width: 12px;
 		    }
@@ -57,6 +59,35 @@
 		    font-size: 14px;
 		    margin-top: 12px;
 		    margin-left: 14px;
+		}
+		&-counter {
+			display: inline-block;
+		    width: 100px;
+		    margin-top: 10px;
+		    margin-left: 21px;
+		}
+		&-price {
+			display: inline-block;
+		    width: 141px;
+		    text-align: right;
+		    font-weight: bold;
+		}
+	}
+	&-total {
+		text-align: center;
+	    color: #fff;
+	    font-weight: bold;
+	    margin-top: 25px;
+	}
+	&-button {
+		text-align: center;
+		margin-top: 27px;
+		button {
+			padding: 6px 39px;
+		    background-color: #b42e23;
+		    border: none;
+		    color: #fff;
+		    font-weight: bold;
 		}
 	}
 }
@@ -86,15 +117,9 @@
 			}
 			&-add {
 				font-size: 20px;
-				&:hover {
-					color: green;
-				}
 			}
 			&-remove {
 				font-size: 17px;
-				&:hover {
-					color: red;
-				}
 			}
 			p {
 				font-weight: bold;
