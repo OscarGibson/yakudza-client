@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Globals } from '../app.globals';
+import { Globals, Cart } from '../app.globals';
 
 @Component({
   selector: 'app-body',
@@ -26,6 +26,7 @@ export class BodyComponent implements OnInit {
   // public products_list: any;
   public filters_list: Array<any>;
   public globals = Globals;
+  public cart = Cart;
 
   // private _products_get_path: string = 'http://localhost:8000/api/product';
   private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
@@ -42,20 +43,6 @@ export class BodyComponent implements OnInit {
     this.get_social_content();
     this.get_feedback_content();
   }
-
-  // public get_products() {
-
-  //   this.http.get(this._products_get_path, {headers: this.headers})
-  //   .subscribe(
-  //     data => {
-  //       this.products_list = data;
-  //     },
-  //     error => {
-  //       console.log('ERROR: ', error);
-  //     }
-  //     )
-
-  // }
   public test() {
     console.log(this.globals);
   }
@@ -174,7 +161,7 @@ export class BodyComponent implements OnInit {
   }
 
   public go_to_main() {
-    this.globals.current_page = {'title':'main'}
+    this.globals.current_page = {'title':'main'};
   }
 
   public show_product(id: number) {
@@ -205,4 +192,35 @@ export class BodyComponent implements OnInit {
         break;
     }
   }
+
+  public add_cart_item(item_id: number) {
+    this.cart.addItem(item_id);
+  }
+  public plus_cart_item(item_id: number) {
+    this.cart.plusItem(item_id);
+  }
+  public minus_cart_item(item_id: number) {
+    this.cart.minusItem(item_id);
+  }
+  public remove_cart_item(item_id: number) {
+    this.cart.removeItem(item_id);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

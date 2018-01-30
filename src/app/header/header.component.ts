@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Globals } from '../app.globals';
+import { Globals, Cart } from '../app.globals';
 
 @Component({
   selector: 'app-header',
@@ -30,9 +30,16 @@ export class HeaderComponent implements OnInit {
       .subscribe(data => {
 
         Globals.categories = data['categories'];
-        console.log(Globals.categories);
         this.bottom_nav_list = Globals.categories;
-        console.log(this.bottom_nav_list);
+        for (let category of Globals.categories) {
+          for (let product of category['product']) {
+            // Globals.products += product;
+            let item_count = localStorage.getItem(product.id);
+            if (item_count === null) {
+              Cart.addItemSimple(product.id, product.title, product.price, item_count);
+            }
+          }
+        }
 
         if (first_time) this.change_categories(this.globals.categories[0].id);
 
