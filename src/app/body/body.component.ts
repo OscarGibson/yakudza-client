@@ -205,6 +205,9 @@ export class BodyComponent implements OnInit {
   public remove_cart_item(item_id: number) {
     this.cart.removeItem(item_id);
   }
+  public clear_cart_items() {
+    this.cart.clearCart();
+  }
 }
 
 

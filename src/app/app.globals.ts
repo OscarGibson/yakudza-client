@@ -136,6 +136,14 @@ export class Cart {
     localStorage.removeItem(item_id.toString());
     delete Cart.items[item_id];
   }
+
+  public static clearCart() {
+    Cart.total = 0;
+    for (let item of Cart.items) {
+      localStorage.removeItem(item.item_id.toString());
+    }
+    Cart.items = [];
+  }
 }
 
 class CartItem {
