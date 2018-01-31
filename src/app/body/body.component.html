@@ -41,7 +41,7 @@
 					<div class="cart-item-counter-click" (click)="plus_cart_item(i)"></div>
 					</div>
 				</div>
-				<div class="cart-item-price">{{ item.item_price }} грн.</div>
+				<div class="cart-item-price">{{ item.item_total }} грн.</div>
 			</div>
 
 			<div class="cart-total">
@@ -165,9 +165,6 @@
 						<a href="{{ social.link }}"><fa class="{{ social.icon }}" name="{{ social.icon }}"></fa></a>
 					</div>
 						
-						<!-- <fa class="vk" name="vk"></fa>
-						<fa class="twitter" name="twitter"></fa>
-						<fa class="google-plus" name="google-plus"></fa> -->
 					</div>
 					<h3 class="contacts-content-header red">
 						Для замовлення телефонуйте
@@ -300,10 +297,10 @@
 				</div>
 				<div class="prod-modal-arrows">
 					<div class="prod-modal-arrows-left">
-						<fa name="arrow-left"></fa>
+						<fa name="angle-left"></fa>
 					</div>
 					<div class="prod-modal-arrows-right">
-						<fa name="arrow-right"></fa>
+						<fa name="angle-right"></fa>
 					</div>
 				</div>
 			</div>
@@ -312,7 +309,12 @@
 		<div class="order row">
 			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 			<div class="order-list col-sm-9">
-				<div *ngFor="let item of cart.items" class="order-item row">
+				<div *ngFor="let item of cart.items; let i = index" class="order-item row">
+					<div class="order-item-close">
+						<embed class="order-item-close-img" src="/assets/svg/X.svg">
+						<div class="order-item-close-click" (click)="remove_cart_item(i)"></div>
+					</div>
+					
 					<div class="order-item-img col-sm-3">
 						<img src="{{ globals.backend_domain}}{{ item.item_image}}">
 					</div>
@@ -333,16 +335,38 @@
 
 					</div>
 					<div class="order-item-info col-sm-3">
-						<p class="order-item-info-info">350г 220ккал/100г</p>
-						<div class="order-item-info-price">150грн</div>
+						<p class="order-item-info-info">{{ item.item_weight }}г {{ item.item_kkal }}ккал/100г</p>
+						<div class="order-item-info-price">{{ item.item_total }}грн</div>
 					</div>
 				</div>
+
+				<div class="order-adds">
+					<div class="order-adds-item">
+						<!-- <img src="{{ product_path }}"> -->
+					</div>
+				</div>
+
+
 			</div>
-			<div class="order-propos col-sm-2">
+			<div class="order-propos col-sm-3">
 				<h2>Соуси на будь-який смак</h2>
-				<div class="order-propos-sous"></div>
+				<div class="order-propos-item">
+					<fa name="chevron-circle-left" class="order-propos-item-left"></fa>
+					<img src="{{ product_path }}">
+					<fa name="chevron-circle-right" class="order-propos-item-right"></fa>
+					<h3>Соус</h3>
+					<div class="order-propos-price">30грн</div>
+					<div class="order-propos-button">Додати</div>
+				</div>
 				<h2>Солодкі десерти</h2>
-				<div class="order-propos-desert"></div>
+				<div class="order-propos-item">
+					<fa name="chevron-circle-left" class="order-propos-item-left"></fa>
+					<img src="{{ product_path }}">
+					<fa name="chevron-circle-right" class="order-propos-item-right"></fa>
+					<h3>Соус</h3>
+					<div class="order-propos-price">30грн</div>
+					<div class="order-propos-button">Додати</div>
+				</div>
 			</div>
 		</div>
 

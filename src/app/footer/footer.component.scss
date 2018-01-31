@@ -1,5 +1,5 @@
 .footer {
-	margin-bottom: 33px;
+	// margin-bottom: 33px;
 	color: #fff;
 	&-banner {
 
@@ -8,16 +8,15 @@
 		padding-top: 53px;
 		text-align: center;
 		background-image: url("/assets/img/bottom_image.png");
-		background-color: rgba(82,82,82,0.65);
 
 		&-bg {
 			top: 0;
 		    left: -5%;
 		    position: absolute;
-		    width: 110%;
-		    height: 100%;
-		    background-color: #ccc;
-		    z-index: -1;
+		    width: 100%;
+		    left: 0;
+    		height: 351px;
+		    background-color: rgba(82,82,82,0.65);
 		}
 
 		&-title {
@@ -31,7 +30,7 @@
 		}
 		&-subscribe {
 			padding: 13px 50px;
-		    margin-top: 29px;
+		    margin-top: 213px;
 		    color: #fff;
 		    background-color: #faa;
 		    font-weight: bold;
@@ -63,6 +62,7 @@
 	}
 
 	&-bottom {
+		position: relative;
 		&-left {
 			h4 {
 				font-size: 15px;
@@ -113,6 +113,13 @@
 				color: #fcc;
 			}
 		}
-		
+		&-bg {
+			position: absolute;
+			left: -100%;
+			width: 300%;
+			height: 100%;
+			background-color: #1a1b13;
+			z-index: -1;
+		}
 	}
 }

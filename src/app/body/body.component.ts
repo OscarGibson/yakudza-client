@@ -29,7 +29,7 @@ export class BodyComponent implements OnInit {
   public cart = Cart;
 
   // private _products_get_path: string = 'http://localhost:8008/api/product';
-  private _filters_get_path: string = 'http://localhost:8008/api/v1/tag';
+  private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
 
   constructor(private http: HttpClient) { }
 

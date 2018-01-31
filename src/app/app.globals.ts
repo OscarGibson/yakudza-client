@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Globals {
   public static local_domain: string = 'http://localhost:4200';
-  public static backend_domain: string = 'http://localhost:8008';
-  private static _domain: string = 'http://localhost:8008';
+  public static backend_domain: string = 'http://localhost:8000';
+  private static _domain: string = 'http://localhost:8000';
   private static _api_path: string = '/api/v1/';
   public static categories_get_path: string = Globals._get_path('category');
   public static order_post_path: string = Globals._get_path('order');
@@ -141,18 +141,22 @@ export class Cart {
 
   public static plusItem(item_id: number) {
     Cart.items[item_id].item_count += 1;
-    Cart.total += Cart.items[item_id].item_price;
+    Cart.items[item_id].item_total = + (Cart.items[item_id].item_count*Cart.items[item_id].item_price).toFixed(2);
+    Cart.total += + (Cart.items[item_id].item_price).toFixed(2);
     localStorage.setItem(item_id.toString(), Cart.items[item_id].item_count.toString());
   }
   public static minusItem(item_id: number) {
     if (Cart.items[item_id].item_count > 1) {
       Cart.items[item_id].item_count -= 1;
+      Cart.items[item_id].item_total = + (Cart.items[item_id].item_count*Cart.items[item_id].item_price).toFixed(2);
       Cart.total -= Cart.items[item_id].item_price;
+      Cart.total = + (Cart.total).toFixed(2);
       localStorage.setItem(item_id.toString(), Cart.items[item_id].item_count.toString());
     }
   }
   public static removeItem(item_id: number) {
     Cart.total -= Cart.items[item_id].item_price*Cart.items[item_id].item_count;
+    Cart.total = + (Cart.total).toFixed(2);
     localStorage.removeItem(item_id.toString());
     Cart.items.splice(item_id, 1);
   }
@@ -167,6 +171,7 @@ export class Cart {
 }
 
 class CartItem {
+  public item_total: number;
 
   constructor(
     public item_id: number, 
@@ -176,7 +181,11 @@ class CartItem {
     public item_image: string,
     public item_weight: number,
     public item_kkal: number
-    ) {}
+    ) {
+      this.item_total = this.item_price*this.item_count;
+  }
+
+   
 }
 
 
