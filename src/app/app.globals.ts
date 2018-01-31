@@ -121,8 +121,7 @@ export class Cart {
           	break;
           }
 
-
-          let item = new CartItem(item_id,product.title,product.price,1);
+          let item = new CartItem(item_id,product.title,product.price,1, product.image, product.weight, product.kkal);
           Cart.items.push(item);
           Cart.total += item.item_price;
           localStorage.setItem(item_id.toString(), '1');
@@ -134,8 +133,8 @@ export class Cart {
     }
   }
 
-  public static addItemSimple(item_id,title,price,count) {
-    let item = new CartItem(item_id,title,price,count);
+  public static addItemSimple(item_id,title,price,count, image, weight, kkal) {
+    let item = new CartItem(item_id,title,price,count, image, weight, kkal);
     Cart.items[item_id] = item;
     Cart.total += item.item_price;
   }
@@ -173,7 +172,10 @@ class CartItem {
     public item_id: number, 
     public item_name: string, 
     public item_price:number, 
-    public item_count: number
+    public item_count: number,
+    public item_image: string,
+    public item_weight: number,
+    public item_kkal: number
     ) {}
 }
 

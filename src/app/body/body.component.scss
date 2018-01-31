@@ -656,6 +656,11 @@ input, textarea {
 	}
 	&-item {
 		margin-left: 0;
+		&-img {
+			img {
+				max-width: 225px;
+			}
+		}
 		&-content {
 			padding-top: 22px;
     		padding-left: 55px;

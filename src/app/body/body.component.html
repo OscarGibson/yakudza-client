@@ -312,19 +312,19 @@
 		<div class="order row">
 			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 			<div class="order-list col-sm-9">
-				<div class="order-item row">
+				<div *ngFor="let item of cart.items" class="order-item row">
 					<div class="order-item-img col-sm-3">
-						<img src="{{ product_path }}">
+						<img src="{{ globals.backend_domain}}{{ item.item_image}}">
 					</div>
 					<div class="order-item-content col-sm-6">
-						<p class="order-item-content-title">Філадельфія лайт з тобіко</p>
-						<p class="order-item-content-description">Помідор, огірок, фета</p>
+						<p class="order-item-content-title">{{ item.item_name }}</p>
+						<p class="order-item-content-description">{{ item.item_description }}</p>
 						<div class="order-item-counter">
 							<div class="order-item-counter-minus">
 								<embed class="order-item-counter-minus" src="/assets/svg/minus.svg">
 								<div class="order-item-counter-click" (click)="minus_cart_item(i)"></div>
 							</div>
-							<div class="order-item-counter-count">1 шт.</div>
+							<div class="order-item-counter-count">{{ item.item_count }} шт.</div>
 							<div class="order-item-counter-plus order-item-counter-button">
 								<embed class="order-item-counter-plus" src="/assets/svg/plus.svg">
 								<div class="order-item-counter-click" (click)="plus_cart_item(i)"></div>
