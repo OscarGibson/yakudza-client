@@ -80,6 +80,7 @@ export class Globals {
   public static show_product: boolean = false;
 
   public static current_product = {
+  	"item_id": "",
   	"id": '',
     "title": "",
     "slug": "",
@@ -91,9 +92,10 @@ export class Globals {
   };
 }
 
+
 @Injectable()
 export class Cart {
-  public static items: Array<CartItem>;
+  public static items: CartItem[] = [];
   public static total: number = 0;
 
   public static addItem(item_id: number) {
@@ -101,8 +103,13 @@ export class Cart {
     for(let category of Globals.categories) {
       for (let product of category.products) {
         if (product.id == item_id) {
+          if (Cart.items[item_id]){
+          	Cart.plusItem(item_id);
+          	break_loop = true;
+          	break;
+          }
           let item = new CartItem(item_id,product.title,product.price,1);
-          Cart.items[item_id] = item;
+          Cart.items.push(item);
           Cart.total += item.item_price;
           localStorage.setItem(item_id.toString(), '1');
           break_loop = true;
@@ -134,13 +141,13 @@ export class Cart {
   public static removeItem(item_id: number) {
     Cart.total -= Cart.items[item_id].item_price*Cart.items[item_id].item_count;
     localStorage.removeItem(item_id.toString());
-    delete Cart.items[item_id];
+    Cart.items.splice(item_id, 1);
   }
 
   public static clearCart() {
     Cart.total = 0;
-    for (let item of Cart.items) {
-      localStorage.removeItem(item.item_id.toString());
+    for (let key in Cart.items) {
+      localStorage.removeItem(Cart.items[key].item_id.toString());
     }
     Cart.items = [];
   }

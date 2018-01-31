@@ -32,10 +32,12 @@ export class HeaderComponent implements OnInit {
         Globals.categories = data['categories'];
         this.bottom_nav_list = Globals.categories;
         for (let category of Globals.categories) {
-          for (let product of category['product']) {
+          // console.log('products = ', category['products']);
+          // console.log('products = ', category.products);
+          for (let product of category.products) {
             // Globals.products += product;
             let item_count = localStorage.getItem(product.id);
-            if (item_count === null) {
+            if (!item_count === null) {
               Cart.addItemSimple(product.id, product.title, product.price, item_count);
             }
           }
@@ -55,7 +57,6 @@ export class HeaderComponent implements OnInit {
     for (let category of Globals.categories) {
       if (category.id == id) {
         Globals.current_category = category;
-        console.log(Globals.current_category);
       }
     }
   } 
@@ -67,9 +68,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(data => {
 
         Globals.menu = data['menu'];
-        console.log(Globals.menu);
         this.right_nav_list = Globals.menu;
-        console.log(this.right_nav_list);
 
         if (first_time) this.globals.current_page = {'title':'main'};
 
@@ -85,7 +84,6 @@ export class HeaderComponent implements OnInit {
     for (let page of Globals.menu) {
       if (page.id == id) {
         Globals.current_page = page;
-        console.log(Globals.current_page);
         this.globals.current_category = {'products' : []};
         break;
       }

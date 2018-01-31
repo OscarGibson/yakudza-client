@@ -24,39 +24,26 @@
 				<embed class="cart-head-sticks" src="/assets/svg/stick.svg">
 			</div>
 
-			<div class="cart-item" *ngFor="let item of cart.items">
+			<div class="cart-item" *ngFor="let item of cart.items; let i = index;">
 				<div class="cart-item-close">
-					<embed class="cart-item-close" src="/assets/svg/X.svg" (click)="remove_cart_item(item.item_id)">
+					<embed class="cart-item-close" src="/assets/svg/X.svg">
+					<div class="cart-item-close-click" (click)="remove_cart_item(i)"></div>
 				</div>
 				<div class="cart-item-name">{{ item.item_name }}</div>
 				<div class="cart-item-counter">
-					<span class="cart-item-counter-minus cart-item-counter-button">
-						<embed (click)="minus_cart_item(item.item_id)" class="cart-item-counter-minus" src="/assets/svg/minus.svg">
-					</span>
-					<span class="cart-item-counter-count">{{ item.item_count }}</span>
-					<span class="cart-item-counter-plus cart-item-counter-button">
-						<embed (click)="add_cart_item(item.item_id)" class="cart-item-counter-plus" src="/assets/svg/plus.svg">
-					</span>
+					<div class="cart-item-counter-minus cart-item-counter-button">
+						<embed class="cart-item-counter-minus" src="/assets/svg/minus.svg">
+					<div class="cart-item-counter-click" (click)="minus_cart_item(i)"></div>
+					</div>
+					<div class="cart-item-counter-count">{{ item.item_count }}</div>
+					<div class="cart-item-counter-plus cart-item-counter-button">
+						<embed class="cart-item-counter-plus" src="/assets/svg/plus.svg">
+					<div class="cart-item-counter-click" (click)="plus_cart_item(i)"></div>
+					</div>
 				</div>
 				<div class="cart-item-price">{{ item.item_price }} грн.</div>
 			</div>
 
-		<!-- 	<div class="cart-item">
-				<div class="cart-item-close">
-					<embed class="cart-item-close" src="/assets/svg/X.svg">
-				</div>
-				<div class="cart-item-name">Роли Унаги маки</div>
-				<div class="cart-item-counter">
-					<span class="cart-item-counter-minus cart-item-counter-button">
-						<embed class="cart-item-counter-minus" src="/assets/svg/minus.svg">
-					</span>
-					<span class="cart-item-counter-count">1</span>
-					<span class="cart-item-counter-plus cart-item-counter-button">
-						<embed class="cart-item-counter-plus" src="/assets/svg/plus.svg">
-					</span>
-				</div>
-				<div class="cart-item-price">80 грн.</div>
-			</div> -->
 			<div class="cart-total">
 				<span>ВСЬОГО: {{ cart.total }} грн.</span>
 			</div>
@@ -78,7 +65,8 @@
 					<div *ngFor="let filter of filters_list; let i = index" class="product-filters-item">
 						<fa class="product-filters-item-add {{ filter.class_add }}" id="{{ i }}" name="heart-o" (click)="add_filter($event)"></fa>
 						<p class="product-filters-item-name">{{ filter.name }}</p>
-						<fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa>
+						<!-- <fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa> -->
+						<embed src="/assets/svg/X.svg" class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" (click)="remove_filter($event)">
 					</div>
 				</div>
 				<div class="product-area row">
@@ -308,7 +296,7 @@
 					<p>{{ globals.current_product.price }}</p>
 				</div>
 				<div class="prod-modal-button">
-					<button>Buy</button>
+					<button (click)="add_cart_item(globals.current_product.id)">Buy</button>
 				</div>
 				<div class="prod-modal-arrows">
 					<div class="prod-modal-arrows-left">
@@ -319,8 +307,43 @@
 					</div>
 				</div>
 			</div>
-			
+		</div>
 
+		<div class="order row">
+			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
+			<div class="order-list col-sm-9">
+				<div class="order-item row">
+					<div class="order-item-img col-sm-3">
+						<img src="{{ product_path }}">
+					</div>
+					<div class="order-item-content col-sm-6">
+						<p class="order-item-content-title">Філадельфія лайт з тобіко</p>
+						<p class="order-item-content-description">Помідор, огірок, фета</p>
+						<div class="order-item-counter">
+							<div class="order-item-counter-minus">
+								<embed class="order-item-counter-minus" src="/assets/svg/minus.svg">
+								<div class="order-item-counter-click" (click)="minus_cart_item(i)"></div>
+							</div>
+							<div class="order-item-counter-count">1 шт.</div>
+							<div class="order-item-counter-plus order-item-counter-button">
+								<embed class="order-item-counter-plus" src="/assets/svg/plus.svg">
+								<div class="order-item-counter-click" (click)="plus_cart_item(i)"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="order-item-info col-sm-3">
+						<p class="order-item-info-info">350г 220ккал/100г</p>
+						<div class="order-item-info-price">150грн</div>
+					</div>
+				</div>
+			</div>
+			<div class="order-propos col-sm-2">
+				<h2>Соуси на будь-який смак</h2>
+				<div class="order-propos-sous"></div>
+				<h2>Солодкі десерти</h2>
+				<div class="order-propos-desert"></div>
+			</div>
 		</div>
 
 	</div>

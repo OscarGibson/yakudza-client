@@ -162,12 +162,12 @@ export class BodyComponent implements OnInit {
 
   public go_to_main() {
     this.globals.current_page = {'title':'main'};
+    this.globals.current_category = this.globals.categories[0];
   }
 
   public show_product(id: number) {
-    for (let product of this.globals.current_category.products) {
+    for (let product of this.globals.products) {
       if (product.id == id) {
-        console.log('PRODUCT', product);
         this.globals.current_product = product;
         this.globals.show_product = true;
         break;
@@ -186,24 +186,26 @@ export class BodyComponent implements OnInit {
       case "callback":
         this.globals.show_callback = false;
         break;
-      
-      default:
-        // code...
-        break;
     }
   }
 
   public add_cart_item(item_id: number) {
     this.cart.addItem(item_id);
+    this.close_modal('product');
+    console.log("cart: ", item_id, this.cart.items);
   }
   public plus_cart_item(item_id: number) {
     this.cart.plusItem(item_id);
   }
   public minus_cart_item(item_id: number) {
+    console.log("cart minus: ", this.cart.items[item_id].item_count);
     this.cart.minusItem(item_id);
+    console.log("cart minus: ", this.cart.items);
   }
   public remove_cart_item(item_id: number) {
-    this.cart.removeItem(item_id);
+    console.log("cart remove: ", this.cart.items[item_id].item_count);
+    console.log(this.cart.removeItem(item_id));
+    console.log("cart remove: ", this.cart.items);
   }
   public clear_cart_items() {
     this.cart.clearCart();
