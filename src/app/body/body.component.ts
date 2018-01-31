@@ -28,8 +28,8 @@ export class BodyComponent implements OnInit {
   public globals = Globals;
   public cart = Cart;
 
-  // private _products_get_path: string = 'http://localhost:8000/api/product';
-  private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
+  // private _products_get_path: string = 'http://localhost:8008/api/product';
+  private _filters_get_path: string = 'http://localhost:8008/api/v1/tag';
 
   constructor(private http: HttpClient) { }
 
@@ -111,7 +111,6 @@ export class BodyComponent implements OnInit {
         )
   }
 
-
   public get_how_to_content() {
     this.http.get(this.globals.section_get_path + 'how-to', {headers: this.headers})
       .subscribe(
@@ -166,7 +165,7 @@ export class BodyComponent implements OnInit {
   }
 
   public show_product(id: number) {
-    for (let product of this.globals.products) {
+    for (let product of this.globals.current_category.products) {
       if (product.id == id) {
         this.globals.current_product = product;
         this.globals.show_product = true;

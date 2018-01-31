@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Globals {
   public static local_domain: string = 'http://localhost:4200';
-  public static backend_domain: string = 'http://localhost:8000';
-  private static _domain: string = 'http://localhost:8000';
+  public static backend_domain: string = 'http://localhost:8008';
+  private static _domain: string = 'http://localhost:8008';
   private static _api_path: string = '/api/v1/';
   public static categories_get_path: string = Globals._get_path('category');
   public static order_post_path: string = Globals._get_path('order');
@@ -98,16 +98,30 @@ export class Cart {
   public static items: CartItem[] = [];
   public static total: number = 0;
 
+  private static findElement(item_id) {
+    for(let index = 0; index < Cart.items.length; index++) {
+      if (Cart.items[index].item_id == item_id) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
   public static addItem(item_id: number) {
     let break_loop = false;
     for(let category of Globals.categories) {
       for (let product of category.products) {
         if (product.id == item_id) {
-          if (Cart.items[item_id]){
-          	Cart.plusItem(item_id);
+
+          let is_in_cart = Cart.findElement(item_id);
+
+          if (is_in_cart != -1){
+          	Cart.plusItem(is_in_cart);
           	break_loop = true;
           	break;
           }
+
+
           let item = new CartItem(item_id,product.title,product.price,1);
           Cart.items.push(item);
           Cart.total += item.item_price;
@@ -165,7 +179,14 @@ class CartItem {
 
 
 
-
+class Product {
+  constructor(public title: string,
+    public description: string,
+    public price: number,
+    public weight: number,
+    public kkal: number,
+    public image: string) {}
+}
 
 
 

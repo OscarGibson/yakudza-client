@@ -180,6 +180,9 @@
 				min-height: 297px;
 				padding: 10px 11px;
 				border: 1px solid #555;
+				img {
+					max-width: 225px;
+				}
 			}
 			&-title {
 				margin-top: 4px;

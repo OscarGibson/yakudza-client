@@ -25,17 +25,16 @@ export class HeaderComponent implements OnInit {
 
   public get_categories(first_time= false) {
 
-    this.http.get(Globals.categories_get_path, 
+    this.http.get(this.globals.categories_get_path, 
       {headers:this.headers})
       .subscribe(data => {
 
-        Globals.categories = data['categories'];
-        this.bottom_nav_list = Globals.categories;
-        for (let category of Globals.categories) {
-          // console.log('products = ', category['products']);
-          // console.log('products = ', category.products);
+        this.globals.categories = data['categories'];
+        this.bottom_nav_list = this.globals.categories;
+        for (let category of this.globals.categories) {
+
           for (let product of category.products) {
-            // Globals.products += product;
+
             let item_count = localStorage.getItem(product.id);
             if (!item_count === null) {
               Cart.addItemSimple(product.id, product.title, product.price, item_count);
