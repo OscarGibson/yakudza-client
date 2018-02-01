@@ -1,3 +1,6 @@
+.body {
+	margin-bottom: 72px;
+}
 .active {
 	&-add {
 		color: green;
@@ -27,6 +30,7 @@
 			position: absolute;
 		    top: -31px;
 		    left: 104px;
+		    width: 121px;
 		}
 		&-text {
 			color: #fff;
@@ -44,6 +48,7 @@
 			position: absolute;
 			top: 53px;
     		left: 133px;
+    		width: 62px;
 		}
 	}
 	&-item {
@@ -52,7 +57,8 @@
 	    position: relative;
 	    border: 1px solid green;
 	    border-radius: 5px;
-	    min-height: 78px;
+	    height: 78px;
+	    transition: .3s;
 		&-close {
 			position: absolute;
 		    right: -1px;
@@ -63,6 +69,7 @@
 		    cursor: pointer;
 		    embed {
 		    	width: 12px;
+		    	height: 12px;
 		    }
 		    &-click {
 		    	position: absolute;
@@ -92,6 +99,8 @@
 		    * {
 		    	cursor: pointer;
 			    display: inline-block;
+			    width: 10px;
+			    height: 10px;
 		    }
 		    // &-plus {
 		    // 	cursor: pointer;
@@ -150,6 +159,9 @@
 			// padding: 3px 30px;
 			fa {
 				display: block;
+			}
+			embed {
+				width: 13px;
 			}
 			&-add {
 				font-size: 20px;
@@ -316,6 +328,7 @@
 		&-social {
 			div {
 				display: inline-block;
+				margin:0 9px;
 			}
 			fa {
 				font-size: 34px;

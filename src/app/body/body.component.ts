@@ -209,6 +209,11 @@ export class BodyComponent implements OnInit {
   public clear_cart_items() {
     this.cart.clearCart();
   }
+
+  public show_order() {
+    this.globals.current_page = {'title':'Order'};
+    this.globals.current_category = {'products' : []};    
+  }
 }
 
 

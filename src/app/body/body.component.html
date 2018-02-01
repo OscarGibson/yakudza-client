@@ -31,12 +31,12 @@
 				</div>
 				<div class="cart-item-name">{{ item.item_name }}</div>
 				<div class="cart-item-counter">
-					<div class="cart-item-counter-minus cart-item-counter-button">
+					<div class="cart-item-counter-minus">
 						<embed class="cart-item-counter-minus" src="/assets/svg/minus.svg">
 					<div class="cart-item-counter-click" (click)="minus_cart_item(i)"></div>
 					</div>
 					<div class="cart-item-counter-count">{{ item.item_count }}</div>
-					<div class="cart-item-counter-plus cart-item-counter-button">
+					<div class="cart-item-counter-plus">
 						<embed class="cart-item-counter-plus" src="/assets/svg/plus.svg">
 					<div class="cart-item-counter-click" (click)="plus_cart_item(i)"></div>
 					</div>
@@ -47,7 +47,7 @@
 			<div class="cart-total">
 				<span>ВСЬОГО: {{ cart.total }} грн.</span>
 			</div>
-			<div class="cart-button">
+			<div class="cart-button" (click)="show_order()">
 				<button>Оформити замовлення</button>
 			</div>
 		</div>
@@ -306,7 +306,7 @@
 			</div>
 		</div>
 
-		<div class="order row">
+		<div *ngIf="globals.current_page.title == 'Order'" class="order row">
 			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 			<div class="order-list col-sm-9">
 				<div *ngFor="let item of cart.items; let i = index" class="order-item row">
@@ -349,6 +349,7 @@
 
 			</div>
 			<div class="order-propos col-sm-3">
+
 				<h2>Соуси на будь-який смак</h2>
 				<div class="order-propos-item">
 					<fa name="chevron-circle-left" class="order-propos-item-left"></fa>

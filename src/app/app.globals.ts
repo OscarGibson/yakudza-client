@@ -10,6 +10,7 @@ export class Globals {
   public static order_post_path: string = Globals._get_path('order');
   public static tags_get_path: string = Globals._get_path('tag');
   public static menu_get_path: string = Globals._get_path('section/menu');
+  // public static order_get_path: string = Globals._get_path('section/order');
   public static menu: Array<any>;
   public static current_page = {
   	'title' : 'main'
@@ -21,6 +22,9 @@ export class Globals {
   	'products' : []
   };
   public static products;
+  public static order_content = [
+    {},
+  ];
   public static shares_content = [
   	{'image':'', 'content':''}
   ];
