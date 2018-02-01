@@ -193,7 +193,7 @@
 				<h3 class="feedback-header-wrapper-header green">
 					Залишити відгук
 				</h3>
-					<form>
+					<form id="feedback-from">
 						<label for="feedback-form-name">
 						Введіть ваше ім"я</label>
 						<input id="feedback-form-name" type="text" name="feedback-form-name">
@@ -203,7 +203,7 @@
 						<label for="feedback-form-text">
 						Текст відгуку</label>
 						<textarea id="feedback-form-text" type="text" name="feedback-form-text"></textarea>
-						<button class="green-bg">Відправити відгук</button>
+						<button (click)="create_feedback('feedback-from')" type="button" class="green-bg">Відправити відгук</button>
 					</form>
 				</div>
 			</div>
@@ -235,7 +235,7 @@
 				<div class="call-modal-form-X">
 					<fa name="times" (click)="close_modal('callback')"></fa>
 				</div>
-				<form>
+				<form id="callback-form" action="">
 					<label for="call-modal-form-name">
 					Введіть ваше ім"я</label>
 					<input id="call-modal-form-name" type="" name="call-modal-form-name">
@@ -245,7 +245,7 @@
 					<span class="call-modal-form-info">
 						Наші оператори звяжуться з вами
 					</span>
-					<button>Замовити дзвінок</button>
+					<button (click)="create_callback('callback-form')" type="button">Замовити дзвінок</button>
 				</form>
 			</div>
 		</div>

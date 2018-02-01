@@ -30,6 +30,8 @@ export class BodyComponent implements OnInit {
 
   // private _products_get_path: string = 'http://localhost:8008/api/product';
   private _filters_get_path: string = 'http://localhost:8008/api/v1/tag';
+  private _callback_post_path: string = 'http://localhost:8008/api/v1/callback';
+  private _feedback_post_path: string = 'http://localhost:8008/api/v1/feedback';
 
   constructor(private http: HttpClient) { }
 
@@ -209,6 +211,58 @@ export class BodyComponent implements OnInit {
   public clear_cart_items() {
     this.cart.clearCart();
   }
+
+  public create_feedback(form_id) {
+    console.log('feedback data:', form_id);
+    let form = document.getElementById(form_id);
+    console.log(form);
+    let inputs = form.getElementsByTagName('input');
+    console.log('Inputs: ',inputs);
+    let author = inputs[0].value;
+    let cell = inputs[1].value;
+    let content = form.getElementsByTagName('textarea')[0].value;
+
+    if (author && cell && content) {
+      this.http.post(this._feedback_post_path,{'author':author, 'cell':cell, 'content':content}, {headers: this.headers})
+      .subscribe(
+        data => {
+          console.log('DATA:', data);
+          this.get_feedback_content();
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+      )
+    } else {
+      console.log();
+    }
+  }
+
+  public create_callback(form_id: string) {
+    console.log('callback data:', form_id);
+    let form = document.getElementById(form_id);
+    console.log(form);
+    let inputs = form.getElementsByTagName('input');
+    let name = inputs[0].value;
+    let cell = inputs[1].value;
+
+    if (name && cell) {
+      this.http.post(this._callback_post_path,{'name':name, 'cell':cell}, {headers: this.headers})
+      .subscribe(
+        data => {
+          console.log('DATA:', data);
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+      )
+    } else {
+      console.log();
+    }
+
+  }
+
+
 }
 
 
