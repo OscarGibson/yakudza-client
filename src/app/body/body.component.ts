@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Globals, Cart } from '../app.globals';
 
+import { PhoneFormatPipe } from './body.pipe';
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -29,7 +31,10 @@ export class BodyComponent implements OnInit {
   public cart = Cart;
 
   // private _products_get_path: string = 'http://localhost:8008/api/product';
+
   private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
+  private _callback_post_path: string = 'http://localhost:8000/api/v1/callback';
+  private _feedback_post_path: string = 'http://localhost:8000/api/v1/feedback';
 
   constructor(private http: HttpClient) { }
 
@@ -40,6 +45,7 @@ export class BodyComponent implements OnInit {
     this.get_document_content();
     this.get_how_to_content();
     this.get_contact_content();
+    this.get_email_content();
     this.get_social_content();
     this.get_feedback_content();
   }
@@ -65,26 +71,75 @@ export class BodyComponent implements OnInit {
 
   }
 
-  private _abstract_filter(event, class_name, add= true) {
+  // private _abstract_filter(event, class_name, add= true) {
 
-    let properties = ['class_add', 'class_remove'];
+  //   let properties = ['class_add', 'class_remove'];
     
-    if (add) properties.reverse();
+  //   if (add) properties.reverse();
 
-    this.filters_list[event.path[1].id][properties[0]] = '';
-    if (this.filters_list[event.path[1].id][properties[1]] == '') {
-      this.filters_list[event.path[1].id][properties[1]] = class_name;
+  //   this.filters_list[event.path[1].id][properties[0]] = '';
+  //   if (this.filters_list[event.path[1].id][properties[1]] == '') {
+  //     this.filters_list[event.path[1].id][properties[1]] = class_name;
+  //   }
+  //   else {
+  //     this.filters_list[event.path[1].id][properties[1]] = '';
+  //   }
+  // }
+
+  public check_filter_add(tags, del= true, check_all= false) {
+    if (this.globals.active_filters_add.length == 0 && check_all) return true;
+    for (let i in this.globals.active_filters_add) {
+      if (tags.includes(this.globals.active_filters_add[i])) {
+        if (del) this.globals.active_filters_add.splice(+i,1);
+        console.log('active filters',this.globals.active_filters_add);
+        return true;
+      }
     }
-    else {
-      this.filters_list[event.path[1].id][properties[1]] = '';
+    return false;
+  }
+  public check_filter_remove(tags, del= true) {
+    for (let i in this.globals.active_filters_remove) {
+      if (tags.includes(this.globals.active_filters_remove[i])) {
+        if (del) this.globals.active_filters_remove.splice(+i,1);
+        return true;
+      }
     }
+    return false;
   }
 
-  public add_filter(event) {
-    this._abstract_filter(event, 'active-add');
+  public add_filter(event, filter_id) {
+    if (!this.check_filter_add([filter_id])) {
+      this.globals.active_filters_add.push(filter_id);
+    }
+    this.check_filter_remove([filter_id])
+    // this.globals.categories = [];
+    // this._abstract_filter(event, 'active-add');
+    // for (let category of this.globals.categories_main) {
+    //   let new_categories = [];
+    //   new_categories['name'] = category.name;
+    //   new_categories['slug'] = category.slug;
+    //   new_categories['products'] = [];
+
+    //   for (let product of category.products) {
+
+    //     if (product.tags.includes(filter_id)) {
+
+    //       new_categories['products'].push(product);
+    //     }
+    //   }
+
+    //   this.globals.categories.push(new_categories);
+
+    // }
+
+    // console.log(this.globals.categories_main);
   }
-  public remove_filter(event) {
-    this._abstract_filter(event, 'active-remove', false);
+  public remove_filter(event, filter_id) {
+    // this._abstract_filter(event, 'active-remove', false);
+    if (!this.check_filter_remove([filter_id])) {
+      this.globals.active_filters_remove.push(filter_id);
+    }
+    this.check_filter_add([filter_id])
   }
 
   public get_shares_content() {
@@ -135,6 +190,18 @@ export class BodyComponent implements OnInit {
         )
   }
 
+  public get_email_content() {
+    this.http.get(this.globals.section_get_path + 'email', {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.email_content = data['email_section'];
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+        )
+  }
+
   public get_social_content() {
     this.http.get(this.globals.section_get_path + 'social', {headers: this.headers})
       .subscribe(
@@ -165,13 +232,18 @@ export class BodyComponent implements OnInit {
   }
 
   public show_product(id: number) {
-    for (let product of this.globals.current_category.products) {
-      if (product.id == id) {
-        this.globals.current_product = product;
-        this.globals.show_product = true;
-        break;
+    for (let category of this.globals.categories) {
+
+      for (let product of category.products) {
+        if (product.id == id) {
+          this.globals.current_product = product;
+          this.globals.show_product = true;
+          break;
+        }
       }
+
     }
+    
   }
 
   public close_modal(type: string) {
@@ -214,6 +286,58 @@ export class BodyComponent implements OnInit {
     this.globals.current_page = {'title':'Order'};
     this.globals.current_category = {'products' : []};    
   }
+
+  public create_feedback(form_id) {
+    console.log('feedback data:', form_id);
+    let form = document.getElementById(form_id);
+    console.log(form);
+    let inputs = form.getElementsByTagName('input');
+    console.log('Inputs: ',inputs);
+    let author = inputs[0].value;
+    let cell = inputs[1].value;
+    let content = form.getElementsByTagName('textarea')[0].value;
+
+    if (author && cell && content) {
+      this.http.post(this._feedback_post_path,{'author':author, 'cell':cell, 'content':content}, {headers: this.headers})
+      .subscribe(
+        data => {
+          console.log('DATA:', data);
+          this.get_feedback_content();
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+      )
+    } else {
+      console.log();
+    }
+  }
+
+  public create_callback(form_id: string) {
+    console.log('callback data:', form_id);
+    let form = document.getElementById(form_id);
+    console.log(form);
+    let inputs = form.getElementsByTagName('input');
+    let name = inputs[0].value;
+    let cell = inputs[1].value;
+
+    if (name && cell) {
+      this.http.post(this._callback_post_path,{'name':name, 'cell':cell}, {headers: this.headers})
+      .subscribe(
+        data => {
+          console.log('DATA:', data);
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+      )
+    } else {
+      console.log();
+    }
+
+  }
+
+
 }
 
 

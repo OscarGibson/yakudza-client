@@ -42,9 +42,14 @@ export class HeaderComponent implements OnInit {
       {headers:this.headers})
       .subscribe(data => {
 
-        this.globals.categories = data['categories'];
+        this.globals.categories = [];
+        this.globals.categories_main = [];
+
         this.bottom_nav_list = this.globals.categories;
-        for (let category of this.globals.categories) {
+        for (let category of data['categories']) {
+
+          this.globals.categories.push(category);
+          this.globals.categories_main.push(category);
 
           for (let product of category.products) {
 
@@ -68,12 +73,13 @@ export class HeaderComponent implements OnInit {
 
   public change_categories(id: number) {
     this.globals.current_page = {'title':'main'};
-    for (let category of Globals.categories) {
-      if (category.id == id) {
-        Globals.current_category = category;
-        break;
-      }
-    }
+
+    this.globals.current_category['id'] = id;
+    // for (let category of Globals.categories) {
+    //   if (category.id == id) {
+    //     Globals.current_category = category;
+    //   }
+    // }
   } 
 
   public get_menu(first_time= false) {

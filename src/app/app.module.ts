@@ -10,6 +10,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { PhoneFormatPipe } from './body/body.pipe';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     BodyComponent,
     FooterComponent,
+    PhoneFormatPipe
   ],
   imports: [
     BrowserModule,

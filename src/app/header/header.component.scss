@@ -85,6 +85,13 @@
 	&-bottomnav {
 		border-bottom: 1px solid #292929;
     	border-top: 1px solid #444;
+    	a {
+    		text-decoration: none;
+    		color: #fff;
+    		&:hover {
+    			color: #fff;
+    		}
+    	}
 		ul {
 		    padding: 4px 16px 0 16px;
 		    list-style: none;
@@ -121,5 +128,5 @@
 	position: absolute;
 	left: 46px;
     z-index: -1;
-    top: -2px;
+    top: -4px;
 }
