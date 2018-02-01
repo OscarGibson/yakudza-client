@@ -7,7 +7,7 @@
 			<h1>Доставка суші та піцци львів</h1>
 			<div class="header-data-phones">
 			 	<ul>
-					<li>
+					<!-- <li>
 						<fa name="star"></fa>
 						<span>+3&#8199;8&#8199;(099)&#8199;99&#8199;99&#8199;999</span>
 					<li>
@@ -17,6 +17,11 @@
 					<li>
 						<fa name="star"></fa>
 						<span>+3&#8199;8&#8199;(099)&#8199;99&#8199;99&#8199;999</span>
+					</li> -->
+
+					<li *ngFor="let phone of globals.contact_content">
+						<fa name="star"></fa>
+						<span>{{ phone.phone | phoneFormat }}</span>
 					</li>
 				</ul>
 				<a class="header-data-callback" (click)="show_callback()">Замовити дзвінок</a>
@@ -40,9 +45,9 @@
 	<div class="header-bottomnav">
 		<ul>
 			<li *ngFor="let category of bottom_nav_list">
-				<span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
+				<a href="#{{ category.slug }}-target"><span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
 					{{ category.name }}
-				</span>
+				</span></a>
 				<span *ngIf="globals.current_category.id == category.id" class="active-bottom-menu"></span>
 			</li>
 		</ul>

@@ -11,11 +11,18 @@ export class Globals {
   public static tags_get_path: string = Globals._get_path('tag');
   public static menu_get_path: string = Globals._get_path('section/menu');
   public static menu: Array<any>;
+  public static active_filters_add = [];
+  public static active_filters_remove = [];
   public static current_page = {
   	'title' : 'main'
   };
   public static section_get_path: string = Globals._get_path('section/');
-  public static categories: Array<any>;
+  public static categories_main: Array<any> = [
+    {'slug': '', 'products': []},
+  ];
+  public static categories: Array<any> = [
+    {'slug':'', 'products': []},
+  ];
   public static feedback_path: string = Globals._get_path('feedback');
   public static current_category = {
   	'products' : []
@@ -51,6 +58,13 @@ export class Globals {
   	{
         "id": 0,
         "phone": ""
+    },
+  ];
+
+  public static email_content = [
+    {
+        "id": 0,
+        "email": ""
     },
   ];
 

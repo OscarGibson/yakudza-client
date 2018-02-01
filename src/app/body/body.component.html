@@ -52,32 +52,39 @@
 			</div>
 		</div>
 					
-		</div>
+	</div>
 
 		<!-- Product section -->
 		<div *ngIf="globals.current_page.title == 'main'" class="product col-lg-8 col-md-8">
-			<div class="rols">
-				<div class="product-title">
-					<h1>{{ globals.current_category.name }}</h1>
+			
+			<!-- Filters -->
+			<div class="product-filters">
+				<div *ngFor="let filter of filters_list; let i = index" class="product-filters-item">
+					<fa *ngIf='check_filter_add([filter.id], false)' class="product-filters-item-add active-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
+					<fa *ngIf='!check_filter_add([filter.id], false)' class="product-filters-item-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
+					<p class="product-filters-item-name">{{ filter.name }}</p>
+					<!-- <fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa> -->
+					<embed *ngIf='check_filter_remove([filter.id], false)' src="/assets/svg/X.svg" class="product-filters-item-remove active-remove" id="{{ i }}" (click)="remove_filter($event, filter.id)">
+					<embed *ngIf='!check_filter_remove([filter.id], false)' src="/assets/svg/X.svg" class="product-filters-item-remove" id="{{ i }}" (click)="remove_filter($event, filter.id)">
+				</div>
+			</div>
+
+			<div *ngFor="let category of globals.categories" class="rols">
+
+				<div *ngIf="category.products.length" class="product-title" id="{{ category.slug }}-target">
+					<h1>{{ category.name }}</h1>
 				</div>
 
-				<div class="product-filters">
-					<div *ngFor="let filter of filters_list; let i = index" class="product-filters-item">
-						<fa class="product-filters-item-add {{ filter.class_add }}" id="{{ i }}" name="heart-o" (click)="add_filter($event)"></fa>
-						<p class="product-filters-item-name">{{ filter.name }}</p>
-						<!-- <fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa> -->
-						<embed src="/assets/svg/X.svg" class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" (click)="remove_filter($event)">
-					</div>
-				</div>
-				<div class="product-area row">
-					<div *ngFor="let product of globals.current_category.products"
+				<div *ngIf="category.products.length" class="product-area row">
+					<div *ngFor="let product of category.products"
 					 class="col-lg-4 col-md-4 product-area-item">
-					  <div class="product-area-item-inner">
-						<img src="{{ globals.backend_domain}}{{ product.image }}">
+					  <div *ngIf='check_filter_add(product.tags, false, true)'>
+					  	<div class="product-area-item-inner">
+						<img src="{{globals.backend_domain}}{{ product.image }}">
 						<h3 class="product-area-item-title">{{ product.title }}</h3>
 						<div>
-							<span class="product-area-item-weight">350g</span>
-							<span class="product-area-item-kkal">250kkal</span>
+							<span class="product-area-item-weight">{{product.weight}}г</span>
+							<span class="product-area-item-kkal">{{product.kkal}}ккал/100г</span>
 						</div>
 						
 						<p class="product-area-item-description">{{ product.description }}</p>
@@ -86,9 +93,8 @@
 							<button (click)="show_product(product.id)" class="product-area-item-buy">Замовити</button>
 						</div>
 					  </div>
+					  </div>
 					</div>
-
-					
 				</div>
 			</div>
 		</div>
@@ -173,13 +179,13 @@
 						Для замовлення телефонуйте
 					</h3>
 					<p class="contacts-content-text" *ngFor='let phone of globals.contact_content'>
-						{{ phone.phone }}
+						{{ phone.phone | phoneFormat }}
 					</p>
 					<div class="contacts-content-logo">
 						<img src="{{ logo_path }}">
 					</div>
-					<div class="contacts-content-mail">
-						mail@gmail.com
+					<div *ngFor="let email of globals.email_content" class="contacts-content-mail">
+						{{ email.email }}
 					</div>
 				</div>
 			</div>
@@ -228,7 +234,7 @@
 			</div>
 		</div>
 
-		<!-- Claaback modal window -->
+		<!-- Callback modal window -->
 		<div *ngIf="globals.show_callback" class="call-modal">
 			<div class="call-modal-bg"></div>
 			<div class="call-modal-form">
@@ -309,6 +315,7 @@
 			</div>
 		</div>
 
+		<!-- Order section -->
 		<div class="order row">
 			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 			<div class="order-list col-sm-9">
