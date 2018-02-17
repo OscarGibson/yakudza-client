@@ -12,7 +12,7 @@
 	</div>
 	<div *ngIf="globals.current_page.title != 'main'" class="breadcrumb">
 		<p>
-			<span class="go-to-main" (click)="go_to_main()">Main</span> <span class="breadcrumb-separator">></span> <span class="red">{{ globals.current_page.title }}</span>
+			<span class="go-to-main" (click)="go_to_main()">Головна</span> <span class="breadcrumb-separator">></span> <span class="red">{{ globals.current_page.title }}</span>
 		</p>
 	</div>
 	<div class=row>
@@ -100,7 +100,7 @@
 		</div>
 
 		<!-- Shares section -->
-		<div *ngIf="globals.current_page.title == 'Shares'" class="shares col-lg-12 col-md-12 col-sm-12">
+		<div *ngIf="globals.current_page.title == 'Акції'" class="shares col-lg-12 col-md-12 col-sm-12">
 			<h1>Акція</h1>
 			<div class="shares-block" *ngFor="let share of globals.shares_content">
 				<p class="shares-block-text">{{ share.content }}</p>
@@ -109,7 +109,7 @@
 		</div>
 
 		<!-- Documents section -->
-		<div *ngIf="globals.current_page.title == 'Documents'" class="documents col-lg-12 col-md-12">
+		<div *ngIf="globals.current_page.title == 'Документи'" class="documents col-lg-12 col-md-12">
 			<div class="documents-wrapper">
 				<h1 class="documents-header">Документи</h1>
 				<div class="documents-content" *ngFor="let document of globals.document_content">
@@ -144,7 +144,7 @@
 		</div>
 
 		<!-- HowTo section -->
-		<div *ngIf="globals.current_page.title == 'How to'" class="howTo col-lg-12 col-md-12 col-sm-12">
+		<div *ngIf="globals.current_page.title == 'Як замовити'" class="howTo col-lg-12 col-md-12 col-sm-12">
 			<h1 class="howTo-header">Як замовити</h1>
 			<div class="howTo-content">
 
@@ -162,7 +162,7 @@
 		</div>
 
 		<!-- Contacts section -->
-		<div *ngIf="globals.current_page.title == 'Constacts'" class="contacts col-lg-12 col-md-12">
+		<div *ngIf="globals.current_page.title == 'Контакти'" class="contacts col-lg-12 col-md-12">
 			<div class="contacts-wrapper">
 				<h1 class="contacts-header">Контакти</h1>
 				<div class="contacts-content">
@@ -189,7 +189,7 @@
 		</div>
 
 		<!-- Feedback section -->
-		<div *ngIf="globals.current_page.title == 'Feedbacks'" class="feedback col-lg-12 col-md-12 col-sm-12">
+		<div *ngIf="globals.current_page.title == 'Відгуки'" class="feedback col-lg-12 col-md-12 col-sm-12">
 			<div class="feedback-form">
 				<h2 class="feedback-header">Відгуки</h2>
 				<div class="feedback-header-wrapper">
@@ -288,18 +288,18 @@
 				</div>
 				<div class="prod-modal-info">
 					<p>
-						<span>{{ globals.current_product.weight }}</span>
-						<span>{{ globals.current_product.kkal }}</span>
+						<span>{{ globals.current_product.weight }}ккал</span>
+						<span>{{ globals.current_product.kkal }}ккал/100г</span>
 					</p>
 				</div>
 				<div class="prod-modal-text">
 					<p>{{ globals.current_product.description }}</p>
 				</div>
 				<div class="prod-modal-price">
-					<p>{{ globals.current_product.price }}</p>
+					<p>{{ globals.current_product.price }}грн</p>
 				</div>
 				<div class="prod-modal-button">
-					<button (click)="add_cart_item(globals.current_product.id)">Buy</button>
+					<button (click)="add_cart_item(globals.current_product.id)">Замовити</button>
 				</div>
 				<div class="prod-modal-arrows">
 					<div class="prod-modal-arrows-left">
@@ -313,7 +313,7 @@
 		</div>
 
 		<!-- Order section -->
-		<div *ngIf="globals.current_page.title == 'Order'" class="order row">
+		<div *ngIf="globals.current_page.title == 'Оформлення замовлення'" class="order row">
 			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
 			<div class="order-list col-sm-9">
 				<div *ngFor="let item of cart.items; let i = index" class="order-item row">

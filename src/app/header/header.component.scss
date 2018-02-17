@@ -20,8 +20,8 @@
 	    		li {
 	    			position: relative;
 	    			height: 30px;
-	    			width: 114px;
-	    			padding-left: 61px;    			
+	    			width: 126px;
+	    			padding-left: 37px;    			
 	    			margin-bottom: 4px;
 	    			cursor: pointer;
 	    		}
@@ -79,6 +79,10 @@
 			padding-left: 70px;
 		    padding-top: 9px;
 		    font-family: "Open Sans";
+		    &-lastspan {
+		    	margin-top: 18px;
+    			display: inline-block;
+		    }
 		}
 	}
 
@@ -126,7 +130,7 @@
 }
 .active-right-menu {
 	position: absolute;
-	left: 46px;
+	left: 18px;
     z-index: -1;
     top: -4px;
 }

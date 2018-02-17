@@ -1,3 +1,6 @@
+body {
+
+}
 .body {
 	margin-bottom: 72px;
 }
@@ -558,6 +561,7 @@
 	&-header {
 		padding-left: 106px;
 		color: #fe683a;
+		margin-top: 3px;
 	}
 	&-wrapper {
 		position: relative;
@@ -578,6 +582,7 @@
 		}
 	}
 	&-info {
+		color: #ccc;
 		p {
 			margin-bottom: 18px;
 			span {
@@ -611,10 +616,10 @@
 	}
 	&-arrows {
 		position: fixed;
-	    top: 45%;
+	    top: 323px;
 	    width: 920px;
 	    // left: 11%;
-	    font-size: 40px;
+	    font-size: 84px;
 	    &-left {
 	    	float: left;
 	    	cursor: pointer;
