@@ -302,10 +302,10 @@
 					<button (click)="add_cart_item(globals.current_product.id)">Замовити</button>
 				</div>
 				<div class="prod-modal-arrows">
-					<div class="prod-modal-arrows-left">
+					<div class="prod-modal-arrows-left" (click)="show_product(prew_product_id)">
 						<fa name="angle-left"></fa>
 					</div>
-					<div class="prod-modal-arrows-right">
+					<div class="prod-modal-arrows-right" (click)="show_product(next_product_id)">
 						<fa name="angle-right"></fa>
 					</div>
 				</div>

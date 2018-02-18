@@ -42,8 +42,10 @@ export class HeaderComponent implements OnInit {
       {headers:this.headers})
       .subscribe(data => {
 
-        this.globals.categories = [];
+         this.globals.categories = [];
         this.globals.categories_main = [];
+        this.globals.products = [];
+        let tmp_products = {};
 
         this.bottom_nav_list = this.globals.categories;
         for (let category of data['categories']) {
@@ -53,6 +55,8 @@ export class HeaderComponent implements OnInit {
 
           for (let product of category.products) {
 
+            tmp_products[product.id] = product;
+
             let item_count = localStorage.getItem(product.id);
             if (!item_count === null) {
               Cart.addItemSimple(product.id, product.title, product.price, item_count, product.image, product.weight, product.kkal);
@@ -61,6 +65,10 @@ export class HeaderComponent implements OnInit {
 
           this.get_order_content();
         }
+
+        for (let key in tmp_products) {
+            this.globals.products.push(tmp_products[key]);
+          }
 
         if (first_time) this.change_categories(this.globals.categories[0].id);
 

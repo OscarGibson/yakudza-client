@@ -32,9 +32,17 @@ export class BodyComponent implements OnInit {
 
   // private _products_get_path: string = 'http://localhost:8008/api/product';
 
-  private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
-  private _callback_post_path: string = 'http://localhost:8000/api/v1/callback';
-  private _feedback_post_path: string = 'http://localhost:8000/api/v1/feedback';
+  // private _filters_get_path: string = 'http://localhost:8000/api/v1/tag';
+  // private _callback_post_path: string = 'http://localhost:8000/api/v1/callback';
+  // private _feedback_post_path: string = 'http://localhost:8000/api/v1/feedback';
+
+  public next_product_id: number;
+  public prew_product_id: number;
+
+
+  private _filters_get_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/tag';
+  private _callback_post_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/callback';
+  private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/feedback';
 
   constructor(private http: HttpClient) { }
 
@@ -232,17 +240,55 @@ export class BodyComponent implements OnInit {
   }
 
   public show_product(id: number) {
-    for (let category of this.globals.categories) {
+    console.log(this.globals.products);
+    // for (let category of this.globals.categories) {
 
-      for (let product of category.products) {
-        if (product.id == id) {
-          this.globals.current_product = product;
+    //   for (let product of category.products) {
+    //     if (product.id == id) {
+    //       this.globals.current_product = product;
+    //       this.globals.show_product = true;
+    //       break;
+    //     }
+    //   }
+
+      for (let index = 0; index < this.globals.products.length; index++) {
+        // console.log(this.globals.products[index].id);
+        if (this.globals.products[index].id == id) {
+          this.globals.current_product = this.globals.products[index];
           this.globals.show_product = true;
+
+          try {
+            this.next_product_id = this.globals.products[index + 1].id;
+            // this.next_product_id = index + 1;
+          }
+          catch(e) {
+            console.log(e);
+            this.next_product_id = this.globals.products[0].id;
+          }
+
+          try {
+            this.prew_product_id = this.globals.products[index - 1].id;
+            // this.prew_product_id = index - 1;
+          }
+          catch(e) {
+            console.log(e);
+            this.prew_product_id = this.globals.products[this.globals.products.length - 1].id;
+          }
+
+          console.log(this.prew_product_id);
+          console.log(index);
+          console.log(this.next_product_id);
+          
+          // console.log(this.globals.products);
+          
           break;
         }
+        
       }
 
-    }
+
+
+    // }
     
   }
 
