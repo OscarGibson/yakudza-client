@@ -40,9 +40,9 @@ export class BodyComponent implements OnInit {
   public prew_product_id: number;
 
 
-  private _filters_get_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/tag';
-  private _callback_post_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/callback';
-  private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/feedback';
+  private _filters_get_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/tag';
+  private _callback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/callback';
+  private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/feedback';
 
   constructor(private http: HttpClient) { }
 
