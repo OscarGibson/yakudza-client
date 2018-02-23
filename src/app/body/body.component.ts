@@ -25,8 +25,13 @@ export class BodyComponent implements OnInit {
 
   private headers: HttpHeaders;
 
+  // private remove_icon_active: string = '/assets/svg/X_red.svg';
+  // private remove_icon: string = '/assets/svg/X.svg';
+  // public remove_icon_path;
+
   // public products_list: any;
   public filters_list: Array<any>;
+  public filter_object: FilterObject = new FilterObject();
   public globals = Globals;
   public cart = Cart;
 
@@ -40,11 +45,12 @@ export class BodyComponent implements OnInit {
   public prew_product_id: number;
 
 
-  private _filters_get_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/tag';
-  private _callback_post_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/callback';
-  private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/api/v1/feedback';
+  private _filters_get_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/tag';
+  private _callback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/callback';
+  private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/feedback';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+  }
 
   ngOnInit() {
     // this.get_products();
@@ -60,6 +66,7 @@ export class BodyComponent implements OnInit {
   public test() {
     console.log(this.globals);
   }
+
 
   public get_filters() {
 
@@ -99,7 +106,6 @@ export class BodyComponent implements OnInit {
     for (let i in this.globals.active_filters_add) {
       if (tags.includes(this.globals.active_filters_add[i])) {
         if (del) this.globals.active_filters_add.splice(+i,1);
-        console.log('active filters',this.globals.active_filters_add);
         return true;
       }
     }
@@ -116,6 +122,10 @@ export class BodyComponent implements OnInit {
   }
 
   public add_filter(event, filter_id) {
+
+    // NEW
+    this.filter_object.setElement(filter_id, true);
+
     if (!this.check_filter_add([filter_id])) {
       this.globals.active_filters_add.push(filter_id);
     }
@@ -143,9 +153,14 @@ export class BodyComponent implements OnInit {
     // console.log(this.globals.categories_main);
   }
   public remove_filter(event, filter_id) {
+    
+    // NEW
+    this.filter_object.setElement(filter_id, false);
+
     // this._abstract_filter(event, 'active-remove', false);
     if (!this.check_filter_remove([filter_id])) {
       this.globals.active_filters_remove.push(filter_id);
+      console.log('pipka', this.globals.active_filters_remove);
     }
     this.check_filter_add([filter_id])
   }
@@ -383,6 +398,37 @@ export class BodyComponent implements OnInit {
 
   }
 
+  public filter_items() {
+    this.globals.active_filters_add;
+    this.globals.active_filters_remove;
+
+    this.globals.categories_filter = [];
+
+   
+
+    if (this.filter_object.length == 0) {
+      Object.assign(this.globals.categories_filter, this.globals.categories);
+    } else {
+
+      for (let new_category of this.globals.categories) {
+        for (let new_product of new_category) {
+          if (1) { // WORK POINT!!!!!
+            new_category.push(new_product);
+          }
+        }
+      }
+
+    }
+    
+  }
+
+  private hasMutual(array_1: Array<any>, array_2: Array<any>) {
+    for (let el of array_1) {
+      if (array_2.includes(el)) return true;
+    }
+    return false;
+  }
+
 
 }
 
@@ -391,7 +437,26 @@ export class BodyComponent implements OnInit {
 
 
 
+class FilterObject {
+  public body;
+  public length;
 
+  constructor() {
+    this.length = 0;
+  }
+
+  public setElement(index, value) {
+    this.body[index] = value;
+    this.length += 1;
+  }
+  public removeElement(index) {
+    if (this.body[index] !== undefined) this.length -= 1;
+    delete this.body[index];
+  }
+  public getElement(index) {
+    return this.body[index];
+  }
+}
 
 
 

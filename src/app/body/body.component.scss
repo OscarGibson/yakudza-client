@@ -155,6 +155,7 @@ body {
 		border: 1px solid #444;
     	border-radius: 5px;
 		&-item {
+			position: relative;
 			display: inline-block;
 			width: 85px;
 			text-align: center;
@@ -171,6 +172,18 @@ body {
 			}
 			&-remove {
 				font-size: 17px;
+				.cls-1 {
+					fill: red;
+					fill-rule: none;
+					filter: none;
+				}
+			}
+			&-hover {
+				width: 20px;
+			    height: 20px;
+			    position: absolute;
+			    left: 32px;
+			    bottom: 2px;
 			}
 			p {
 				font-weight: bold;
@@ -183,7 +196,9 @@ body {
 				font-family: "Open sans";
 				color: #fff;
 			}
-			&-remove {}
+			&-remove {
+
+			}
 		}
 	}
 	&-area {

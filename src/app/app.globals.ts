@@ -6,7 +6,7 @@ export class Globals {
   // public static backend_domain: string = 'http://localhost:8000';
   // private static _domain: string = 'http://localhost:8000';
 
-  public static local_domain: string = 'http://oscargibson.pythonanywhere.com';
+  public static local_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
   public static backend_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
   private static _domain: string = 'http://oscargibson.pythonanywhere.com/backend';
 
@@ -30,6 +30,7 @@ export class Globals {
   public static categories: Array<any> = [
     {'slug':'', 'products': []},
   ];
+  public static categories_filter;
   public static feedback_path: string = Globals._get_path('feedback');
   public static current_category = {
   	'products' : []

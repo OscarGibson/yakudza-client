@@ -64,12 +64,22 @@
 					<fa *ngIf='!check_filter_add([filter.id], false)' class="product-filters-item-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
 					<p class="product-filters-item-name">{{ filter.name }}</p>
 					<!-- <fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa> -->
-					<embed *ngIf='check_filter_remove([filter.id], false)' src="/assets/svg/X.svg" class="product-filters-item-remove active-remove" id="{{ i }}" (click)="remove_filter($event, filter.id)">
-					<embed *ngIf='!check_filter_remove([filter.id], false)' src="/assets/svg/X.svg" class="product-filters-item-remove" id="{{ i }}" (click)="remove_filter($event, filter.id)">
+					<div (click)="remove_filter($event, filter.id)">
+						<embed *ngIf='check_filter_remove([filter.id], false)' src="/assets/svg/X_red.svg" class="product-filters-item-remove" id="{{ i }}">
+					</div>
+
+					<div (click)="remove_filter($event, filter.id)">
+						<embed *ngIf='!check_filter_remove([filter.id], false)' src="/assets/svg/X.svg" class="product-filters-item-remove" id="{{ i }}">
+					</div>
+
+					<div class="product-filters-item-hover" (click)="remove_filter($event, filter.id)"></div>
+					
+					
+					
 				</div>
 			</div>
 
-			<div *ngFor="let category of globals.categories" class="rols">
+			<div *ngFor="let category of globals.categories_filter" class="rols">
 
 				<div *ngIf="category.products.length" class="product-title" id="{{ category.slug }}-target">
 					<h1>{{ category.name }}</h1>
@@ -78,7 +88,8 @@
 				<div *ngIf="category.products.length" class="product-area row">
 					<div *ngFor="let product of category.products"
 					 class="col-lg-4 col-md-4 product-area-item">
-					  <div *ngIf='check_filter_add(product.tags, false, true)'>
+					  <!-- <div *ngIf='check_filter_add(product.tags, false, true)'> -->
+					  <div>
 					  	<div class="product-area-item-inner">
 						<img src="{{globals.backend_domain}}{{ product.image }}">
 						<h3 class="product-area-item-title">{{ product.title }}</h3>
