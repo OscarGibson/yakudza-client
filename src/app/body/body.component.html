@@ -95,7 +95,7 @@
 						<h3 class="product-area-item-title">{{ product.title }}</h3>
 						<div>
 							<span class="product-area-item-weight">{{product.weight}}г</span>
-							<span class="product-area-item-kkal">{{product.kkal}}ккал/100г</span>
+							<span *ngIf="product.pieces" class="product-area-item-pieces">{{product.pieces}} кусків</span>
 						</div>
 						
 						<p class="product-area-item-description">{{ product.description }}</p>
@@ -300,7 +300,7 @@
 				<div class="prod-modal-info">
 					<p>
 						<span>{{ globals.current_product.weight }}ккал</span>
-						<span>{{ globals.current_product.kkal }}ккал/100г</span>
+						<span *ngIf="globals.current_product.pieces">{{ globals.current_product.pieces }} кусків</span>
 					</p>
 				</div>
 				<div class="prod-modal-text">
@@ -353,7 +353,7 @@
 
 					</div>
 					<div class="order-item-info col-sm-3">
-						<p class="order-item-info-info">{{ item.item_weight }}г {{ item.item_kkal }}ккал/100г</p>
+						<p *ngIf="item.item_pieces" class="order-item-info-info">{{ item.item_weight }}г {{ item.item_pieces }} кусків</p>
 						<div class="order-item-info-price">{{ item.item_total }}грн</div>
 					</div>
 				</div>
