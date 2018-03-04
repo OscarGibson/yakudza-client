@@ -70,7 +70,7 @@ export class BodyComponent implements OnInit {
 
   public get_filters() {
 
-    this.http.get(this._filters_get_path, {headers: this.headers})
+    this.http.get(this.globals.tags_get_path, {headers: this.headers})
     .subscribe(
       data => {
         this.filters_list = data['tags'];
@@ -318,6 +318,9 @@ export class BodyComponent implements OnInit {
       case "callback":
         this.globals.show_callback = false;
         break;
+      case "message":
+        this.globals.show_message = false;
+        break;
     }
   }
 
@@ -359,11 +362,13 @@ export class BodyComponent implements OnInit {
     let content = form.getElementsByTagName('textarea')[0].value;
 
     if (author && cell && content) {
-      this.http.post(this._feedback_post_path,{'author':author, 'cell':cell, 'content':content}, {headers: this.headers})
+      this.http.post(this.globals.feedback_post_path,{'author':author, 'cell':cell, 'content':content}, {headers: this.headers})
       .subscribe(
         data => {
           console.log('DATA:', data);
           this.get_feedback_content();
+
+          this.globals.display_message("Ваш відгук був доданий");
         },
         error => {
           console.log('ERROR: ', error);
@@ -383,10 +388,13 @@ export class BodyComponent implements OnInit {
     let cell = inputs[1].value;
 
     if (name && cell) {
-      this.http.post(this._callback_post_path,{'name':name, 'cell':cell}, {headers: this.headers})
+      this.http.post(this.globals.callback_post_path,{'name':name, 'cell':cell}, {headers: this.headers})
       .subscribe(
         data => {
           console.log('DATA:', data);
+
+          this.globals.show_callback = false;
+          this.globals.display_message("Незабаром вам зателефонують");
         },
         error => {
           console.log('ERROR: ', error);
@@ -429,11 +437,69 @@ export class BodyComponent implements OnInit {
     return false;
   }
 
+  public changeCurrentPropos(direction, category_index: number) {
+
+    let product_index;
+    if (direction == 'left') {
+      product_index = this.globals.order_content[category_index].current_content.prew_id;
+    } else if (direction == 'right') {
+      product_index = this.globals.order_content[category_index].current_content.next_id;
+    }
+
+    let new_product = this.globals.order_content[category_index].content.content[product_index];
+
+    let next_id = this.globals.order_content[category_index].current_content.next_id + 1;
+    let prew_id = this.globals.order_content[category_index].current_content.next_id - 1;
+
+    this.globals.order_content[category_index].current_content = {
+      "id"    : new_product.id,
+      "title" : new_product.title,
+      "image" : new_product.image,
+      "price" : new_product.price,
+      "next_id" : next_id >= this.globals.order_content[category_index].content.content.length ? 0 : next_id,
+      "prew_id" : prew_id < 0 ? this.globals.order_content[category_index].content.content.length - 1 : prew_id,
+    };
+
+  }
+
+
+  public create_order(form_id: string) {
+    let form = document.getElementById(form_id);
+    let elements = form.getElementsByTagName('input');
+    
+    let address = elements[0].value;
+    let phone = elements[1].value;
+    let text = form.getElementsByTagName('textarea')[0].value;
+    let products = [];
+
+    for (let item of this.cart.items) {
+      products.push({
+        "pk" : item.item_id,
+        "count" : item.item_count
+      });
+    }
+
+    let data = {
+      "address" : address,
+      "phone" : phone,
+      "comment" : text,
+      "products" : products
+    };
+
+    this.http.post(this.globals.order_post_path, data, {headers: this.headers})
+    .subscribe( response => {
+      console.log(response);
+
+      this.globals.display_message("Ваше замовлення прийняте");
+    }, error => {
+      console.log(error);
+    });
+
+
+  }
+
 
 }
-
-
-
 
 
 

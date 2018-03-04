@@ -1,4 +1,4 @@
-<div class="body" (click)="test()">
+<div class="body">
 	<div class="proposition row" *ngIf="globals.current_page.title == 'main'">
 		<div class="col-md-4 col-lg-4">
 			<img src="{{ shares_path }}">
@@ -45,7 +45,7 @@
 			</div>
 
 			<div class="cart-total">
-				<span>ВСЬОГО: {{ cart.total }} грн.</span>
+				<span>ВСЬОГО: {{ cart.total | to_fixed : 2 }} грн.</span>
 			</div>
 			<div class="cart-button" (click)="show_order()">
 				<button>Оформити замовлення</button>
@@ -91,7 +91,7 @@
 					  <!-- <div *ngIf='check_filter_add(product.tags, false, true)'> -->
 					  <div>
 					  	<div class="product-area-item-inner">
-						<img src="{{globals.backend_domain}}{{ product.image }}">
+						<img (click)="show_product(product.id)" src="{{globals.backend_domain}}{{ product.image }}">
 						<h3 class="product-area-item-title">{{ product.title }}</h3>
 						<div>
 							<span class="product-area-item-weight">{{product.weight}}г</span>
@@ -101,7 +101,7 @@
 						<p class="product-area-item-description">{{ product.description }}</p>
 						<div class="product-area-item-bottom">
 							<span class="product-area-item-price">{{ product.price }}</span>
-							<button (click)="show_product(product.id)" class="product-area-item-buy">Замовити</button>
+							<button (click)="add_cart_item(product.id)" class="product-area-item-buy">Замовити</button>
 						</div>
 					  </div>
 					  </div>
@@ -358,53 +358,65 @@
 					</div>
 				</div>
 
-				<div class="order-adds">
+				<!-- <div class="order-adds">
 					<div class="order-adds-item">
-						<!-- <img src="{{ product_path }}"> -->
+						<img src="{{ product_path }}">
 					</div>
 				</div>
-
+ -->
 
 			</div>
 
 			<div class="order-propos col-sm-3">
 
-				<h2>Соуси на будь-який смак</h2>
-				<div class="order-propos-item">
-					<fa name="chevron-circle-left" class="order-propos-item-left"></fa>
-					<img src="{{ product_path }}">
-					<fa name="chevron-circle-right" class="order-propos-item-right"></fa>
-					<h3>Соус</h3>
-					<div class="order-propos-price">30грн</div>
-					<div class="order-propos-button">Додати</div>
-				</div>
-				<h2>Солодкі десерти</h2>
-				<div class="order-propos-item">
-					<fa name="chevron-circle-left" class="order-propos-item-left"></fa>
-					<img src="{{ product_path }}">
-					<fa name="chevron-circle-right" class="order-propos-item-right"></fa>
-					<h3>Соус</h3>
-					<div class="order-propos-price">30грн</div>
-					<div class="order-propos-button">Додати</div>
-				</div>
+				<div *ngFor="let category of globals.order_content; let index = index" class="prder-propos-block">
+					<h2>{{ category.content.title }}</h2>
+					<div class="order-propos-item">
+
+						<fa name="chevron-circle-left" class="order-propos-item-left" (click)="changeCurrentPropos('left', index)"></fa>
+						<img src="{{globals.backend_domain}}{{ category.current_content.image }}">
+						<fa name="chevron-circle-right" class="order-propos-item-right" (click)="changeCurrentPropos('right', index)"></fa>
+
+						<h3>{{ category.current_content.title }}</h3>
+						<div class="order-propos-price">{{ category.current_content.price }}грн</div>
+						<div class="order-propos-button" (click)="add_cart_item(category.current_content.id)">Додати</div>
+					</div>
+				</div>				
 			</div>
 
-			<div class="order-form">
-				<form id="order-from">
+			<div class="order-form col-md-9">
+				<form id="order-form">
 					<label for="order-form-name">
-					Введіть ваше ім'я</label>
+					Введіть вашу адресу доставки</label>
 					<input id="order-form-name" type="text" name="order-form-name">
 					<label for="order-form-cell">
-					Введіть номер телефону</label>
+					Введіть ваш номер телефону</label>
 					<input id="order-form-cell" type="number" name="order-form-cell">
 					<label for="order-form-text">
 					Коментарій</label>
 					<textarea id="order-form-text" type="text" name="order-form-text"></textarea>
-					<button type="button" class="green-bg">Замовити</button>
-					<button type="button" class="green-bg">Оплатити карткою</button>
+					<button type="button" class="order-form-button-red red-bg" (click)="create_order('order-form')">Замовити</button>
+					<button type="button" class="order-form-button-green">Оплатити карткою</button>
 				</form>
 			</div>
 
+		</div>
+
+
+		<!-- Message modal window -->
+		<div *ngIf="globals.show_message" class="message-modal">
+			<div class="message-modal-bg"></div>
+			<div class="message-modal-form">
+				<div class="message-modal-form-X">
+					<fa name="times" (click)="close_modal('message')"></fa>
+				</div>
+				<form action="">
+					<span class="message-modal-form-info">
+						{{ globals.message }}
+					</span>
+					<button type="button" (click)="close_modal('message')">Закрити</button>
+				</form>
+			</div>
 		</div>
 
 	</div>

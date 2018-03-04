@@ -27,7 +27,33 @@ export class HeaderComponent implements OnInit {
     this.http.get(this.globals.section_get_path + 'order', {headers: this.headers})
       .subscribe(
         data => {
-          this.globals.order_content = data['order_section'];
+          this.globals.order_content = [];
+
+          for (let category of this.globals.categories) {
+            for (let order_content of data['order_section']) {
+              if (category.id == order_content.id) {
+
+                this.globals.order_content.push({
+                    "content" : {
+                      "id": category.id,
+                      "title": order_content.title,
+                      "content": category.products,
+                    },
+                    "current_content" : {
+                      'id' : category.products[0].id,
+                      'title' : category.products[0].title,
+                      'image' : category.products[0].image,
+                      'price' : category.products[0].price,
+                      'next_id' : category.products.length > 0 ? 1 : 0,
+                      'prew_id' : category.products.length - 1,
+                    }
+                  });
+
+              }
+            }
+          }
+
+          console.log(this.globals.order_content)
           
         },
         error => {
@@ -64,9 +90,9 @@ export class HeaderComponent implements OnInit {
               Cart.addItemSimple(product.id, product.title, product.price, item_count, product.image, product.weight, product.kkal);
             }
           }
-
-          this.get_order_content();
         }
+
+        this.get_order_content();
 
         for (let key in tmp_products) {
             this.globals.products.push(tmp_products[key]);

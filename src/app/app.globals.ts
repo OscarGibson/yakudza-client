@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Globals {
-  // public static local_domain: string = 'http://localhost:4200';
-  // public static backend_domain: string = 'http://localhost:8000';
-  // private static _domain: string = 'http://localhost:8000';
+  public static local_domain: string = 'http://localhost:4200';
+  public static backend_domain: string = 'http://localhost:8000';
+  private static _domain: string = 'http://localhost:8000';
 
-  public static local_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
-  public static backend_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
-  private static _domain: string = 'http://oscargibson.pythonanywhere.com/backend';
+  // public static local_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
+  // public static backend_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
+  // private static _domain: string = 'http://oscargibson.pythonanywhere.com/backend';
 
 
   private static _api_path: string = '/api/v1/';
@@ -16,7 +16,12 @@ export class Globals {
   public static order_post_path: string = Globals._get_path('order');
   public static tags_get_path: string = Globals._get_path('tag');
   public static menu_get_path: string = Globals._get_path('section/menu');
-  // public static order_get_path: string = Globals._get_path('section/order');
+  public static order_get_path: string = Globals._get_path('section/order');
+
+  public static callback_post_path: string = Globals._get_path('callback');;
+  public static feedback_post_path: string = Globals._get_path('feedback');;
+
+
   public static menu: Array<any>;
   public static active_filters_add = [];
   public static active_filters_remove = [];
@@ -36,9 +41,6 @@ export class Globals {
   	'products' : []
   };
   public static products;
-  public static order_content = [
-    {},
-  ];
   public static shares_content = [
   	{'image':'', 'content':''}
   ];
@@ -95,6 +97,41 @@ export class Globals {
   	}
   ];
 
+  // public static order_content = {
+  //     "content": [
+  //           {
+  //             "id": -1,
+  //             "title": "",
+  //             "content": [],
+  //           },
+  //       "current_content" : {
+  //         "id"    : -1,
+  //         "title" : "",
+  //         "image" : "",
+  //         "price" : "",
+  //         "next_id" : -1,
+  //         "prew_id" : -1,
+  //       },
+  //     ],
+  //   };
+
+    public static order_content = [
+      {
+        "content" : {
+          "id": -1,
+          "title": "",
+          "content": [],
+        },
+        "current_content" : {
+          "id"    : -1,
+          "title" : "",
+          "image" : "",
+          "price" : "",
+          "next_id" : -1,
+          "prew_id" : -1,
+        }
+      }
+    ]
 
   private static _get_path(name: string): string {
   	return Globals._domain + Globals._api_path + name;
@@ -103,6 +140,7 @@ export class Globals {
   public static show_callback: boolean = false;
   public static show_subs: boolean = false;
   public static show_product: boolean = false;
+  public static show_message: boolean = false;
 
   public static current_product = {
   	"item_id": "",
@@ -115,6 +153,13 @@ export class Globals {
     "weight": 0,
     "kkal": 0,
   };
+
+  public static message: string;
+
+  public static display_message(message) {
+    Globals.show_message = true;
+    Globals.message = message;
+  }
 }
 
 
@@ -170,6 +215,7 @@ export class Cart {
     Cart.total += + (Cart.items[item_id].item_price).toFixed(2);
     localStorage.setItem(item_id.toString(), Cart.items[item_id].item_count.toString());
   }
+
   public static minusItem(item_id: number) {
     if (Cart.items[item_id].item_count > 1) {
       Cart.items[item_id].item_count -= 1;
@@ -179,6 +225,7 @@ export class Cart {
       localStorage.setItem(item_id.toString(), Cart.items[item_id].item_count.toString());
     }
   }
+
   public static removeItem(item_id: number) {
     Cart.total -= Cart.items[item_id].item_price*Cart.items[item_id].item_count;
     Cart.total = + (Cart.total).toFixed(2);
@@ -193,6 +240,7 @@ export class Cart {
     }
     Cart.items = [];
   }
+
 }
 
 class CartItem {
