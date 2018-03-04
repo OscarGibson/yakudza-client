@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
 
             let item_count = localStorage.getItem(product.id);
             if (!item_count === null) {
-              Cart.addItemSimple(product.id, product.title, product.price, item_count, product.image, product.weight, product.kkal);
+              Cart.addItemSimple(product.id, product.title, product.price, item_count, product.image, product.weight, product.pieces);
             }
           }
         }
