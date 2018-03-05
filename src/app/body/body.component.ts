@@ -469,6 +469,7 @@ export class BodyComponent implements OnInit {
     
     let address = elements[0].value;
     let phone = elements[1].value;
+    let name = elements[2].value;
     let text = form.getElementsByTagName('textarea')[0].value;
     let products = [];
 
@@ -482,6 +483,7 @@ export class BodyComponent implements OnInit {
     let data = {
       "address" : address,
       "phone" : phone,
+      "name" : name,
       "comment" : text,
       "products" : products
     };
