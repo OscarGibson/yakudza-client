@@ -94,6 +94,9 @@
 			}
 		}
 		&-social {
+			&-wrapper {
+				display: inline-block;
+			}
 			fa {
 				margin: 0 5px;
 				font-size: 35px;
@@ -102,16 +105,16 @@
 				}
 			}
 			.facebook {
-				color: #33f;
+				color: #3b5998;
 			}
 			.vk {
-				color: #00f;
+				color: #4c75a3;
 			}
 			.twitter {
-				color: #88f;
+				color: #00aced;
 			}
 			.google-plus {
-				color: #fcc;
+				color: #dd4b39;
 			}
 		}
 		&-bg {

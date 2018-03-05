@@ -23,8 +23,6 @@ export class Globals {
 
 
   public static menu: Array<any>;
-  public static active_filters_add = [];
-  public static active_filters_remove = [];
   public static current_page = {
   	'title' : 'main'
   };
@@ -275,7 +273,30 @@ class Product {
 
 
 
+export class FilterObject {
+  public body;
+  public length;
 
+  constructor(filters) {
+    this.length = 0;
+    this.body = [];
+    for (let filter of filters) {
+      this.setElement(filter.name, 0);
+    }
+  }
+
+  public setElement(index, value) {
+    this.body[index] = value;
+    this.length += 1;
+  }
+  public removeElement(index) {
+    if (this.body[index] !== undefined) this.length -= 1;
+    delete this.body[index];
+  }
+  public getElement(index) {
+    return this.body[index];
+  }
+}
 
 
 

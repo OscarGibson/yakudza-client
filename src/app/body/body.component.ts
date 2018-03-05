@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Globals, Cart } from '../app.globals';
+import { Globals, Cart, FilterObject } from '../app.globals';
 
 import { PhoneFormatPipe } from './body.pipe';
 
@@ -31,7 +31,7 @@ export class BodyComponent implements OnInit {
 
   // public products_list: any;
   public filters_list: Array<any>;
-  public filter_object: FilterObject = new FilterObject();
+  public filter_object: FilterObject;
   public globals = Globals;
   public cart = Cart;
 
@@ -73,11 +73,8 @@ export class BodyComponent implements OnInit {
     this.http.get(this.globals.tags_get_path, {headers: this.headers})
     .subscribe(
       data => {
-        this.filters_list = data['tags'];
-        for (var i = 0; i < this.filters_list.length; i++) {
-          this.filters_list[i].class = '';
-          // console.log(this.filters_list[i]);
-        }
+        this.filter_object = new FilterObject(data['tags']);
+        console.log(this.filter_object);
       },
       error => {
         console.log('ERROR: ', error);
@@ -86,84 +83,13 @@ export class BodyComponent implements OnInit {
 
   }
 
-  // private _abstract_filter(event, class_name, add= true) {
-
-  //   let properties = ['class_add', 'class_remove'];
-    
-  //   if (add) properties.reverse();
-
-  //   this.filters_list[event.path[1].id][properties[0]] = '';
-  //   if (this.filters_list[event.path[1].id][properties[1]] == '') {
-  //     this.filters_list[event.path[1].id][properties[1]] = class_name;
-  //   }
-  //   else {
-  //     this.filters_list[event.path[1].id][properties[1]] = '';
-  //   }
-  // }
-
   public check_filter_add(tags, del= true, check_all= false) {
-    if (this.globals.active_filters_add.length == 0 && check_all) return true;
-    for (let i in this.globals.active_filters_add) {
-      if (tags.includes(this.globals.active_filters_add[i])) {
-        if (del) this.globals.active_filters_add.splice(+i,1);
-        return true;
-      }
-    }
-    return false;
+    return true;
   }
   public check_filter_remove(tags, del= true) {
-    for (let i in this.globals.active_filters_remove) {
-      if (tags.includes(this.globals.active_filters_remove[i])) {
-        if (del) this.globals.active_filters_remove.splice(+i,1);
-        return true;
-      }
-    }
     return false;
   }
 
-  public add_filter(event, filter_id) {
-
-    // NEW
-    this.filter_object.setElement(filter_id, true);
-
-    if (!this.check_filter_add([filter_id])) {
-      this.globals.active_filters_add.push(filter_id);
-    }
-    this.check_filter_remove([filter_id])
-    // this.globals.categories = [];
-    // this._abstract_filter(event, 'active-add');
-    // for (let category of this.globals.categories_main) {
-    //   let new_categories = [];
-    //   new_categories['name'] = category.name;
-    //   new_categories['slug'] = category.slug;
-    //   new_categories['products'] = [];
-
-    //   for (let product of category.products) {
-
-    //     if (product.tags.includes(filter_id)) {
-
-    //       new_categories['products'].push(product);
-    //     }
-    //   }
-
-    //   this.globals.categories.push(new_categories);
-
-    // }
-
-    // console.log(this.globals.categories_main);
-  }
-  public remove_filter(event, filter_id) {
-    
-    // NEW
-    this.filter_object.setElement(filter_id, false);
-
-    // this._abstract_filter(event, 'active-remove', false);
-    if (!this.check_filter_remove([filter_id])) {
-      this.globals.active_filters_remove.push(filter_id);
-      console.log('pipka', this.globals.active_filters_remove);
-    }
-    this.check_filter_add([filter_id])
-  }
 
   public get_shares_content() {
      this.http.get(this.globals.section_get_path + 'shares', {headers: this.headers})
@@ -406,30 +332,6 @@ export class BodyComponent implements OnInit {
 
   }
 
-  public filter_items() {
-    this.globals.active_filters_add;
-    this.globals.active_filters_remove;
-
-    this.globals.categories_filter = [];
-
-   
-
-    if (this.filter_object.length == 0) {
-      Object.assign(this.globals.categories_filter, this.globals.categories);
-    } else {
-
-      for (let new_category of this.globals.categories) {
-        for (let new_product of new_category) {
-          if (1) { // WORK POINT!!!!!
-            new_category.push(new_product);
-          }
-        }
-      }
-
-    }
-    
-  }
-
   private hasMutual(array_1: Array<any>, array_2: Array<any>) {
     for (let el of array_1) {
       if (array_2.includes(el)) return true;
@@ -503,28 +405,6 @@ export class BodyComponent implements OnInit {
 
 }
 
-
-
-class FilterObject {
-  public body;
-  public length;
-
-  constructor() {
-    this.length = 0;
-  }
-
-  public setElement(index, value) {
-    this.body[index] = value;
-    this.length += 1;
-  }
-  public removeElement(index) {
-    if (this.body[index] !== undefined) this.length -= 1;
-    delete this.body[index];
-  }
-  public getElement(index) {
-    return this.body[index];
-  }
-}
 
 
 
