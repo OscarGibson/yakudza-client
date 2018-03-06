@@ -10,7 +10,6 @@ export class Globals {
   // public static backend_domain: string = 'http://oscargibson.pythonanywhere.com/backend';
   // private static _domain: string = 'http://oscargibson.pythonanywhere.com/backend';
 
-
   private static _api_path: string = '/api/v1/';
   public static categories_get_path: string = Globals._get_path('category');
   public static order_post_path: string = Globals._get_path('order');

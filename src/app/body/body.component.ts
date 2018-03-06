@@ -5,6 +5,8 @@ import { Globals, Cart, FilterObject } from '../app.globals';
 
 import { PhoneFormatPipe } from './body.pipe';
 
+import { HostListener } from '@angular/core';
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -49,7 +51,20 @@ export class BodyComponent implements OnInit {
   private _callback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/callback';
   private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/feedback';
 
+  public cart_in_top: boolean;
+  public cart_position: number;
+
   constructor(private http: HttpClient) { 
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  public onNavScroll($event) {
+
+    if (window.pageYOffset >= this.cart_position + 290) {
+      this.cart_in_top = true;
+    } else {
+      this.cart_in_top = false;
+    }
   }
 
   ngOnInit() {
@@ -62,6 +77,10 @@ export class BodyComponent implements OnInit {
     this.get_email_content();
     this.get_social_content();
     this.get_feedback_content();
+
+    this.cart_position = document.getElementById('cart').offsetTop;
+
+    console.log(document.getElementById('cart'));
   }
   public test() {
     console.log(this.globals);

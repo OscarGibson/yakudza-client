@@ -99,7 +99,7 @@
 		ul {
 		    padding: 4px 16px 0 16px;
 		    list-style: none;
-		    text-align-last: justify;
+		    text-align: center;
 		    margin-bottom: 4px;
     		li {
     			position: relative;
@@ -115,6 +115,19 @@
 			    padding: 7px 25px;
     		}
     		
+		}
+
+		&-top {
+			position: fixed;
+			top: -43px;
+			left: 0;
+			z-index: 1;
+		    background: #000;
+		    width: 100%;
+		    transition: top .3s;
+		}
+		&-top.open {
+			top: 0;
 		}
 
 	}

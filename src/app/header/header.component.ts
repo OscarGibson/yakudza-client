@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Globals, Cart } from '../app.globals';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -16,11 +17,28 @@ export class HeaderComponent implements OnInit {
   public logo_path: string = '/assets/logo/Yakudza.svg';
   public globals = Globals;
 
+  public bottom_nav_poition: number;
+  public show_nav_top: boolean;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   	this.get_categories(true);
     this.get_menu(true);
+
+    this.bottom_nav_poition = document.getElementById('header-bottomnav').offsetTop;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  public onNavScroll($event) {
+    // console.log($event);
+    // console.log(window.pageYOffset, this.bottom_nav_poition);
+
+    if (window.pageYOffset >= this.bottom_nav_poition + 50) {
+      this.show_nav_top = true;
+    } else {
+      this.show_nav_top = false;
+    }
   }
 
   public get_order_content() {

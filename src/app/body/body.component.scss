@@ -21,6 +21,10 @@ body {
 	margin-top: 39px;
 }
 .cart {
+	&-wrapper.top {
+		position: fixed;
+		top: 30px;
+	}
 	&-wrapper {
 		width: 328px;
 		margin-top: 56px;
@@ -143,6 +147,7 @@ body {
 		}
 	}
 }
+
 .product {
 	padding-top: 57px;
 	&-title {

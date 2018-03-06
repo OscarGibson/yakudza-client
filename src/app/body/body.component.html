@@ -16,8 +16,8 @@
 		</p>
 	</div>
 	<div class=row>
-		<div *ngIf="globals.current_page.title == 'main'" class="cart col-lg-4 col-md-4">
-		<div class="cart-wrapper">
+		<div id="cart" class="cart col-lg-4 col-md-4">
+		<div *ngIf="globals.current_page.title == 'main'" class="cart-wrapper" [ngClass]="{'top' : cart_in_top}">
 			<div class="cart-head">
 				<embed class="cart-head-img" src="/assets/svg/elips.svg">
 				<h1 class="cart-head-text">Ваш кошик</h1>
