@@ -60,16 +60,16 @@
 			<!-- Filters -->
 			<div class="product-filters">
 				<div *ngFor="let filter of filters_list; let i = index" class="product-filters-item">
-					<fa *ngIf='check_filter_add([filter.id], false)' class="product-filters-item-add active-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
-					<fa *ngIf='!check_filter_add([filter.id], false)' class="product-filters-item-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
+					<fa *ngIf='check_filter_add(filter.id)' class="product-filters-item-add active-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
+					<fa *ngIf='!check_filter_add(filter.id)' class="product-filters-item-add" id="{{ i }}" name="heart-o" (click)="add_filter($event, filter.id)"></fa>
 					<p class="product-filters-item-name">{{ filter.name }}</p>
 					<!-- <fa class="product-filters-item-remove {{ filter.class_remove }}" id="{{ i }}" name="times" (click)="remove_filter($event)"></fa> -->
 					<div (click)="remove_filter($event, filter.id)">
-						<embed *ngIf='check_filter_remove([filter.id], false)' src="/assets/svg/X_red.svg" class="product-filters-item-remove" id="{{ i }}">
+						<embed *ngIf='check_filter_remove(filter.id)' src="/assets/svg/X_red.svg" class="product-filters-item-remove" id="{{ i }}">
 					</div>
 
 					<div (click)="remove_filter($event, filter.id)">
-						<embed *ngIf='!check_filter_remove([filter.id], false)' src="/assets/svg/X.svg" class="product-filters-item-remove" id="{{ i }}">
+						<embed *ngIf='!check_filter_remove(filter.id)' src="/assets/svg/X.svg" class="product-filters-item-remove" id="{{ i }}">
 					</div>
 
 					<div class="product-filters-item-hover" (click)="remove_filter($event, filter.id)"></div>

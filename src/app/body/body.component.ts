@@ -102,10 +102,12 @@ export class BodyComponent implements OnInit {
 
   }
 
-  public check_filter_add(tags, del= true, check_all= false) {
-    return true;
+  public check_filter_add(tag) {
+    if (this.filter_object.getElement(tag) === 1) return true;
+    return false;
   }
-  public check_filter_remove(tags, del= true) {
+  public check_filter_remove(tag) {
+    if (this.filter_object.getElement(tag) === -1) return true;
     return false;
   }
 

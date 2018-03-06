@@ -289,11 +289,20 @@ export class FilterObject {
     this.length += 1;
   }
   public removeElement(index) {
-    if (this.body[index] !== undefined) this.length -= 1;
-    delete this.body[index];
+    if (this.body[index] !== undefined) {
+      this.length -= 1;
+      delete this.body[index];
+    }
   }
   public getElement(index) {
     return this.body[index];
+  }
+
+  public isFilterActive() {
+    for (let i = 0; i < this.length; i++) {
+      if (this.body[i] !== 0) return true;
+    }
+    return false;
   }
 }
 
