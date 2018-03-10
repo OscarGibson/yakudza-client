@@ -26,11 +26,11 @@ export class Globals {
   	'title' : 'main'
   };
   public static section_get_path: string = Globals._get_path('section/');
-  public static categories_main: Array<any> = [
-    {'slug': '', 'products': []},
-  ];
+  // public static categories_main: Array<any> = [
+  //   {'slug': '', 'products': []},
+  // ];
   public static categories: Array<any> = [
-    {'slug':'', 'products': []},
+    {'slug':'', 'name' : '','products': []},
   ];
   public static categories_filter;
   public static feedback_path: string = Globals._get_path('feedback');
@@ -273,37 +273,43 @@ class Product {
 
 
 export class FilterObject {
-  public body;
-  public length;
+  public iterator;
+  public dict;
 
   constructor(filters) {
-    this.length = 0;
-    this.body = [];
+    this.iterator = [];
+    this.dict = {};
     for (let filter of filters) {
-      this.setElement(filter.name, 0);
+      this.addElement(new FilterElement(filter.id, filter.name, filter.slug, 0));
     }
   }
 
-  public setElement(index, value) {
-    this.body[index] = value;
-    this.length += 1;
+  public addElement(filter_element) {
+    this.iterator.push(filter_element);
+    this.dict[filter_element.id] = filter_element;
   }
-  public removeElement(index) {
-    if (this.body[index] !== undefined) {
-      this.length -= 1;
-      delete this.body[index];
+  public getElement(id) {
+    return this.dict[id];
+  }
+  public setElement(id, status) {
+    try {
+      this.dict[id].status = status;
+      return true;
+    } catch(e){
+      return false;
     }
-  }
-  public getElement(index) {
-    return this.body[index];
-  }
+  } 
 
   public isFilterActive() {
-    for (let i = 0; i < this.length; i++) {
-      if (this.body[i] !== 0) return true;
+    for (let filter_element of this.iterator) {
+      if (filter_element.status !== 0) return true;
     }
     return false;
   }
+}
+
+class FilterElement {
+  constructor(public id, public name, public slug, public status) {}
 }
 
 

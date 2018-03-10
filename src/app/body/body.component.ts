@@ -55,6 +55,7 @@ export class BodyComponent implements OnInit {
   public cart_position: number;
 
   constructor(private http: HttpClient) { 
+    this.filter_object = new FilterObject([]);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -80,7 +81,7 @@ export class BodyComponent implements OnInit {
 
     this.cart_position = document.getElementById('cart').offsetTop;
 
-    console.log(document.getElementById('cart'));
+    console.log('filters ', this.filter_object);
   }
   public test() {
     console.log(this.globals);
@@ -93,13 +94,12 @@ export class BodyComponent implements OnInit {
     .subscribe(
       data => {
         this.filter_object = new FilterObject(data['tags']);
-        console.log(this.filter_object);
+        console.log('filters_2 ',this.filter_object);
       },
       error => {
         console.log('ERROR: ', error);
       }
       )
-
   }
 
   public check_filter_add(tag) {
@@ -109,6 +109,43 @@ export class BodyComponent implements OnInit {
   public check_filter_remove(tag) {
     if (this.filter_object.getElement(tag) === -1) return true;
     return false;
+  }
+
+  public changeFilter(id, status) {
+    this.filter_object.setElement(id, status);
+    this.filter_products();
+  }
+
+  public filter_products() {
+
+    if (!this.filter_object.isFilterActive()) {
+       this.globals.categories_filter = this.globals.categories.slice();
+       console.log('not active',this.globals.categories_filter);
+       return;
+    }
+    this.globals.categories_filter = [];
+    for (let i = 0; i < this.globals.categories.length; i++) {
+
+      this.globals.categories_filter[i] = {
+        'slug' : this.globals.categories[i].slug,
+        'name' : this.globals.categories[i].name,
+        'products' : []
+      };
+
+      for (let product of this.globals.categories[i].products) {
+        for (let filter of this.filter_object.iterator) {
+          if (
+            product.tags.includes(filter.id) && filter.status === 1
+            || !product.tags.includes(filter.id) && filter.status === -1
+            ) {
+            this.globals.categories_filter[i].products.push(product);
+          }
+        }
+      }
+    }
+
+    console.log(this.filter_object.iterator);
+
   }
 
 

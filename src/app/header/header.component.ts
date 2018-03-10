@@ -88,7 +88,6 @@ export class HeaderComponent implements OnInit {
 
         this.globals.categories = [];
         this.globals.categories_filter = [];
-        this.globals.categories_main = [];
         this.globals.products = [];
         let tmp_products = {};
 
@@ -96,7 +95,6 @@ export class HeaderComponent implements OnInit {
         for (let category of data['categories']) {
 
           this.globals.categories.push(category);
-          this.globals.categories_main.push(category);
           this.globals.categories_filter.push(category);
 
           for (let product of category.products) {
