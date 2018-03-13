@@ -26,18 +26,21 @@
 
 			<div class="cart-item" *ngFor="let item of cart.items; let i = index;">
 				<div class="cart-item-close">
-					<embed class="cart-item-close" src="/assets/svg/X.svg">
+					<!-- <embed class="cart-item-close" src="/assets/svg/X.svg"> -->
+					<img class="cart-item-close" src="/assets/img/X.png">
 					<div class="cart-item-close-click" (click)="remove_cart_item(i)"></div>
 				</div>
 				<div class="cart-item-name">{{ item.item_name }}</div>
 				<div class="cart-item-counter">
 					<div class="cart-item-counter-minus">
-						<embed class="cart-item-counter-minus" src="/assets/svg/minus.svg">
+						<!-- <embed class="cart-item-counter-minus" src="/assets/svg/minus.svg"> -->
+						<img class="cart-item-counter-minus" src="/assets/img/minus.png">
 					<div class="cart-item-counter-click" (click)="minus_cart_item(i)"></div>
 					</div>
 					<div class="cart-item-counter-count">{{ item.item_count }}</div>
 					<div class="cart-item-counter-plus">
-						<embed class="cart-item-counter-plus" src="/assets/svg/plus.svg">
+						<!-- <embed class="cart-item-counter-plus" src="/assets/svg/plus.svg"> -->
+						<img class="cart-item-counter-minus" src="/assets/img/plus.png">
 					<div class="cart-item-counter-click" (click)="plus_cart_item(i)"></div>
 					</div>
 				</div>
@@ -65,12 +68,14 @@
 					<p class="product-filters-item-name">{{ filter.name }}</p>
 
 					<div *ngIf='filter.status === -1'>
-						<embed src="/assets/svg/X_red.svg" class="product-filters-item-remove">
+						<!-- <embed src="/assets/svg/X_red.svg" class="product-filters-item-remove"> -->
+						<img src="/assets/img/X_red.png" class="product-filters-item-remove">
 					</div>
 					<div *ngIf='filter.status === -1' class="product-filters-item-hover" (click)="changeFilter(filter.id, 0)"></div>
 
 					<div *ngIf='filter.status !== -1'>
-						<embed src="/assets/svg/X.svg" class="product-filters-item-remove">
+						<!-- <embed src="/assets/svg/X.svg" class="product-filters-item-remove"> -->
+						<img src="/assets/img/X.png" class="product-filters-item-remove">
 					</div>
 					<div *ngIf='filter.status !== -1' class="product-filters-item-hover" (click)="changeFilter(filter.id, -1)"></div>
 					
@@ -100,7 +105,7 @@
 						
 						<p class="product-area-item-description">{{ product.description }}</p>
 						<div class="product-area-item-bottom">
-							<span class="product-area-item-price">{{ product.price }}</span>
+							<span class="product-area-item-price">{{ product.price }}грн</span>
 							<button (click)="add_cart_item(product.id)" class="product-area-item-buy">Замовити</button>
 						</div>
 					  </div>
@@ -299,7 +304,7 @@
 				</div>
 				<div class="prod-modal-info">
 					<p>
-						<span>{{ globals.current_product.weight }}ккал</span>
+						<span>{{ globals.current_product.weight }}г</span>
 						<span *ngIf="globals.current_product.pieces">{{ globals.current_product.pieces }} кусків</span>
 					</p>
 				</div>
@@ -329,7 +334,8 @@
 			<div class="order-list col-sm-9">
 				<div *ngFor="let item of cart.items; let i = index" class="order-item row">
 					<div class="order-item-close">
-						<embed class="order-item-close-img" src="/assets/svg/X.svg">
+						<!-- <embed class="order-item-close-img" src="/assets/svg/X.svg"> -->
+						<img class="order-item-close-img" src="/assets/img/X.png">
 						<div class="order-item-close-click" (click)="remove_cart_item(i)"></div>
 					</div>
 					
@@ -341,12 +347,14 @@
 						<p class="order-item-content-description">{{ item.item_description }}</p>
 						<div class="order-item-counter">
 							<div class="order-item-counter-minus">
-								<embed class="order-item-counter-minus" src="/assets/svg/minus.svg">
+								<!-- <embed class="order-item-counter-minus" src="/assets/svg/minus.svg"> -->
+								<img class="order-item-counter-minus" src="/assets/img/minus.png">
 								<div class="order-item-counter-click" (click)="minus_cart_item(i)"></div>
 							</div>
 							<div class="order-item-counter-count">{{ item.item_count }} шт.</div>
 							<div class="order-item-counter-plus order-item-counter-button">
-								<embed class="order-item-counter-plus" src="/assets/svg/plus.svg">
+								<!-- <embed class="order-item-counter-plus" src="/assets/svg/plus.svg"> -->
+								<img class="order-item-counter-plus" src="/assets/img/plus.png">
 								<div class="order-item-counter-click" (click)="plus_cart_item(i)"></div>
 							</div>
 						</div>
@@ -394,7 +402,7 @@
 					<input id="order-form-cell" type="number" name="order-form-cell">
 					<label for="order-form-name">
 					Введіть ваше ім'я</label>
-					<input id="order-form-name" type="number" name="order-form-name" min="1" default="1">
+					<input id="order-form-name" type="text" name="order-form-name" min="1" default="1">
 					<label for="order-form-count">
 					Введіть кількість осіб</label>
 					<input id="order-form-count" type="number" name="order-form-count">
