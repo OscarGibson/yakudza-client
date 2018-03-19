@@ -96,6 +96,11 @@
 					  <!-- <div *ngIf='check_filter_add(product.tags, false, true)'> -->
 					  <div>
 					  	<div class="product-area-item-inner">
+					  	<div class="product-area-item-labels">
+					  		<div *ngFor="let label of product.label_serializer" class="product-area-item-label">
+					  			<img src="{{globals.backend_domain}}{{ label.icon }}">
+					  		</div>
+					  	</div>
 						<img (click)="show_product(product.id)" src="{{globals.backend_domain}}{{ product.image }}">
 						<h3 class="product-area-item-title">{{ product.title }}</h3>
 						<div>

@@ -224,6 +224,19 @@ body {
 					max-width: 225px;
 				}
 			}
+			&-labels {
+				height: 20px;
+				width: 100%;
+			}
+			&-label {
+				display: inline-block;
+				float: right;
+				img {
+					width: 16px;
+					height: 16px;
+					margin-bottom: 4px;
+				}
+			}
 			&-title {
 				margin-top: 4px;
 				margin-bottom: 6px;
