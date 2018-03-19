@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Globals, Cart, FilterObject } from '../app.globals';
+import { Globals, Cart, FilterObject, AppReady } from '../app.globals';
 
 import { PhoneFormatPipe } from './body.pipe';
 
@@ -190,6 +190,7 @@ export class BodyComponent implements OnInit {
       .subscribe(
         data => {
           this.globals.contact_content = data['contact_section'];
+          AppReady.oneComponentReady();
         },
         error => {
           console.log('ERROR: ', error);

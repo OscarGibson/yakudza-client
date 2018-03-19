@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Globals, Cart } from '../app.globals';
+import { Globals, Cart, AppReady } from '../app.globals';
 import { HostListener } from '@angular/core';
 
 @Component({
@@ -86,6 +86,8 @@ export class HeaderComponent implements OnInit {
       {headers:this.headers})
       .subscribe(data => {
 
+        AppReady.oneComponentReady();
+
         this.globals.categories = [];
         this.globals.categories_filter = [];
         this.globals.products = [];
@@ -142,6 +144,8 @@ export class HeaderComponent implements OnInit {
 
         Globals.menu = data['menu'];
         this.right_nav_list = Globals.menu;
+
+        AppReady.oneComponentReady();
 
         if (first_time) this.globals.current_page = {'title':'main'};
 

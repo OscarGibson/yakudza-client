@@ -312,7 +312,21 @@ class FilterElement {
   constructor(public id, public name, public slug, public status) {}
 }
 
-
+@Injectable()
+export class AppReady {
+  private static count:number = 0;
+  private static max_count:number = 3;
+  public static app_ready:boolean = false;
+  public static oneComponentReady() {
+    AppReady.count++;
+    AppReady.check();
+  }
+  private static check() {
+    if (AppReady.count == AppReady.max_count) {
+      AppReady.app_ready = true;
+    }
+  }
+}
 
 
 
