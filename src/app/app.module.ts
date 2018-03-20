@@ -11,6 +11,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 
 import { PhoneFormatPipe, NumberFormatPipe } from './body/body.pipe';
+// import { InlineSVGModule } from 'ng-inline-svg';
 
 
 @NgModule({
@@ -20,12 +21,13 @@ import { PhoneFormatPipe, NumberFormatPipe } from './body/body.pipe';
     BodyComponent,
     FooterComponent,
     PhoneFormatPipe,
-    NumberFormatPipe
+    NumberFormatPipe,
   ],
   imports: [
     BrowserModule,
     AngularFontAwesomeModule,
     HttpClientModule
+    // InlineSVGModule
   ],
   providers: [],
   bootstrap: [AppComponent]

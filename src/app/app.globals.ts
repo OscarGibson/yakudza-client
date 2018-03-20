@@ -67,6 +67,7 @@ export class Globals {
   public static contact_content = [
   	{
         "id": 0,
+        "icon" : "",
         "phone": ""
     },
   ];

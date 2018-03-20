@@ -20,7 +20,8 @@
 					</li> -->
 
 					<li *ngFor="let phone of globals.contact_content">
-						<fa name="star"></fa>
+						<!-- <embed [src]=sanitizeIcons(phone.icon)> -->
+						<img src="/assets/img/{{ phone.icon }}.png"/>
 						<span>{{ phone.phone | phoneFormat }}</span>
 					</li>
 				</ul>

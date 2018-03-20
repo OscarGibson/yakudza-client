@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Globals, Cart, AppReady } from '../app.globals';
 import { HostListener } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+// import { InlineSVGModule } from 'ng-inline-svg';
 
 @Component({
   selector: 'app-header',
@@ -20,9 +22,10 @@ export class HeaderComponent implements OnInit {
   public bottom_nav_poition: number;
   public show_nav_top: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    // InlineSVGModule.forRoot({ baseUrl: this.globals.local_domain });
   	this.get_categories(true);
     this.get_menu(true);
 
@@ -39,6 +42,15 @@ export class HeaderComponent implements OnInit {
     } else {
       this.show_nav_top = false;
     }
+  }
+
+  public sanitizeIcons(name: string) {
+    // if (!(name)) return
+    // this.http.get("/assets/svg/"+name+".svg")
+    //      .subscribe((source:any) => {
+    //        return source;
+    //      });
+    // return this.sanitizer.bypassSecurityTrustResourceUrl('/assets/svg/'+name+'.svg');
   }
 
   public get_order_content() {
