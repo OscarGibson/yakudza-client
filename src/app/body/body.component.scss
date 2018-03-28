@@ -1,3 +1,5 @@
+@import "../../assets/bootstrap-sass/variables";
+
 $green : #3ca930;
 $red : #b42e23;
 
@@ -29,7 +31,7 @@ body {
 	&-wrapper {
 		width: 328px;
 		margin-top: 56px;
-		background-color: #1a1b13;
+		background-color: #080806;
 		padding-bottom: 29px;
 		border: 1px solid #444;
 		border-radius: 5px;
@@ -50,7 +52,7 @@ body {
 		    font-size: 26px;
 		    text-transform: uppercase;
 		    line-height: 43px;
-		    background-color: #21211c;
+		    background-color: $body-bg;
 		    position: absolute;
 		    top: -13px;
 		    left: -3px;
@@ -70,7 +72,7 @@ body {
 	    border: 1px solid green;
 	    border-radius: 5px;
 	    height: 78px;
-	    transition: .3s;
+	    animation: slide-up 0.7s ease;
 		&-close {
 			position: absolute;
 		    right: -1px;
@@ -170,7 +172,7 @@ body {
 			width: 85px;
 			text-align: center;
 			color: #fff;
-			// padding: 3px 30px;
+			padding-bottom: 3px;
 			fa {
 				display: block;
 			}

@@ -1,7 +1,9 @@
+@import "../../assets/bootstrap-sass/variables";
+
 .footer {
 	// margin-bottom: 33px;
 	color: #fff;
-	background-color: #21211c;
+	background-color: $body-bg;
 	z-index: 1;
 	&-banner {
 
@@ -66,7 +68,7 @@
 
 	&-bottom {
 		position: relative;
-		background-color: #1a1b13;
+		background-color: #040404;
 		&-left {
 			h4 {
 				font-size: 15px;

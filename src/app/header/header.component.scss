@@ -1,3 +1,5 @@
+@import "../../assets/bootstrap-sass/variables";
+
 .header {
 	color: #fff;
 	&-content {
@@ -127,7 +129,7 @@
 			top: -43px;
 			left: 0;
 			z-index: 1;
-		    background: #21211c;
+		    background: $body-bg;
 		    width: 100%;
 		    transition: top .3s;
 		}

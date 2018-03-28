@@ -53,6 +53,8 @@ export class BodyComponent implements OnInit {
 
   public cart_in_top: boolean;
   public cart_position: number;
+  public cart_element;
+  public footer;
 
   constructor(private http: HttpClient) { 
     this.filter_object = new FilterObject([]);
@@ -60,6 +62,8 @@ export class BodyComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   public onNavScroll($event) {
+
+    console.log(this.cart_element.scrollHeight);
 
     if (window.pageYOffset >= this.cart_position + 290) {
       this.cart_in_top = true;
@@ -80,6 +84,9 @@ export class BodyComponent implements OnInit {
     this.get_feedback_content();
 
     this.cart_position = document.getElementById('cart').offsetTop;
+    this.cart_element = document.getElementById('cart');
+
+    this.footer = document.getElementById('footer-banner');
 
     console.log('filters ', this.filter_object);
   }
@@ -323,9 +330,7 @@ export class BodyComponent implements OnInit {
     console.log("cart minus: ", this.cart.items);
   }
   public remove_cart_item(item_id: number) {
-    console.log("cart remove: ", this.cart.items[item_id].item_count);
-    console.log(this.cart.removeItem(item_id));
-    console.log("cart remove: ", this.cart.items);
+    this.cart.removeItem(item_id);
   }
   public clear_cart_items() {
     this.cart.clearCart();
