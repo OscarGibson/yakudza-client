@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   public logo_path: string = '/assets/logo/Yakudza.svg';
   public globals = Globals;
 
+  public bottom_nav_elements;
   public bottom_nav_poition: number;
   public show_nav_top: boolean;
 
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit {
   	this.get_categories(true);
     this.get_menu(true);
 
+    this.bottom_nav_elements = document.getElementById('header-bottomnav').getElementsByTagName('ul')[0].getElementsByTagName('li');
     this.bottom_nav_poition = document.getElementById('header-bottomnav').offsetTop;
   }
 
@@ -42,6 +44,23 @@ export class HeaderComponent implements OnInit {
     } else {
       this.show_nav_top = false;
     }
+    // console.log(this.bottom_nav_elements);
+    for (let menu_element of this.bottom_nav_elements) {
+      // console.log(menu_element.offsetTop);
+      let ancor = menu_element.getElementsByTagName('a')[0];
+      let link = ancor.getAttribute('href').substring(1);
+      let refElement = document.getElementById(link);
+      // console.log(refElement.offsetTop, window.pageYOffset);
+      // console.log(refElement.getAttribute('href').substring(1));
+      if (refElement.offsetTop >= window.pageYOffset + 20 && refElement.offsetTop <= window.pageYOffset + 50) {
+        this.globals.current_category['slug'] = link;
+        console.log(window.pageYOffset, refElement.offsetTop);
+      }
+    }
+    
+    // this.globals.current_category['id'];
+
+
   }
 
   public sanitizeIcons(name: string) {
@@ -141,11 +160,6 @@ export class HeaderComponent implements OnInit {
     this.globals.current_page = {'title':'main'};
 
     this.globals.current_category['id'] = id;
-    // for (let category of Globals.categories) {
-    //   if (category.id == id) {
-    //     Globals.current_category = category;
-    //   }
-    // }
   } 
 
   public get_menu(first_time= false) {

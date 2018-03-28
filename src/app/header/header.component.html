@@ -47,10 +47,11 @@
 	<div class="header-bottomnav" id="header-bottomnav">
 		<ul>
 			<li *ngFor="let category of bottom_nav_list">
-				<a href="#{{ category.slug }}-target"><span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
+				<a href="#{{ category.slug }}">
+				<span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
 					{{ category.name }}
 				</span></a>
-				<span *ngIf="globals.current_category.id == category.id" class="active-bottom-menu"></span>
+				<span *ngIf="globals.current_category.slug == category.slug" class="active-bottom-menu"></span>
 			</li>
 		</ul>
 	</div>
@@ -58,10 +59,10 @@
 	<nav class="header-bottomnav header-bottomnav-top" [ngClass]="{'open' : show_nav_top}">
 		<ul>
 			<li *ngFor="let category of bottom_nav_list">
-				<a href="#{{ category.slug }}-target"><span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
+				<a href="#{{ category.slug }}"><span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
 					{{ category.name }}
 				</span></a>
-				<span *ngIf="globals.current_category.id == category.id" class="active-bottom-menu"></span>
+				<span *ngIf="globals.current_category.slug == category.slug" class="active-bottom-menu"></span>
 			</li>
 		</ul>
 	</nav>

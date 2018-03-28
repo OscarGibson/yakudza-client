@@ -63,8 +63,6 @@ export class BodyComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   public onNavScroll($event) {
 
-    console.log(this.cart_element.scrollHeight);
-
     if (window.pageYOffset >= this.cart_position + 290) {
       this.cart_in_top = true;
     } else {
