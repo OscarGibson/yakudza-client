@@ -46,6 +46,7 @@
 
 	&-description {
 		margin-bottom: 78px;
+		padding: 0 15px;
 		h3 {
 			padding-top: 25px;
 			margin-bottom: 25px;
@@ -70,6 +71,7 @@
 		position: relative;
 		background-color: #040404;
 		&-left {
+			text-align: center;
 			h4 {
 				font-size: 15px;
 			} 

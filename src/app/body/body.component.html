@@ -1,12 +1,12 @@
 <div class="body">
 	<div class="proposition row" *ngIf="globals.current_page.title == 'main'">
-		<div class="col-md-4 col-lg-4">
+		<div class="col-md-4 col-lg-4 hidden-sm hidden-xs">
 			<img src="{{ shares_path }}">
 		</div>
-		<div class="col-md-4 col-lg-4">
+		<div class="col-md-4 col-lg-4 hidden-sm hidden-xs">
 			<img src="{{ shares_path }}">
 		</div>
-		<div class="col-md-4 col-lg-4">
+		<div class="col-md-4 col-lg-4 hidden-sm hidden-xs">
 			<img src="{{ shares_path }}">
 		</div>
 	</div>
@@ -16,7 +16,7 @@
 		</p>
 	</div>
 	<div class=row>
-		<div id="cart" class="cart col-lg-4 col-md-4">
+		<div id="cart" class="cart col-lg-4 col-md-4 col-sm-12 col-xs-12">
 		<div *ngIf="globals.current_page.title == 'main'" class="cart-wrapper" [ngClass]="{'top' : cart_in_top}">
 			<div class="cart-head">
 				<embed class="cart-head-img" src="/assets/svg/elips.svg">
@@ -58,7 +58,7 @@
 	</div>
 
 		<!-- Product section -->
-		<div *ngIf="globals.current_page.title == 'main'" class="product col-lg-8 col-md-8">
+		<div *ngIf="globals.current_page.title == 'main'" class="product col-lg-8 col-md-8 col-sm-9 col-xs-10 col-sm-offset-0 col-xs-offset-1">
 			
 			<!-- Filters -->
 			<div class="product-filters">
@@ -92,7 +92,7 @@
 
 				<div *ngIf="category.products.length" class="product-area row">
 					<div *ngFor="let product of category.products"
-					 class="col-lg-4 col-md-4 product-area-item">
+					 class="col-lg-4 col-md-4 col-sm-6 col-xs-10  product-area-item">
 					  <!-- <div *ngIf='check_filter_add(product.tags, false, true)'> -->
 					  <div>
 					  	<div class="product-area-item-inner">
@@ -141,22 +141,22 @@
 						{{ document.content }}
 					</p>
 					<div class="row documents-content-images">
-						<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-md-offset-0 col-sm-5 col-xs-5 col-sm-offset-1 col-xs-offset-1">
 							<img src="{{ globals.backend_domain}}{{ document.image_1 }}">
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-md-offset-0 col-sm-5 col-xs-5 col-sm-offset-1 col-xs-offset-1">
 							<img src="{{ globals.backend_domain}}{{ document.image_2 }}">
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-md-offset-0 col-sm-5 col-xs-5 col-sm-offset-1 col-xs-offset-1">
 							<img src="{{ globals.backend_domain}}{{ document.image_3 }}">
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-md-offset-0 col-sm-5 col-xs-5 col-sm-offset-1 col-xs-offset-1">
 							<img src="{{ globals.backend_domain}}{{ document.image_4 }}">
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-md-offset-0 col-sm-5 col-xs-5 col-sm-offset-1 col-xs-offset-1">
 							<img src="{{ globals.backend_domain}}{{ document.image_5 }}">
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="col-lg-4 col-md-4 col-md-offset-0 col-sm-5 col-xs-5 col-sm-offset-1 col-xs-offset-1">
 							<img src="{{ globals.backend_domain}}{{ document.image_6 }}">
 						</div>
 					</div>
@@ -219,7 +219,7 @@
 				</h3>
 					<form id="feedback-from">
 						<label for="feedback-form-name">
-						Введіть ваше ім"я</label>
+						Введіть ваше ім'я</label>
 						<input id="feedback-form-name" type="text" name="feedback-form-name">
 						<label for="feedback-form-cell">
 						Введіть номер телефону</label>
@@ -261,7 +261,7 @@
 				</div>
 				<form id="callback-form" action="">
 					<label for="call-modal-form-name">
-					Введіть ваше ім"я</label>
+					Введіть ваше ім'я</label>
 					<input id="call-modal-form-name" type="" name="call-modal-form-name">
 					<label for="call-modal-form-cell">
 					Введіть номер телефону</label>

@@ -12,7 +12,7 @@ export class Globals {
 
   private static _api_path: string = '/api/v1/';
   public static categories_get_path: string = Globals._get_path('category');
-  public static order_post_path: string = Globals._get_path('order');
+  public static order_post_path: string = Globals._get_path('order/');
   public static tags_get_path: string = Globals._get_path('tag');
   public static menu_get_path: string = Globals._get_path('section/menu');
   public static order_get_path: string = Globals._get_path('section/order');

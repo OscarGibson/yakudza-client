@@ -21,7 +21,12 @@ body {
 
 .proposition {
 	margin-top: 39px;
+	text-align: center;
 }
+.proposition div {
+	margin-bottom: 20px;
+}
+
 .cart {
 	&-wrapper.top {
 		position: fixed;
@@ -609,7 +614,7 @@ body {
 	}
 	&-wrapper {
 		position: relative;
-		width: 964px;
+		max-width: 700px;
 		margin: auto;
     	margin-top: 5%;
     	padding: 8px 24px;
@@ -709,6 +714,7 @@ input, textarea {
 	color: #fff;
 	margin-left: 0;
     padding-left: 15px;
+    padding-right: 15px;
     margin-bottom: 45px;
 	&-header {
 		font-weight: bold;
@@ -797,6 +803,7 @@ input, textarea {
 	}
 
 	&-propos {
+		float: right;
 		&-item {
 		background-color: #1a1b13;
 		border: 1px solid #444;
@@ -863,6 +870,7 @@ input, textarea {
 	}
 	&-form {
 		margin-bottom: 24px;
+		margin-top: 56px;
 		padding: 0 38px;
 		label {
 			font-size: 23px;

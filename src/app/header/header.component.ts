@@ -39,24 +39,24 @@ export class HeaderComponent implements OnInit {
     // console.log($event);
     // console.log(window.pageYOffset, this.bottom_nav_poition);
 
-    if (window.pageYOffset >= this.bottom_nav_poition + 50) {
-      this.show_nav_top = true;
-    } else {
-      this.show_nav_top = false;
-    }
-    // console.log(this.bottom_nav_elements);
-    for (let menu_element of this.bottom_nav_elements) {
-      // console.log(menu_element.offsetTop);
-      let ancor = menu_element.getElementsByTagName('a')[0];
-      let link = ancor.getAttribute('href').substring(1);
-      let refElement = document.getElementById(link);
-      // console.log(refElement.offsetTop, window.pageYOffset);
-      // console.log(refElement.getAttribute('href').substring(1));
-      if (refElement.offsetTop >= window.pageYOffset + 20 && refElement.offsetTop <= window.pageYOffset + 50) {
-        this.globals.current_category['slug'] = link;
-        console.log(window.pageYOffset, refElement.offsetTop);
-      }
-    }
+    // if (window.pageYOffset >= this.bottom_nav_poition + 50) {
+    //   this.show_nav_top = true;
+    // } else {
+    //   this.show_nav_top = false;
+    // }
+    // // console.log(this.bottom_nav_elements);
+    // for (let menu_element of this.bottom_nav_elements) {
+    //   // console.log(menu_element.offsetTop);
+    //   let ancor = menu_element.getElementsByTagName('a')[0];
+    //   let link = ancor.getAttribute('href').substring(1);
+    //   let refElement = document.getElementById(link);
+    //   // console.log(refElement.offsetTop, window.pageYOffset);
+    //   // console.log(refElement.getAttribute('href').substring(1));
+    //   if (refElement.offsetTop >= window.pageYOffset + 20 && refElement.offsetTop <= window.pageYOffset + 50) {
+    //     this.globals.current_category['slug'] = link;
+    //     console.log(window.pageYOffset, refElement.offsetTop);
+    //   }
+    // }
     
     // this.globals.current_category['id'];
 
@@ -193,8 +193,13 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-    public show_callback() {
+  public show_callback() {
     this.globals.show_callback = true;
+  }
+
+  public go_to_main() {
+    this.globals.current_page = {'title':'main'};
+    this.globals.current_category = this.globals.categories[0];
   } 
 
 

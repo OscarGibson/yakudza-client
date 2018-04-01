@@ -1,9 +1,9 @@
 <div class="header">
 	<div class="header-content row">
-		<div class="header-content-logo col-lg-3">
-			<a href="/"><img [src]="logo_path"></a>
+		<div class="header-content-logo col-lg-3 col-md-12 col-sm-12">
+			<a><img (click)="go_to_main()" [src]="logo_path"></a>
 		</div>
-		<div class="header-data col-lg-7">
+		<div class="header-data col-lg col-md-7 col-sm-8 col-xs-10">
 			<h1>Доставка суші та піцци львів</h1>
 			<div class="header-data-phones">
 			 	<ul>
@@ -19,11 +19,27 @@
 						<span>+3&#8199;8&#8199;(099)&#8199;99&#8199;99&#8199;999</span>
 					</li> -->
 
-					<li *ngFor="let phone of globals.contact_content">
-						<!-- <embed [src]=sanitizeIcons(phone.icon)> -->
+					<!-- <li *ngFor="let phone of globals.contact_content">
 						<img src="/assets/img/{{ phone.icon }}.png"/>
 						<span>{{ phone.phone | phoneFormat }}</span>
+					</li> -->
+
+					<li>
+						<img src="/assets/img/kyivstar.png"/>
+						<span>+38 (073) 80 05 009</span>
 					</li>
+
+					<li>
+						<img src="/assets/img/kyivstar.png"/>
+						<span>+38 (098) 26 37 505</span>
+					</li>
+
+					<li>
+						<img src="/assets/img/vodafone.png"/>
+						<span>+38 (050) 53 42 556</span>
+					</li>
+					
+
 				</ul>
 				<a class="header-data-callback" (click)="show_callback()">Замовити дзвінок</a>
 			</div>
@@ -34,7 +50,7 @@
 				<span class="header-data-info-lastspan">Мінімальне замовлення 150грн</span>
 			</div>
 		</div>
-		<div class="header-content-rightnav col-lg-2">
+		<div class="header-content-rightnav col-lg-2 col-md-2 col-xs-2">
 			<ul>
 				<li *ngFor="let page of right_nav_list">
 					<!-- <embed *ngIf="globals.current_page.id == page.id"  src="/assets/svg/active.svg" class="active-right-menu"> -->

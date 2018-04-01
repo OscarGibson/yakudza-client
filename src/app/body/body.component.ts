@@ -63,11 +63,11 @@ export class BodyComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   public onNavScroll($event) {
 
-    if (window.pageYOffset >= this.cart_position + 290) {
-      this.cart_in_top = true;
-    } else {
-      this.cart_in_top = false;
-    }
+    // if (window.pageYOffset >= this.cart_position + 290) {
+    //   this.cart_in_top = true;
+    // } else {
+    //   this.cart_in_top = false;
+    // }
   }
 
   ngOnInit() {
@@ -434,6 +434,7 @@ export class BodyComponent implements OnInit {
     let address = elements[0].value;
     let phone = elements[1].value;
     let name = elements[2].value;
+    let count = elements[3].value;
     let text = form.getElementsByTagName('textarea')[0].value;
     let products = [];
 
@@ -449,7 +450,8 @@ export class BodyComponent implements OnInit {
       "phone" : phone,
       "name" : name,
       "comment" : text,
-      "products" : products
+      "products" : products,
+      "count" : count
     };
 
     this.http.post(this.globals.order_post_path, data, {headers: this.headers})
@@ -457,6 +459,7 @@ export class BodyComponent implements OnInit {
       console.log(response);
 
       this.globals.display_message("Ваше замовлення прийняте");
+      this.cart.clearCart();
     }, error => {
       console.log(error);
     });
