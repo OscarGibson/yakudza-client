@@ -7,6 +7,12 @@ import { PhoneFormatPipe } from './body.pipe';
 
 import { HostListener } from '@angular/core';
 
+import { LiqPayCheckout } from '../LiqPayModule/LiqPayModule';
+
+declare global {
+    interface Window { LiqPayCheckoutCallback: any; }
+}
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -56,6 +62,8 @@ export class BodyComponent implements OnInit {
   public cart_element;
   public footer;
 
+  private liqPayCheckout;
+
   constructor(private http: HttpClient) { 
     this.filter_object = new FilterObject([]);
   }
@@ -80,6 +88,8 @@ export class BodyComponent implements OnInit {
     this.get_email_content();
     this.get_social_content();
     this.get_feedback_content();
+
+    this.liqPayCheckout = new LiqPayCheckout().liqPayCheckout;
 
     this.cart_position = document.getElementById('cart').offsetTop;
     this.cart_element = document.getElementById('cart');
@@ -245,56 +255,29 @@ export class BodyComponent implements OnInit {
   }
 
   public show_product(id: number) {
-    console.log(this.globals.products);
-    // for (let category of this.globals.categories) {
-
-    //   for (let product of category.products) {
-    //     if (product.id == id) {
-    //       this.globals.current_product = product;
-    //       this.globals.show_product = true;
-    //       break;
-    //     }
-    //   }
 
       for (let index = 0; index < this.globals.products.length; index++) {
-        // console.log(this.globals.products[index].id);
         if (this.globals.products[index].id == id) {
           this.globals.current_product = this.globals.products[index];
           this.globals.show_product = true;
 
           try {
             this.next_product_id = this.globals.products[index + 1].id;
-            // this.next_product_id = index + 1;
           }
           catch(e) {
-            console.log(e);
             this.next_product_id = this.globals.products[0].id;
           }
 
           try {
             this.prew_product_id = this.globals.products[index - 1].id;
-            // this.prew_product_id = index - 1;
           }
           catch(e) {
-            console.log(e);
             this.prew_product_id = this.globals.products[this.globals.products.length - 1].id;
-          }
-
-          console.log(this.prew_product_id);
-          console.log(index);
-          console.log(this.next_product_id);
-          
-          // console.log(this.globals.products);
-          
+          }          
           break;
         }
         
-      }
-
-
-
-    // }
-    
+      }    
   }
 
   public close_modal(type: string) {
@@ -340,11 +323,8 @@ export class BodyComponent implements OnInit {
   }
 
   public create_feedback(form_id) {
-    console.log('feedback data:', form_id);
     let form = document.getElementById(form_id);
-    console.log(form);
     let inputs = form.getElementsByTagName('input');
-    console.log('Inputs: ',inputs);
     let author = inputs[0].value;
     let cell = inputs[1].value;
     let content = form.getElementsByTagName('textarea')[0].value;
@@ -368,9 +348,7 @@ export class BodyComponent implements OnInit {
   }
 
   public create_callback(form_id: string) {
-    console.log('callback data:', form_id);
     let form = document.getElementById(form_id);
-    console.log(form);
     let inputs = form.getElementsByTagName('input');
     let name = inputs[0].value;
     let cell = inputs[1].value;
@@ -427,7 +405,7 @@ export class BodyComponent implements OnInit {
   }
 
 
-  public create_order(form_id: string) {
+  public create_order(form_id: string, type= 0) {
     let form = document.getElementById(form_id);
     let elements = form.getElementsByTagName('input');
     
@@ -451,15 +429,48 @@ export class BodyComponent implements OnInit {
       "name" : name,
       "comment" : text,
       "products" : products,
-      "count" : count
+      "count" : count,
+      "type" : type
     };
 
     this.http.post(this.globals.order_post_path, data, {headers: this.headers})
     .subscribe( response => {
-      console.log(response);
+
+      if (response['message'] === 'success') {
+        console.log('success');
+      } else if (response['message'] === 'redirect') {
+
+      console.log('function ', this.liqPayCheckout);
+
+      let _liqPayCheckout = this.liqPayCheckout;
+
+      window.LiqPayCheckoutCallback = () => {
+        _liqPayCheckout.init({
+            data: response['data'],
+            signature: response['signature'],
+            embedTo: "#liqpay_checkout",
+            mode: "popup" // embed || popup,
+        }).on("liqpay.callback", function(data){
+            console.log(data.status);
+            console.log(data);
+        }).on("liqpay.ready", function(data){
+            // ready
+        }).on("liqpay.close", function(data){
+            // close
+        });
+      };
+
+      window.LiqPayCheckoutCallback();
+
+      // this.order_data['data'] = response['data'];
+      // this.order_data['signature'] = response['signature'];
+
+      console.log(response['data']);
+      console.log(response['signature'])
+      }
 
       this.globals.display_message("Ваше замовлення прийняте");
-      this.cart.clearCart();
+      // this.cart.clearCart();
     }, error => {
       console.log(error);
     });

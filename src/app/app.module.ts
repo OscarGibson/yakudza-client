@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PhoneFormatPipe, NumberFormatPipe } from './body/body.pipe';
 // import { InlineSVGModule } from 'ng-inline-svg';
 
+// import { LiqPayCheckout } from './LiqPayModule/LiqPayModule';
+
 
 @NgModule({
   declarations: [

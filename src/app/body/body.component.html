@@ -414,9 +414,10 @@
 					<label for="order-form-text">
 					Коментарій</label>
 					<textarea id="order-form-text" type="text" name="order-form-text"></textarea>
-					<button type="button" class="order-form-button-red red-bg" (click)="create_order('order-form')">Замовити</button>
-					<button type="button" class="order-form-button-green">Оплатити карткою</button>
+					<button type="button" class="order-form-button-red red-bg" (click)="create_order('order-form', 0)">Замовити</button>
+					<button type="button" class="order-form-button-green" (click)="create_order('order-form', 1)">Оплатити карткою</button>
 				</form>
+				<div id="liqpay_checkout"><h1>Here!!!</h1></div>
 			</div>
 
 		</div>
@@ -439,4 +440,3 @@
 		</div>
 
 	</div>
-</div>
