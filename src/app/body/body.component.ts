@@ -462,9 +462,6 @@ export class BodyComponent implements OnInit {
 
       window.LiqPayCheckoutCallback();
 
-      // this.order_data['data'] = response['data'];
-      // this.order_data['signature'] = response['signature'];
-
       console.log(response['data']);
       console.log(response['signature'])
       }

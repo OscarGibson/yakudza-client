@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Globals {
-  public static local_domain: string = 'http://localhost:4200';
-  public static backend_domain: string = 'http://localhost:8000';
-  private static _domain: string = 'http://localhost:8000';
+  // public static local_domain: string = 'http://localhost:4200';
+  // public static backend_domain: string = 'http://localhost:8000/backend';
+  // private static _domain: string = 'http://localhost:8000/backend';
 
-  // public static local_domain: string = 'http://www.yakuzalviv.com';
-  // public static backend_domain: string = 'http://www.yakuzalviv.com/backend';
-  // private static _domain: string = 'http://www.yakuzalviv.com/backend';
+  public static local_domain: string = 'http://www.yakuzalviv.com';
+  public static backend_domain: string = 'http://www.yakuzalviv.com/backend';
+  private static _domain: string = 'http://www.yakuzalviv.com/backend';
 
   private static _api_path: string = '/api/v1/';
   public static categories_get_path: string = Globals._get_path('category');

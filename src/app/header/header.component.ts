@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Globals, Cart, AppReady } from '../app.globals';
 import { HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-// import { InlineSVGModule } from 'ng-inline-svg';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   public bottom_nav_elements;
   public bottom_nav_poition: number;
+  public bottom_nav;
   public show_nav_top: boolean;
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
@@ -32,18 +32,19 @@ export class HeaderComponent implements OnInit {
 
     this.bottom_nav_elements = document.getElementById('header-bottomnav').getElementsByTagName('ul')[0].getElementsByTagName('li');
     this.bottom_nav_poition = document.getElementById('header-bottomnav').offsetTop;
+    this.bottom_nav = document.getElementById('header-bottomnav');
   }
 
   @HostListener('window:scroll', ['$event'])
   public onNavScroll($event) {
-    // console.log($event);
+    console.log(this.bottom_nav.offsetTop);
     // console.log(window.pageYOffset, this.bottom_nav_poition);
 
-    // if (window.pageYOffset >= this.bottom_nav_poition + 50) {
-    //   this.show_nav_top = true;
-    // } else {
-    //   this.show_nav_top = false;
-    // }
+    if (window.pageYOffset >= this.bottom_nav.offsetTop + 50) {
+      this.show_nav_top = true;
+    } else {
+      this.show_nav_top = false;
+    }
     // // console.log(this.bottom_nav_elements);
     // for (let menu_element of this.bottom_nav_elements) {
     //   // console.log(menu_element.offsetTop);

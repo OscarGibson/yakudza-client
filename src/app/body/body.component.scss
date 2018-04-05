@@ -157,6 +157,7 @@ body {
 }
 
 .product {
+	text-align: center;
 	padding-top: 57px;
 	&-title {
 		h1 {
@@ -164,6 +165,7 @@ body {
 			font-size: 26px;
 			color: #fff;
 			text-transform: uppercase;
+			text-align: left;
 		}
 	}
 
