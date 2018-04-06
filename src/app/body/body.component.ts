@@ -446,7 +446,7 @@ export class BodyComponent implements OnInit {
 
       window.LiqPayCheckoutCallback = () => {
         _liqPayCheckout.init({
-            data: response['data'],
+            data: response['hash_data'],
             signature: response['signature'],
             embedTo: "#liqpay_checkout",
             mode: "popup" // embed || popup,
@@ -456,18 +456,17 @@ export class BodyComponent implements OnInit {
         }).on("liqpay.ready", function(data){
             // ready
         }).on("liqpay.close", function(data){
-            // close
+            this.globals.display_message("Ваше замовлення прийняте");
+            this.cart.clearCart();
         });
       };
 
       window.LiqPayCheckoutCallback();
 
-      console.log(response['data']);
-      console.log(response['signature'])
+      // console.log(response['data']);
+      // console.log(response['signature'])
       }
 
-      this.globals.display_message("Ваше замовлення прийняте");
-      // this.cart.clearCart();
     }, error => {
       console.log(error);
     });

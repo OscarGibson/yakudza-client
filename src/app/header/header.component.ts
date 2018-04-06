@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   public onNavScroll($event) {
-    console.log(this.bottom_nav.offsetTop);
+    // console.log(this.bottom_nav.offsetTop);
     // console.log(window.pageYOffset, this.bottom_nav_poition);
 
     if (window.pageYOffset >= this.bottom_nav.offsetTop + 50) {
