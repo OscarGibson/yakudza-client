@@ -336,7 +336,7 @@
 		<!-- Order section -->
 		<div *ngIf="globals.current_page.title == 'Оформлення замовлення'" class="order row">
 			<h1 class="order-header red">ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
-			<div class="order-list col-sm-9">
+			<div class="order-list col-sm-6 col-sm-offset-1 col-xs-12">
 				<div *ngFor="let item of cart.items; let i = index" class="order-item row">
 					<div class="order-item-close">
 						<!-- <embed class="order-item-close-img" src="/assets/svg/X.svg"> -->
@@ -371,6 +371,8 @@
 					</div>
 				</div>
 
+				<div class="red"><h1>Всього: {{ cart.total }}грн</h1></div>
+
 				<!-- <div class="order-adds">
 					<div class="order-adds-item">
 						<img src="{{ product_path }}">
@@ -394,10 +396,10 @@
 						<div class="order-propos-price">{{ category.current_content.price }}грн</div>
 						<div class="order-propos-button" (click)="add_cart_item(category.current_content.id)">Додати</div>
 					</div>
-				</div>				
+				</div>			
 			</div>
 
-			<div class="order-form col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="order-form col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
 				<form id="order-form">
 					<label for="order-form-name">
 					Введіть вашу адресу доставки</label>
@@ -417,7 +419,6 @@
 					<button type="button" class="order-form-button-red red-bg" (click)="create_order('order-form', 0)">Замовити</button>
 					<button type="button" class="order-form-button-green" (click)="create_order('order-form', 1)">Оплатити карткою</button>
 				</form>
-				<div class="red"><h1>Всього: {{ cart.total }}</h1></div>
 			</div>
 
 		</div>

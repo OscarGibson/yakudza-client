@@ -799,7 +799,7 @@ input, textarea {
 	    		font-size: 21px;
 			    font-weight: bold;
 			    color: #f17138;
-			    margin-left: 39px;
+			    // margin-left: 39px;
 	    	}
 		}
 	}
@@ -900,11 +900,11 @@ input, textarea {
 				background: none;
 			    border: 3px solid $green;
 			    color: $green;
-			    padding: 3px 70px;
+			    padding: 3px 29px;
 			}
 			&-red {
 				border: none;
-				padding: 6px 93px;
+				padding: 6px 49px;
 			}
 		}
 	}
