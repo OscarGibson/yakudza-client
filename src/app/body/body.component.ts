@@ -91,12 +91,13 @@ export class BodyComponent implements OnInit {
 
     this.liqPayCheckout = new LiqPayCheckout().liqPayCheckout;
 
-    this.cart_position = document.getElementById('cart').offsetTop;
     this.cart_element = document.getElementById('cart');
+    // this.cart_position = document.getElementById('cart').offsetTop;
+    this.cart_position = this.cart_element.offsetTop;
+    
 
     this.footer = document.getElementById('footer-banner');
 
-    console.log('filters ', this.filter_object);
   }
   public test() {
     console.log(this.globals);
@@ -117,14 +118,14 @@ export class BodyComponent implements OnInit {
       )
   }
 
-  public check_filter_add(tag) {
-    if (this.filter_object.getElement(tag) === 1) return true;
-    return false;
-  }
-  public check_filter_remove(tag) {
-    if (this.filter_object.getElement(tag) === -1) return true;
-    return false;
-  }
+  // public check_filter_add(tag) {
+  //   if (this.filter_object.getElement(tag) === 1) return true;
+  //   return false;
+  // }
+  // public check_filter_remove(tag) {
+  //   if (this.filter_object.getElement(tag) === -1) return true;
+  //   return false;
+  // }
 
   public changeFilter(id, status) {
     this.filter_object.setElement(id, status);
@@ -160,6 +161,9 @@ export class BodyComponent implements OnInit {
     }
 
     console.log(this.filter_object.iterator);
+
+
+    this.globals.get_ancors_position();
 
   }
 
@@ -251,7 +255,7 @@ export class BodyComponent implements OnInit {
 
   public go_to_main() {
     this.globals.current_page = {'title':'main'};
-    this.globals.current_category = this.globals.categories[0];
+    // this.globals.current_category = this.globals.categories[0];
   }
 
   public show_product(id: number) {
@@ -372,12 +376,12 @@ export class BodyComponent implements OnInit {
 
   }
 
-  private hasMutual(array_1: Array<any>, array_2: Array<any>) {
-    for (let el of array_1) {
-      if (array_2.includes(el)) return true;
-    }
-    return false;
-  }
+  // private hasMutual(array_1: Array<any>, array_2: Array<any>) {
+  //   for (let el of array_1) {
+  //     if (array_2.includes(el)) return true;
+  //   }
+  //   return false;
+  // }
 
   public changeCurrentPropos(direction, category_index: number) {
 
@@ -470,8 +474,6 @@ export class BodyComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-
-
   }
 
 

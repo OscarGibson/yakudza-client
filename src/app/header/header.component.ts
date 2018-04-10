@@ -4,6 +4,8 @@ import { Globals, Cart, AppReady } from '../app.globals';
 import { HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -33,6 +35,7 @@ export class HeaderComponent implements OnInit {
     this.bottom_nav_elements = document.getElementById('header-bottomnav').getElementsByTagName('ul')[0].getElementsByTagName('li');
     this.bottom_nav_poition = document.getElementById('header-bottomnav').offsetTop;
     this.bottom_nav = document.getElementById('header-bottomnav');
+
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -40,11 +43,26 @@ export class HeaderComponent implements OnInit {
     // console.log(this.bottom_nav.offsetTop);
     // console.log(window.pageYOffset, this.bottom_nav_poition);
 
-    if (window.pageYOffset >= this.bottom_nav.offsetTop + 50) {
+    let scrollDistance = $(window).scrollTop();
+
+    if (scrollDistance >= this.bottom_nav.offsetTop + 50) {
       this.show_nav_top = true;
     } else {
       this.show_nav_top = false;
     }
+
+    // let _this = this;
+
+    $('.product-title').each(function(i) {
+        if ($(this).position().top <= scrollDistance) {
+            // $('.navigation a.active').removeClass('active');
+            // $('.navigation a').eq(i).addClass('active');
+            Globals.current_category['id'] = $(this)[0].id.substring(8);
+            // console.log(Globals.current_category['id']);
+        }
+    });
+
+
     // // console.log(this.bottom_nav_elements);
     // for (let menu_element of this.bottom_nav_elements) {
     //   // console.log(menu_element.offsetTop);
@@ -148,7 +166,7 @@ export class HeaderComponent implements OnInit {
             this.globals.products.push(tmp_products[key]);
           }
 
-        if (first_time) this.change_categories(this.globals.categories[0].id);
+        // if (first_time) this.change_categories(this.globals.categories[0].id);
 
       }, error => {
 
@@ -157,10 +175,24 @@ export class HeaderComponent implements OnInit {
       })
   }
 
-  public change_categories(id: number) {
+  public change_categories(id: number, event: Event) {
+
     this.globals.current_page = {'title':'main'};
 
-    this.globals.current_category['id'] = id;
+    event.preventDefault();
+
+    var target = $('#section-'+id);
+
+    console.log($('#section-'+id));
+
+    $('html, body').stop().animate({
+            scrollTop: $(target).offset().top
+        }, 600, function() {
+            // location.hash = target; //attach the hash (#jumptarget) to the pageurl
+        });
+    return false;
+
+    // this.globals.current_category['id'] = id;
   } 
 
   public get_menu(first_time= false) {
@@ -200,7 +232,7 @@ export class HeaderComponent implements OnInit {
 
   public go_to_main() {
     this.globals.current_page = {'title':'main'};
-    this.globals.current_category = this.globals.categories[0];
+    // this.globals.current_category = this.globals.categories[0];
   } 
 
 

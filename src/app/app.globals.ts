@@ -30,7 +30,7 @@ export class Globals {
   //   {'slug': '', 'products': []},
   // ];
   public static categories: Array<any> = [
-    {'slug':'', 'name' : '','products': []},
+    {'slug':'', 'name' : '','products': [], 'position' : -1},
   ];
   public static categories_filter;
   public static feedback_path: string = Globals._get_path('feedback');
@@ -158,6 +158,14 @@ export class Globals {
     Globals.show_message = true;
     Globals.message = message;
   }
+
+  public static get_ancors_position() {
+    for (let i = 0; i < Globals.categories.length; i++) {
+      let offset = document.getElementById(Globals.categories[i].slug).offsetTop;
+      Globals.categories[i].position = offset;
+    }
+  }
+
 }
 
 
