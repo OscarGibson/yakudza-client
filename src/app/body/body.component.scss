@@ -357,6 +357,10 @@ body {
 		border: 1px solid #777;
 		border-radius: 5px;
 		text-align: center;
+		padding: 0 77px;
+		p {
+			line-height: 31px;
+		}
 	}
 	&-block {
 		margin: 24px;
@@ -746,8 +750,9 @@ input, textarea {
 		margin-bottom: 21px;
 		&-close {
 			position: relative;
-			text-align: right;
+			// text-align: right;
 			padding-right: 7px;
+			float: right;
 			&-img {
 				width: 13px;
 				height: 13px;
@@ -763,7 +768,7 @@ input, textarea {
 		}
 		&-img {
 			img {
-				max-width: 225px;
+				max-width: 111px;
 			}
 		}
 		&-content {

@@ -120,7 +120,7 @@ export class BodyComponent implements OnInit {
     // this.get_products();
     this.get_filters();
     this.get_shares_content();
-    this.get_document_content();
+    // this.get_document_content();
     this.get_how_to_content();
     this.get_contact_content();
     this.get_email_content();

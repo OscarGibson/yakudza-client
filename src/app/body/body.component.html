@@ -132,7 +132,7 @@
 		</div>
 
 		<!-- Documents section -->
-		<div *ngIf="globals.current_page.title == 'Документи'" class="documents col-lg-12 col-md-12">
+		<!-- <div *ngIf="globals.current_page.title == 'Документи'" class="documents col-lg-12 col-md-12">
 			<div class="documents-wrapper">
 				<h1 class="documents-header">Документи</h1>
 				<div class="documents-content" *ngFor="let document of globals.document_content">
@@ -164,14 +164,27 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- HowTo section -->
 		<div *ngIf="globals.current_page.title == 'Як замовити'" class="howTo col-lg-12 col-md-12 col-sm-12">
 			<h1 class="howTo-header">Як замовити</h1>
 			<div class="howTo-content">
 
-				<div class="row howTo-block" *ngFor="let ht of globals.how_to_content">
+				<p>Замовлення приймаємо  щодня з 11.00 до 23.00 через наш сайт 
+				<a href="http://www.yakuzalviv.com">http://www.yakuzalviv.com</a>  або по телефону: <br>
+				(073) 80 05 009<br>
+				(050) 53 42 556<br>
+				(098) 26 37 505<br>
+				Оплатити за замовлення  Ви можете готівкою при отриманні або за допомогою банківської картки. на нашому сайті.<br>
+				Достака  <b>безкоштовна</b> при замовленні на мінімально вказану суму.
+				<b>Сума мінімального замовлення в межах міста  – 199 грн</b>.<br>
+				<b>Сума мінімального замовлення за межі міста  від 300 грн.</b><br>
+				Тривалість доставки становить від 20 до 80 хвилин.
+				Після оформлення замовлення на сайті з Вами зв'яжуться найближчим часом.<br>
+				<u>Переконливе прохання: будь ласка, великі замовлення оформляйте зазделегідь.</u></p>
+
+				<!-- <div class="row howTo-block" *ngFor="let ht of globals.how_to_content">
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<img class="howTo-block-icon" src="{{ globals.backend_domain}}{{ ht.icon }}">
 					</div>
@@ -179,7 +192,7 @@
 						<div class="howTo-block-header">{{ ht.title }}</div>
 						<div class="howTo-block-text">{{ ht.content }}</div>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
