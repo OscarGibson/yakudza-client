@@ -25,7 +25,7 @@
 					</li> -->
 
 					<li>
-						<img src="/assets/img/kyivstar.png"/>
+						<img src="/assets/img/lifecell.png"/>
 						<span>+38 (073) 80 05 009</span>
 					</li>
 
@@ -64,7 +64,7 @@
 		<ul>
 			<li *ngFor="let category of bottom_nav_list">
 				<a href="#{{ category.slug }}">
-				<span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
+				<span id="category-{{ category.slug }}" (click)="change_categories(category.id, $event)">
 					{{ category.name }}
 				</span></a>
 				<span *ngIf="globals.current_category.slug == category.slug" class="active-bottom-menu"></span>
@@ -75,10 +75,10 @@
 	<nav class="header-bottomnav header-bottomnav-top" [ngClass]="{'open' : show_nav_top}">
 		<ul>
 			<li *ngFor="let category of bottom_nav_list">
-				<a href="#{{ category.slug }}"><span id="category-{{ category.slug }}" (click)="change_categories(category.id)">
+				<a class="target-buttons" href="#{{ category.id }}"><span id="category-{{ category.slug }}" (click)="change_categories(category.id, $event)">
 					{{ category.name }}
 				</span></a>
-				<span *ngIf="globals.current_category.slug == category.slug" class="active-bottom-menu"></span>
+				<span *ngIf="globals.current_category.id == category.id" class="active-bottom-menu"></span>
 			</li>
 		</ul>
 	</nav>

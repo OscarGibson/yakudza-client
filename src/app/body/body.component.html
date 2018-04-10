@@ -84,9 +84,11 @@
 				</div>
 			</div>
 
+			<div class="product-title" id="null"></div>
+
 			<div *ngFor="let category of globals.categories_filter" class="rols">
 
-				<div *ngIf="category.products.length" class="product-title" id="{{ category.slug }}">
+				<div *ngIf="category.products.length" class="product-title" id="section-{{ category.id }}">
 					<h1>{{ category.name }}</h1>
 				</div>
 
