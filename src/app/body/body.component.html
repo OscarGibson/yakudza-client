@@ -17,7 +17,7 @@
 	</div>
 	<div class=row>
 		<div id="cart" class="cart col-lg-4 col-md-4 col-sm-12 col-xs-12">
-		<div *ngIf="globals.current_page.title == 'main'" class="cart-wrapper" [ngClass]="{'top' : cart_in_top}">
+		<div *ngIf="globals.current_page.title == 'main'" class="cart-wrapper" [ngClass]="{'top' : cart_in_top, 'out' : cart_out}">
 			<div class="cart-head">
 				<embed class="cart-head-img" src="/assets/svg/elips.svg">
 				<h1 class="cart-head-text">Ваш кошик</h1>
@@ -384,7 +384,7 @@
 
 			</div>
 
-			<div class="order-propos col-sm-3">
+			<div class="order-propos col-sm-3" id="propos" [ngClass]="{'top' : propos_in_top, 'out' : propos_out}">
 
 				<div *ngFor="let category of globals.order_content; let index = index" class="prder-propos-block">
 					<h2>{{ category.content.title }}</h2>

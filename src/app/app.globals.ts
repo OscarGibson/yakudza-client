@@ -95,6 +95,8 @@ export class Globals {
   	}
   ];
 
+  public static  propos_element;
+
   // public static order_content = {
   //     "content": [
   //           {

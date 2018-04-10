@@ -13,6 +13,8 @@ declare global {
     interface Window { LiqPayCheckoutCallback: any; }
 }
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -58,9 +60,12 @@ export class BodyComponent implements OnInit {
   private _feedback_post_path: string = 'http://oscargibson.pythonanywhere.com/backend/api/v1/feedback';
 
   public cart_in_top: boolean;
+  public cart_out: boolean;
   public cart_position: number;
   public cart_element;
   public footer;
+  public propos_in_top: boolean;
+  public propos_out: boolean;
 
   private liqPayCheckout;
 
@@ -71,11 +76,44 @@ export class BodyComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   public onNavScroll($event) {
 
-    // if (window.pageYOffset >= this.cart_position + 290) {
-    //   this.cart_in_top = true;
-    // } else {
-    //   this.cart_in_top = false;
-    // }
+    // console.log(window.pageYOffset, this.cart_element.offsetTop + 30);
+
+    if (window.pageYOffset >= this.cart_element.offsetTop + 30) {
+      this.cart_in_top = true;
+    } else {
+      this.cart_in_top = false;
+    }
+
+    if (this.footer.offsetTop <= window.pageYOffset + $(this.cart_element).children().height() + 100) {
+      this.cart_out = true;
+    } else {
+      this.cart_out = false;
+    }
+
+    // console.log(this.footer.offsetTop, window.pageYOffset + $(this.cart_element).children().height() + 100);
+
+    if (this.globals.current_page.title == 'Оформлення замовлення') {
+      console.log(this.globals.propos_element);
+      this.globals.propos_element = document.getElementById('propos');
+      console.log($(this.globals.propos_element).position().top);
+      if (window.pageYOffset >= this.globals.propos_element.offsetTop + 30) {
+        this.propos_in_top = true;
+      } else {
+        this.propos_in_top = false;
+        // console.log(window.pageYOffset, $(this.propos_element).position().top, false);
+      }
+
+      if (this.footer.offsetTop <= window.pageYOffset + $(this.globals.propos_element).height() + 100) {
+        this.propos_out = true;
+        // console.log(3);
+      } else {
+        this.propos_out = false;
+        // console.log(4);
+      }
+    }
+
+    
+
   }
 
   ngOnInit() {
@@ -323,7 +361,11 @@ export class BodyComponent implements OnInit {
 
   public show_order() {
     this.globals.current_page = {'title':'Оформлення замовлення'};
-    this.globals.current_category = {'products' : []};    
+    this.globals.current_category = {'products' : []};
+    setTimeout( () => {
+      this.globals.propos_element = document.getElementById('propos');
+      console.log(this.globals.propos_element);
+    }, 100);
   }
 
   public create_feedback(form_id) {
@@ -461,7 +503,7 @@ export class BodyComponent implements OnInit {
             // ready
         }).on("liqpay.close", function(data){
             this.globals.display_message("Ваше замовлення прийняте");
-            this.cart.clearCart();
+            this.cartshow.clearCart();
         });
       };
 
