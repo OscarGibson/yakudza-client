@@ -99,9 +99,10 @@ export class HeaderComponent implements OnInit {
 
           for (let category of this.globals.categories) {
             for (let order_content of data['order_section']) {
-              if (category.id == order_content.id) {
+              if (category.id == order_content.related_categories[0]) {
 
-                this.globals.order_content.push({
+                if (category.products[0]) {
+                  this.globals.order_content.push({
                     "content" : {
                       "id": category.id,
                       "title": order_content.title,
@@ -116,12 +117,13 @@ export class HeaderComponent implements OnInit {
                       'prew_id' : category.products.length - 1,
                     }
                   });
+                }
 
               }
             }
           }
 
-          console.log(this.globals.order_content)
+          // console.log(this.globals.order_content)
           
         },
         error => {
