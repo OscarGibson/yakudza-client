@@ -48,6 +48,7 @@ body {
 		border: 1px solid #444;
 		border-radius: 5px;
 		transition: .3s;
+		overflow-x: hidden;
 	}
 	&-head {
 		position: relative;
@@ -77,6 +78,11 @@ body {
     		left: 133px;
     		width: 62px;
 		}
+	}
+	&-body {
+		overflow-y: scroll;
+		max-height: 267px;
+		margin-right: -17px;
 	}
 	&-item {
 		color: #fff;

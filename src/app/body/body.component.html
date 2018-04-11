@@ -24,28 +24,31 @@
 				<embed class="cart-head-sticks" src="/assets/svg/stick.svg">
 			</div>
 
-			<div class="cart-item" *ngFor="let item of cart.items; let i = index;">
-				<div class="cart-item-close">
-					<!-- <embed class="cart-item-close" src="/assets/svg/X.svg"> -->
-					<img class="cart-item-close" src="/assets/img/X.png">
-					<div class="cart-item-close-click" (click)="remove_cart_item(i)"></div>
-				</div>
-				<div class="cart-item-name">{{ item.item_name }}</div>
-				<div class="cart-item-counter">
-					<div class="cart-item-counter-minus">
-						<!-- <embed class="cart-item-counter-minus" src="/assets/svg/minus.svg"> -->
-						<img class="cart-item-counter-minus" src="/assets/img/minus.png">
-					<div class="cart-item-counter-click" (click)="minus_cart_item(i)"></div>
+			<div class="cart-body">
+				<div class="cart-item" *ngFor="let item of cart.items; let i=index;">
+					<div class="cart-item-close">
+						<!-- <embed class="cart-item-close" src="/assets/svg/X.svg"> -->
+						<img class="cart-item-close" src="/assets/img/X.png">
+						<div class="cart-item-close-click" (click)="remove_cart_item(i)"></div>
 					</div>
-					<div class="cart-item-counter-count">{{ item.item_count }}</div>
-					<div class="cart-item-counter-plus">
-						<!-- <embed class="cart-item-counter-plus" src="/assets/svg/plus.svg"> -->
-						<img class="cart-item-counter-minus" src="/assets/img/plus.png">
-					<div class="cart-item-counter-click" (click)="plus_cart_item(i)"></div>
+					<div class="cart-item-name">{{ item.item_name }}</div>
+					<div class="cart-item-counter">
+						<div class="cart-item-counter-minus">
+							<!-- <embed class="cart-item-counter-minus" src="/assets/svg/minus.svg"> -->
+							<img class="cart-item-counter-minus" src="/assets/img/minus.png">
+						<div class="cart-item-counter-click" (click)="minus_cart_item(i)"></div>
+						</div>
+						<div class="cart-item-counter-count">{{ item.item_count }}</div>
+						<div class="cart-item-counter-plus">
+							<!-- <embed class="cart-item-counter-plus" src="/assets/svg/plus.svg"> -->
+							<img class="cart-item-counter-minus" src="/assets/img/plus.png">
+						<div class="cart-item-counter-click" (click)="plus_cart_item(i)"></div>
+						</div>
 					</div>
+					<div class="cart-item-price">{{ item.item_total }} грн.</div>
 				</div>
-				<div class="cart-item-price">{{ item.item_total }} грн.</div>
 			</div>
+			
 
 			<div class="cart-total">
 				<span>ВСЬОГО: {{ cart.total | to_fixed : 2 }} грн.</span>

@@ -93,9 +93,9 @@ export class BodyComponent implements OnInit {
     // console.log(this.footer.offsetTop, window.pageYOffset + $(this.cart_element).children().height() + 100);
 
     if (this.globals.current_page.title == 'Оформлення замовлення') {
-      console.log(this.globals.propos_element);
+      // console.log(this.globals.propos_element);
       this.globals.propos_element = document.getElementById('propos');
-      console.log($(this.globals.propos_element).position().top);
+      // console.log($(this.globals.propos_element).position().top);
       if (window.pageYOffset >= this.globals.propos_element.offsetTop + 30) {
         this.propos_in_top = true;
       } else {
@@ -484,11 +484,15 @@ export class BodyComponent implements OnInit {
 
       if (response['message'] === 'success') {
         console.log('success');
+        this.globals.display_message("Ваше замовлення прийняте");
+        this.clear_cart_items();
+        this.go_to_main();
       } else if (response['message'] === 'redirect') {
 
-      console.log('function ', this.liqPayCheckout);
+      // console.log('function ', this.liqPayCheckout);
 
       let _liqPayCheckout = this.liqPayCheckout;
+      let _controller = this;
 
       window.LiqPayCheckoutCallback = () => {
         _liqPayCheckout.init({
@@ -497,17 +501,21 @@ export class BodyComponent implements OnInit {
             embedTo: "#liqpay_checkout",
             mode: "popup" // embed || popup,
         }).on("liqpay.callback", function(data){
-            console.log(data.status);
             console.log(data);
+            if (!data.code) {
+              _controller.globals.display_message("Ваше замовлення прийняте");
+              _controller.clear_cart_items();
+              _controller.go_to_main();
+            }
         }).on("liqpay.ready", function(data){
             // ready
         }).on("liqpay.close", function(data){
-            this.globals.display_message("Ваше замовлення прийняте");
-            this.cartshow.clearCart();
+            AppReady.app_ready = true;
         });
       };
 
       window.LiqPayCheckoutCallback();
+      AppReady.app_ready = false;
 
       // console.log(response['data']);
       // console.log(response['signature'])
