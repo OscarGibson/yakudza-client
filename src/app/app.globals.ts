@@ -17,8 +17,9 @@ export class Globals {
   public static menu_get_path: string = Globals._get_path('section/menu');
   public static order_get_path: string = Globals._get_path('section/order');
 
-  public static callback_post_path: string = Globals._get_path('callback');;
-  public static feedback_post_path: string = Globals._get_path('feedback');;
+  public static callback_post_path: string = Globals._get_path('callback');
+  public static feedback_post_path: string = Globals._get_path('feedback');
+  public static subs_post_path: string = Globals._get_path('subs');
 
 
   public static menu: Array<any>;
@@ -26,13 +27,12 @@ export class Globals {
   	'title' : 'main'
   };
   public static section_get_path: string = Globals._get_path('section/');
-  // public static categories_main: Array<any> = [
-  //   {'slug': '', 'products': []},
-  // ];
+
   public static categories: Array<any> = [
     {'slug':'', 'name' : '','products': [], 'position' : -1},
   ];
   public static categories_filter;
+  public static categories_main;
   public static feedback_path: string = Globals._get_path('feedback');
   public static current_category = {
   	'products' : []

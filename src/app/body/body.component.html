@@ -266,7 +266,7 @@
 							{{ feedback.author }}
 						</p>
 						<p class="feedback-comment-author-date">
-							{{ feedback.created_at }}
+							{{ feedback.created_at | date: 'short' }}
 						</p>
 					</div>
 					<div class="feedback-comment-body col-sm-offset-1 col-sm-9">
@@ -289,10 +289,10 @@
 				<form id="callback-form" action="">
 					<label for="call-modal-form-name">
 					Введіть ваше ім'я</label>
-					<input id="call-modal-form-name" type="" name="call-modal-form-name">
+					<input id="call-modal-form-name" type="text" name="call-modal-form-name">
 					<label for="call-modal-form-cell">
 					Введіть номер телефону</label>
-					<input id="call-modal-form-cell" type="" name="call-modal-form-cell">
+					<input id="call-modal-form-cell" type="number" name="call-modal-form-cell">
 					<span class="call-modal-form-info">
 						Наші оператори звяжуться з вами
 					</span>
@@ -308,14 +308,14 @@
 				<div class="subs-modal-X" (click)="close_modal('subs')">
 					<fa name="times"></fa>
 				</div>
-				<form>
+				<form id="subs-form" action="">
 					<span class="subs-modal-form-info">
 						Ви можете підписаться на щотижневу розсилку
 					</span>
 					<label for="subs-modal-form-email">
 					Введіть емейл</label>
-					<input id="subs-modal-form-email" type="" name="subs-modal-form-email">	
-					<button>Підписатись</button>
+					<input id="subs-modal-form-email" type="email" name="subs-modal-form-email">	
+					<button (click)="create_subs('subs-form')" type="button">Підписатись</button>
 				</form>
 			</div>
 		</div>
@@ -440,6 +440,11 @@
 					<label for="order-form-count">
 					Введіть кількість осіб</label>
 					<input id="order-form-count" type="number" name="order-form-count">
+
+					<label for="order-form-email">
+					Введіть email для разової знижки</label>
+					<input id="order-form-email" type="email" name="order-form-email">
+
 					<label for="order-form-text">
 					Коментарій</label>
 					<textarea id="order-form-text" type="text" name="order-form-text"></textarea>

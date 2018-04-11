@@ -240,7 +240,7 @@ body {
 		&-item {
 			padding: 5px 6px;
 			&-inner {
-				min-height: 297px;
+				height: 360px;
 				padding: 10px 11px;
 				border: 1px solid #555;
 				img {
@@ -494,6 +494,7 @@ body {
 		&-author {
 			text-align: center;
 			font-style: italic;
+			padding: 32px;
 		}
 		&-body {
 			background-color: #1a1b13;
@@ -857,12 +858,12 @@ input, textarea {
 		background-color: #1a1b13;
 		border: 1px solid #444;
 		border-radius: 5px;
-		// position: relative;
+		position: relative;
 			&-right {
 				position: absolute;
 				font-size: 26px;
 				top: 102px;
-			    right: 25px;
+			    right: 6px;
 			    color: #333;
 			    cursor: pointer;
 			}
@@ -870,7 +871,7 @@ input, textarea {
 				position: absolute;
 				font-size: 26px;
 			    top: 102px;
-			    left: 25px;
+			    left: 6px;
 			    color: #333;
 			    cursor: pointer;
 			}

@@ -97,7 +97,7 @@ export class HeaderComponent implements OnInit {
         data => {
           this.globals.order_content = [];
 
-          for (let category of this.globals.categories) {
+          for (let category of this.globals.categories_main) {
             for (let order_content of data['order_section']) {
               if (category.id == order_content.related_categories[0]) {
 
@@ -142,14 +142,20 @@ export class HeaderComponent implements OnInit {
 
         this.globals.categories = [];
         this.globals.categories_filter = [];
+        this.globals.categories_main = [];
         this.globals.products = [];
         let tmp_products = {};
 
-        this.bottom_nav_list = this.globals.categories;
+        // this.bottom_nav_list = this.globals.categories;
+        this.bottom_nav_list = [];
         for (let category of data['categories']) {
 
-          this.globals.categories.push(category);
-          this.globals.categories_filter.push(category);
+          this.globals.categories_main.push(category);
+          if (category.is_show == true) {
+            this.bottom_nav_list.push(category);
+            this.globals.categories.push(category);
+            this.globals.categories_filter.push(category);
+          }
 
           for (let product of category.products) {
 

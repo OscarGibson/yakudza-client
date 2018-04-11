@@ -9,6 +9,8 @@ import { HostListener } from '@angular/core';
 
 import { LiqPayCheckout } from '../LiqPayModule/LiqPayModule';
 
+import { DatePipe } from '@angular/common';
+
 declare global {
     interface Window { LiqPayCheckoutCallback: any; }
 }
@@ -368,6 +370,26 @@ export class BodyComponent implements OnInit {
     }, 100);
   }
 
+  public create_subs(form_id) {
+    let form = document.getElementById(form_id);
+    let email = form.getElementsByTagName('input')[0].value;
+
+    if (email) {
+      this.http.post(this.globals.subs_post_path,{'email':email}, {headers: this.headers})
+      .subscribe(
+        data => {
+          this.globals.display_message("Ви підписались на розсилку");
+          this.globals.show_subs = false;
+        },
+        error => {
+          console.log('ERROR: ', error);
+        }
+      )
+    } else {
+      console.log();
+    }
+  }
+
   public create_feedback(form_id) {
     let form = document.getElementById(form_id);
     let inputs = form.getElementsByTagName('input');
@@ -379,7 +401,7 @@ export class BodyComponent implements OnInit {
       this.http.post(this.globals.feedback_post_path,{'author':author, 'cell':cell, 'content':content}, {headers: this.headers})
       .subscribe(
         data => {
-          console.log('DATA:', data);
+          // console.log('DATA:', data);
           this.get_feedback_content();
 
           this.globals.display_message("Ваш відгук був доданий");
@@ -459,6 +481,7 @@ export class BodyComponent implements OnInit {
     let phone = elements[1].value;
     let name = elements[2].value;
     let count = elements[3].value;
+    let email = elements[4].value;
     let text = form.getElementsByTagName('textarea')[0].value;
     let products = [];
 
@@ -476,7 +499,8 @@ export class BodyComponent implements OnInit {
       "comment" : text,
       "products" : products,
       "count" : count,
-      "type" : type
+      "type" : type,
+      "email" : email
     };
 
     this.http.post(this.globals.order_post_path, data, {headers: this.headers})
