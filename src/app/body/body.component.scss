@@ -168,6 +168,16 @@ body {
 		    font-weight: bold;
 		}
 	}
+	&-button.top {
+		position: fixed;
+	    top: -27px;
+	    width: 100%;
+	    z-index: 10;
+	    transition: .3s;
+	}
+	&-button.top.open {
+	    top: 17px;
+	}
 }
 
 .product {

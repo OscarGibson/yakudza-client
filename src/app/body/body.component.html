@@ -1,4 +1,9 @@
 <div class="body">
+
+	<div class="cart-button top" (click)="show_order()" [ngClass]="{'open': globals.show_cart_top }">
+		<button>Оформити замовлення</button>
+	</div>
+
 	<div class="proposition row" *ngIf="globals.current_page.title == 'main'">
 		<div class="col-md-4 col-lg-4 hidden-sm hidden-xs">
 			<img src="{{ shares_path }}">
@@ -16,7 +21,7 @@
 		</p>
 	</div>
 	<div class=row>
-		<div id="cart" class="cart col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		<div id="cart" class="cart col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
 		<div *ngIf="globals.current_page.title == 'main'" class="cart-wrapper" [ngClass]="{'top' : cart_in_top, 'out' : cart_out}">
 			<div class="cart-head">
 				<embed class="cart-head-img" src="/assets/svg/elips.svg">
@@ -97,7 +102,7 @@
 
 				<div *ngIf="category.products.length" class="product-area row">
 					<div *ngFor="let product of category.products"
-					 class="col-lg-4 col-md-4 col-sm-6 col-xs-10  product-area-item">
+					 class="col-lg-4 col-md-4 col-sm-6 col-xs-10 col-xs-offset-1  product-area-item">
 					  <!-- <div *ngIf='check_filter_add(product.tags, false, true)'> -->
 					  <div>
 					  	<div class="product-area-item-inner">
@@ -409,7 +414,7 @@
 
 			</div>
 
-			<div class="order-propos col-sm-3" id="propos" [ngClass]="{'top' : propos_in_top, 'out' : propos_out}">
+			<div class="order-propos col-sm-3 hidden-sm hidden-xs" id="propos" [ngClass]="{'top' : propos_in_top, 'out' : propos_out}">
 
 				<div *ngFor="let category of globals.order_content; let index = index" class="prder-propos-block">
 					<h2>{{ category.content.title }}</h2>

@@ -47,8 +47,10 @@ export class HeaderComponent implements OnInit {
 
     if (scrollDistance >= this.bottom_nav.offsetTop + 50) {
       this.show_nav_top = true;
+      this.globals.show_cart_top = true;
     } else {
       this.show_nav_top = false;
+      this.globals.show_cart_top = false;
     }
 
     // let _this = this;

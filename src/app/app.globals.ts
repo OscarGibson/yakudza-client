@@ -22,6 +22,9 @@ export class Globals {
   public static subs_post_path: string = Globals._get_path('subs');
 
 
+
+  public static show_cart_top: boolean;
+
   public static menu: Array<any>;
   public static current_page = {
   	'title' : 'main'
