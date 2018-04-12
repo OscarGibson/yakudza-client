@@ -25,9 +25,9 @@ import * as $ from 'jquery';
 })
 export class BodyComponent implements OnInit {
 
-  public shares_path: string = 'assets/img/shares.jpg';
+  public shares_path: string = 'assets/img/center.jpg';
   public product_path: string = 'assets/img/havka.jpg';
-  public shares_2_path: string = 'assets/img/shares_image.jpg';
+  public shares_2_path: string = 'assets/img/bik.jpg';
 
   public document_image: string = 'assets/img/document.jpg';
 
